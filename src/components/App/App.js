@@ -5,11 +5,13 @@ import {
   Wrapper,
 } from './styledApp';
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import Header from "../Header/Header";
 
 function App() {
   return (
     <Wrapper>
       <GlobalStyle />
+      <Header />
       <Switch>
         <ProtectedRoute exact path='/saved-news' loggedIn={false}>
           <h1>Testing saved-news route</h1>
