@@ -9,17 +9,15 @@ import {
   NavText,
   NavButton,
   LogoutSymbol,
-  MenuButton,
-  CloseButton,
 } from './styledNavigation'
 
-export default function Navigation({ loggedIn }) {
+export default function Navigation({ loggedIn, isMenuOpen }) {
 
   const location = useLocation();
 
   return (
     <Nav>
-      <NavList>
+      <NavList isMenuOpen={isMenuOpen}>
         <NavItem path={location.pathname}>
           <NavText to='/'>Home</NavText>
         </NavItem>

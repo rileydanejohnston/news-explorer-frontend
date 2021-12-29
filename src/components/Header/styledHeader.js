@@ -6,10 +6,11 @@ import closeImgBlack from '../../images/close-black.svg';
 export const Wrapper = styled.header`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
   height: 80px;
   padding: 0 104px;
   box-shadow: 0px -1px 0px 0px #D1D2D6 inset;
+  position: relative;
 
   @media( max-width: 1023px) {
     height: 66px;
@@ -19,11 +20,14 @@ export const Wrapper = styled.header`
   @media( max-width: 625px) {
     height: 56px;
     padding: 0 16px 0 20px;
+    flex-direction: column;
+    justify-content: center;
   }
 `;
 
 export const LogoMenuWrapper = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
 `;

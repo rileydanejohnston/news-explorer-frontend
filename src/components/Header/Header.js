@@ -10,20 +10,20 @@ import {
 
 export default function Header({ loggedIn }) {
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <Wrapper>
       <LogoMenuWrapper>
         <Logo to='/'>NewsExplorer</Logo>
         {
-          isOpen ? 
-            <CloseButton onClick={() => setIsOpen(!isOpen)} /> 
+          isMenuOpen ? 
+            <CloseButton onClick={() => setIsMenuOpen(!isMenuOpen)} /> 
           : 
-            <MenuButton onClick={() => setIsOpen(!isOpen)} />
+            <MenuButton onClick={() => setIsMenuOpen(!isMenuOpen)} />
         }
       </LogoMenuWrapper>
-      <Navigation loggedIn={loggedIn} />
+      <Navigation loggedIn={loggedIn} isMenuOpen={isMenuOpen} />
     </Wrapper>
   )
 }

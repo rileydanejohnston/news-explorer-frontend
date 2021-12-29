@@ -3,23 +3,34 @@ import styled from "styled-components/macro";
 import logoutImg from '../../images/logout-symbol-black.svg';
 
 export const Nav = styled.nav`
-  height: 100%;
   display: flex;
-  align-items: center;
+  
+  @media( max-width: 625px ) {
+    width: 100%;
+    align-items: center;
+    position: absolute;
+    bottom: -174px;
+    left: 0;
+  }
 `;
 
 export const NavList = styled.ul`
   display: flex;
   align-items: center;
   grid-gap: 34px;
-  height: 100%;
 
   @media( max-width: 1023px) {
     grid-gap: 16px;
   }
 
   @media( max-width: 625px) {
-    display: none;
+    grid-gap: 0;
+    width: 100%;
+    align-items: flex-start;
+    height: ${(props) => (props.isMenuOpen ? '174px' : '0')};
+    display: ${(props) => (props.isMenuOpen ? 'flex' : 'none')};
+    flex-direction: column;
+    background: #2F71E5;
   }
 `;
 
@@ -33,6 +44,11 @@ export const NavItem = styled.li`
   @media( max-width: 1023px) {
     padding: 0 9px;
   }
+  @media( max-width: 625px) {
+    box-shadow: none;
+    padding: 0 0 0 16px;
+    height: 56px;
+  }
 `;
 
 export const NavItemNews = styled(NavItem)`
@@ -42,11 +58,19 @@ export const NavItemNews = styled(NavItem)`
   @media( max-width: 1023px) {
     padding: 0 30px;
   }
+  @media( max-width: 625px) {
+    box-shadow: none;
+    padding: 0 0 0 16px;
+  }
 `;
 
 export const NavItemBtn = styled(NavItem)`
   padding: 0;
   box-shadow: none;
+
+  @media( max-width: 625px) {
+    margin: 0 auto;
+  }
 `;
 
 export const NavText = styled(NavLink)`
@@ -60,6 +84,10 @@ export const NavText = styled(NavLink)`
 
   @media( max-width: 1023px) {
     font-size: 16px;
+  }
+  @media( max-width: 624px) {
+    font-size: 18px;
+    text-align: left;
   }
 `;
 
@@ -83,6 +111,9 @@ export const NavButton = styled.button`
     font-size: 16px;
     padding: ${(props) => (props.loggedIn ? '0 15px' : '0' )};
     width: ${(props) => (props.loggedIn ? '100px' : '152px' )};
+  }
+
+  @media( max-width: 625px) {
   }
 
   &:hover {
