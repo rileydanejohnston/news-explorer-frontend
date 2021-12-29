@@ -14,7 +14,7 @@ export const Wrapper = styled.header`
     padding: 0 40px;
   }
 
-  @media( max-width: 425px) {
+  @media( max-width: 625px) {
     height: 56px;
     padding: 0 16px 0 20px;
   }
@@ -29,7 +29,7 @@ export const Logo = styled(Link)`
   line-height: 24px;
   letter-spacing: 0px;
 
-  @media( max-width: 425px ) {
+  @media( max-width: 625px ) {
     font-size: 16px;
   }
 `;
