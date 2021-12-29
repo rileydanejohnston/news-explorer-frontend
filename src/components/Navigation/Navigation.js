@@ -2,10 +2,11 @@ import React from 'react'
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
 import { 
   Nav,
+  NavList,
   NavItem,
-  NewsNavItem,
-  NavItemActive,
-  NewsNavItemActive,
+  NavItemNews,
+  NavItemBtn,
+  NavText,
   NavButton,
   LogoutSymbol,
 } from './styledNavigation'
@@ -16,26 +17,24 @@ export default function Navigation({ loggedIn }) {
 
   return (
     <Nav>
-      { location.pathname === '/'  ?
-        ( <NavItemActive to='/'>Home</NavItemActive> )
-          : 
-        ( <NavItem to='/'>Home</NavItem> )
-      }
+      <NavList>
+        <NavItem path={location.pathname}>
+          <NavText to='/'>Home</NavText>
+        </NavItem>
       {
-    // 1) show 'saved articles' link IF user is signed in
-    // 2. if we are on the 'saved articles' path, return the active link (with underline), otherwise return the standard link
-      loggedIn && 
-      ( location.pathname === '/saved-news' ?
-        ( <NewsNavItemActive to='/saved-news'>Saved articles</NewsNavItemActive> )
-          : 
-        ( <NewsNavItem to='/saved-news'>Saved articles</NewsNavItem> )
-      )}
-
-      { loggedIn ? 
-        ( <NavButton>Elise<LogoutSymbol /></NavButton> ) 
-        : 
-        ( <NavButton>Sign in</NavButton> ) 
+        loggedIn && 
+        <NavItemNews path={location.pathname}>
+          <NavText to='/saved-news'>Saved articles</NavText>
+        </NavItemNews>
       }
+        <NavItemBtn path={location.pathname}>
+          { loggedIn ? 
+            ( <NavButton loggedIn={loggedIn}>Elise<LogoutSymbol /></NavButton> ) 
+            : 
+            ( <NavButton loggedIn={loggedIn}>Sign in</NavButton> ) 
+          }
+        </NavItemBtn>
+      </NavList>
     </Nav>
   )
 }
