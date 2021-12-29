@@ -56,6 +56,7 @@ export const NavText = styled(NavLink)`
   line-height: 24px;
   text-align: center;
   color: #1A1B22;
+  white-space: nowrap;
 
   @media( max-width: 1023px) {
     font-size: 16px;
