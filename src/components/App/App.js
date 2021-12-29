@@ -11,7 +11,7 @@ function App() {
   return (
     <Wrapper>
       <GlobalStyle />
-      <Header />
+      <Header loggedIn={true}/>
       <Switch>
         <ProtectedRoute exact path='/saved-news' loggedIn={false}>
           <h1>Testing saved-news route</h1>

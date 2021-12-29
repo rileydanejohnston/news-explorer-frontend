@@ -5,12 +5,14 @@ export const Wrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 104px 26px;
-  box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.2) inset;
+  height: 80px;
+  padding: 0 104px;
+  box-shadow: 0px -1px 0px 0px #D1D2D6 inset;
 `;
 
 export const Logo = styled(Link)`
-  font-family: Roboto Slab;
+  font-family: 'Roboto Slab';
+  color: #1A1B22;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
