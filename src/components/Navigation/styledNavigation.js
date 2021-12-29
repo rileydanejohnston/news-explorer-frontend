@@ -1,8 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components/macro";
 import logoutImg from '../../images/logout-symbol-black.svg';
-import menuImgBlack from '../../images/menu-black.svg';
-import closeImgBlack from '../../images/close-black.svg';
 
 export const Nav = styled.nav`
   height: 100%;
@@ -96,24 +94,4 @@ export const LogoutSymbol = styled.div`
   width: 17.41px;
   height: 16px;
   margin-left: 18px;
-`;
-
-export const MenuButton = styled(LogoutSymbol)`
-  display: none;
-  background: center / contain no-repeat url(${menuImgBlack});
-  width: 24px;
-  height: 24px;
-  margin-left: 0;
-
-  @media( max-width: 625px ) {
-    display: flex;
-  }
-
-  &:hover {
-    cursor: pointer;
-   }
-`;
-
-export const CloseButton = styled(MenuButton)`
-  background: center / contain no-repeat url(${closeImgBlack});
 `;

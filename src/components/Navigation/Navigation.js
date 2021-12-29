@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React } from 'react'
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
 import { 
   Nav,
@@ -16,15 +16,9 @@ import {
 export default function Navigation({ loggedIn }) {
 
   const location = useLocation();
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Nav>
-      {isOpen ? 
-        <CloseButton onClick={() => setIsOpen(!isOpen)} /> 
-      : 
-        <MenuButton onClick={() => setIsOpen(!isOpen)} />
-      }
       <NavList>
         <NavItem path={location.pathname}>
           <NavText to='/'>Home</NavText>

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
+import menuImgBlack from '../../images/menu-black.svg';
+import closeImgBlack from '../../images/close-black.svg';
 
 export const Wrapper = styled.header`
   display: flex;
@@ -18,6 +20,32 @@ export const Wrapper = styled.header`
     height: 56px;
     padding: 0 16px 0 20px;
   }
+`;
+
+export const LogoMenuWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+export const MenuButton = styled.div`
+  display: none;
+  background: center / contain no-repeat url(${menuImgBlack});
+  width: 24px;
+  height: 24px;
+  margin-left: 0;
+
+  @media( max-width: 625px ) {
+    display: block;
+  }
+
+  &:hover {
+    cursor: pointer;
+   }
+`;
+
+export const CloseButton = styled(MenuButton)`
+  background: center / contain no-repeat url(${closeImgBlack});
 `;
 
 export const Logo = styled(Link)`
