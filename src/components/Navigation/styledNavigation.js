@@ -11,6 +11,10 @@ export const NavList = styled.ul`
   align-items: center;
   grid-gap: 34px;
   height: 100%;
+
+  @media( max-width: 1023px) {
+    grid-gap: 16px;
+  }
 `;
 
 export const NavItem = styled.li`
@@ -19,11 +23,19 @@ export const NavItem = styled.li`
   padding: 0 10px;
   height: 100%;
   box-shadow: ${(props) => (props.path === '/' ? '0px -3px 0px 0px #1A1B22 inset' : 'none')};
+
+  @media( max-width: 1023px) {
+    padding: 0 9px;
+  }
 `;
 
 export const NavItemNews = styled(NavItem)`
   padding: 0 32px;
   box-shadow: ${(props) => (props.path === '/saved-news' ? '0px -3px 0px 0px #1A1B22 inset' : 'none')};
+
+  @media( max-width: 1023px) {
+    padding: 0 30px;
+  }
 `;
 
 export const NavItemBtn = styled(NavItem)`
@@ -38,6 +50,10 @@ export const NavText = styled(NavLink)`
   line-height: 24px;
   text-align: center;
   color: #1A1B22;
+
+  @media( max-width: 1023px) {
+    font-size: 16px;
+  }
 `;
 
 export const NavButton = styled.button`
@@ -51,8 +67,16 @@ export const NavButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: ${(props) => (props.loggedIn ? 'space-between' : 'center' )};
-  padding: ${(props) => (props.loggedIn ? '12px 18px' : '12px' )};
-  width: ${(props) => (props.loggedIn ? 'auto' : '176px' )};
+  padding: ${(props) => (props.loggedIn ? '0 18px' : '0' )};
+  width: ${(props) => (props.loggedIn ? '112px' : '176px' )};
+  height: 48px;
+
+  @media( max-width: 1023px) {
+    height: 40px;
+    font-size: 16px;
+    padding: ${(props) => (props.loggedIn ? '0 15px' : '0' )};
+    width: ${(props) => (props.loggedIn ? '100px' : '152px' )};
+  }
 
   &:hover {
     cursor: pointer;
