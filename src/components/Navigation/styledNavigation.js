@@ -22,7 +22,15 @@ export const NavItem = styled(NavLink)`
   height: 100%;
 `;
 
+export const NewsNavItem = styled(NavItem)`
+  padding: 0 32px;
+`;
+
 export const NavItemActive = styled(NavItem)`
+  box-shadow: 0px -3px 0px 0px #1A1B22 inset;
+`;
+
+export const NewsNavItemActive = styled(NewsNavItem)`
   box-shadow: 0px -3px 0px 0px #1A1B22 inset;
 `;
 

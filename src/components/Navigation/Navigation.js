@@ -3,7 +3,9 @@ import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
 import { 
   Nav,
   NavItem,
+  NewsNavItem,
   NavItemActive,
+  NewsNavItemActive,
   NavButton,
   LogoutSymbol,
 } from './styledNavigation'
@@ -24,9 +26,9 @@ export default function Navigation({ loggedIn }) {
     // 2. if we are on the 'saved articles' path, return the active link (with underline), otherwise return the standard link
       loggedIn && 
       ( location.pathname === '/saved-news' ?
-        ( <NavItemActive to='/saved-news'>Saved articles</NavItemActive> )
+        ( <NewsNavItemActive to='/saved-news'>Saved articles</NewsNavItemActive> )
           : 
-        ( <NavItem to='/saved-news'>Saved articles</NavItem> )
+        ( <NewsNavItem to='/saved-news'>Saved articles</NewsNavItem> )
       )}
 
       { loggedIn ? 
