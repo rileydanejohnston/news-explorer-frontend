@@ -20,9 +20,10 @@ export const NavItem = styled(NavLink)`
   align-items: center;
   padding: 0 10px;
   height: 100%;
-  &:hover {
-    box-shadow: 0px -3px 0px 0px #1A1B22 inset;
-  }
+`;
+
+export const NavItemActive = styled(NavItem)`
+  box-shadow: 0px -3px 0px 0px #1A1B22 inset;
 `;
 
 export const NavButton = styled.button`

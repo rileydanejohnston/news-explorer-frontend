@@ -13,7 +13,7 @@ function App() {
       <GlobalStyle />
       <Header loggedIn={true}/>
       <Switch>
-        <ProtectedRoute exact path='/saved-news' loggedIn={false}>
+        <ProtectedRoute exact path='/saved-news' loggedIn={true}>
           <h1>Testing saved-news route</h1>
         </ProtectedRoute>
         <Route exact path='/'>
