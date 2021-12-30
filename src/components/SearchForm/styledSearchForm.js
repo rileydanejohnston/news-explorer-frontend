@@ -1,7 +1,6 @@
 import styled from "styled-components/macro";
 
 export const SearchWrapper = styled.section`
-  background: #6193EA;
   padding: 80px 0;
 
   @media( max-width: 1023px ) {
