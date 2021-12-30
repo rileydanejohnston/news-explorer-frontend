@@ -9,7 +9,7 @@ export const Nav = styled.nav`
     width: 100%;
     align-items: center;
     position: absolute;
-    bottom: -174px;
+    top: 56px;
     left: 0;
   }
 `;
@@ -24,13 +24,16 @@ export const NavList = styled.ul`
   }
 
   @media( max-width: 625px) {
-    grid-gap: 0;
+    grid-gap: 22px;
     width: 100%;
-    align-items: flex-start;
-    height: ${(props) => (props.isMenuOpen ? '174px' : '0')};
-    display: ${(props) => (props.isMenuOpen ? 'flex' : 'none')};
     flex-direction: column;
-    background: #2F71E5;
+    background: #FFF;
+    padding: 16px 0 24px 0;
+    align-items: flex-start;
+    max-height: ${(props) => (props.isMenuOpen ? '252px' : '0')};
+    visibility: ${(props) => (props.isMenuOpen ? 'visibile' : 'hidden')};
+    opacity: ${(props) => (props.isMenuOpen ? 1 : 0)};
+    transition: opacity .5s ease, max-height .5s ease;
   }
 `;
 
@@ -114,6 +117,9 @@ export const NavButton = styled.button`
   }
 
   @media( max-width: 625px) {
+    height: 56px;
+    width: ${(props) => (props.loggedIn ? '183px' : '288px' )};
+    padding: ${(props) => (props.loggedIn ? '0 56px' : '0' )};
   }
 
   &:hover {
