@@ -17,21 +17,21 @@ export default function Navigation({ loggedIn, isMenuOpen }) {
 
   return (
     <Nav>
-      <NavList isMenuOpen={isMenuOpen}>
+      <NavList path={location.pathname} isMenuOpen={isMenuOpen}>
         <NavItem path={location.pathname}>
-          <NavText to='/'>Home</NavText>
+          <NavText path={location.pathname} to='/'>Home</NavText>
         </NavItem>
       {
         loggedIn && 
         <NavItemNews path={location.pathname}>
-          <NavText to='/saved-news'>Saved articles</NavText>
+          <NavText  path={location.pathname} to='/saved-news'>Saved articles</NavText>
         </NavItemNews>
       }
         <NavItemBtn path={location.pathname}>
           { loggedIn ? 
-            ( <NavButton loggedIn={loggedIn}>Elise<LogoutSymbol /></NavButton> ) 
+            ( <NavButton path={location.pathname} loggedIn={loggedIn}>Elise<LogoutSymbol path={location.pathname}/></NavButton> ) 
           : 
-            ( <NavButton loggedIn={loggedIn}>Sign in</NavButton> ) 
+            ( <NavButton path={location.pathname} loggedIn={loggedIn}>Sign in</NavButton> ) 
           }
         </NavItemBtn>
       </NavList>

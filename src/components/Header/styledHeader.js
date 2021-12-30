@@ -14,6 +14,7 @@ export const Wrapper = styled.header`
   box-shadow: ${(props) => (props.path === '/' ? 
     '0px -1px 0px 0px rgba(255, 255, 255, 0.2) inset' 
   : '0px -1px 0px 0px #D1D2D6 inset')};
+  transition: background .5s ease;
   position: relative;
 
   @media( max-width: 1023px) {

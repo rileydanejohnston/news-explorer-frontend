@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components/macro";
 import logoutImg from '../../images/logout-symbol-black.svg';
+import logoutWhite from '../../images/logout-white2.svg';
 
 export const Nav = styled.nav`
   display: flex;
@@ -27,7 +28,7 @@ export const NavList = styled.ul`
     grid-gap: 22px;
     width: 100%;
     flex-direction: column;
-    background: #FFF;
+    background: ${(props) => (props.path === '/' ? '#1A1B22' : '#FFF')};
     padding: 16px 0 24px 0;
     align-items: flex-start;
     max-height: ${(props) => (props.isMenuOpen ? '252px' : '0')};
@@ -42,7 +43,9 @@ export const NavItem = styled.li`
   align-items: center;
   padding: 0 10px;
   height: 100%;
-  box-shadow: ${(props) => (props.path === '/' ? '0px -3px 0px 0px #1A1B22 inset' : 'none')};
+  box-shadow: ${(props) => (props.path === '/' ? 
+    '0px -3px 0px 0px #FFF inset' 
+  : 'none')};
 
   @media( max-width: 1023px) {
     padding: 0 9px;
@@ -83,6 +86,7 @@ export const NavText = styled(NavLink)`
   line-height: 24px;
   text-align: center;
   white-space: nowrap;
+  color: ${(props) => (props.path === '/' && '#FFF')};
 
   @media( max-width: 1023px) {
     font-size: 16px;
@@ -98,9 +102,10 @@ export const NavButton = styled.button`
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
-  border: 1px solid #1A1B22;
   border-radius: 100px;
-  background: #FFF;
+  color: ${(props) => (props.path === '/' && '#FFF')};
+  border: ${(props) => (props.path === '/' ? '1px solid #FFF' : '1px solid #1A1B22')};
+  background: ${(props) => (props.path === '/' ? 'rgba(0,0,0,0.0)' : '#FFF')};
   display: flex;
   align-items: center;
   justify-content: ${(props) => (props.loggedIn ? 'space-between' : 'center' )};
@@ -127,7 +132,9 @@ export const NavButton = styled.button`
 `;
 
 export const LogoutSymbol = styled.div`
-  background: center / contain no-repeat url(${logoutImg});
+  background: ${(props) => (props.path === '/' ? 
+    `center / contain no-repeat url(${logoutWhite})` 
+  : `center / contain no-repeat url(${logoutImg})`)};
   width: 17.41px;
   height: 16px;
   margin-left: 18px;

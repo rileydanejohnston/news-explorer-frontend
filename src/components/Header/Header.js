@@ -15,7 +15,7 @@ export default function Header({ loggedIn }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <Wrapper path={location.pathname}>
+    <Wrapper path={location.pathname} isMenuOpen={isMenuOpen}>
       <LogoMenuWrapper>
         <Logo to='/' path={location.pathname} >NewsExplorer</Logo>
         {
