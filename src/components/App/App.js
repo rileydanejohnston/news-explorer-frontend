@@ -6,6 +6,7 @@ import {
 } from './styledApp';
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Header from "../Header/Header";
+import SearchForm from "../SearchForm/SearchForm";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <h1>Testing saved-news route</h1>
         </ProtectedRoute>
         <Route exact path='/'>
-          <h1>Testing main route</h1>
+          <SearchForm></SearchForm>
         </Route>
       </Switch>
     </Wrapper>
