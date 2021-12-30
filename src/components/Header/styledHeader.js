@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
 import menuImgBlack from '../../images/menu-black.svg';
 import closeImgBlack from '../../images/close-black.svg';
+import closeWhite from '../../images/close-white.svg';
+import menuWhite from '../../images/menu-white.svg';
 
 export const Wrapper = styled.header`
   display: flex;
@@ -9,7 +11,9 @@ export const Wrapper = styled.header`
   align-items: stretch;
   height: 80px;
   padding: 0 104px;
-  box-shadow: 0px -1px 0px 0px #D1D2D6 inset;
+  box-shadow: ${(props) => (props.path === '/' ? 
+    '0px -1px 0px 0px rgba(255, 255, 255, 0.2) inset' 
+  : '0px -1px 0px 0px #D1D2D6 inset')};
   position: relative;
 
   @media( max-width: 1023px) {
@@ -34,7 +38,9 @@ export const LogoMenuWrapper = styled.div`
 
 export const MenuButton = styled.div`
   display: none;
-  background: center / contain no-repeat url(${menuImgBlack});
+  background: ${(props) => (props.path === '/' ? 
+    `center / contain no-repeat url(${menuWhite})` 
+  : `center / contain no-repeat url(${menuImgBlack})`)};
   width: 24px;
   height: 24px;
   margin-left: 0;
@@ -50,11 +56,15 @@ export const MenuButton = styled.div`
 
 export const CloseButton = styled(MenuButton)`
   background: center / contain no-repeat url(${closeImgBlack});
+  background: ${(props) => (props.path === '/' ? 
+    `center / contain no-repeat url(${closeWhite})` 
+  : `center / contain no-repeat url(${closeImgBlack})`)};
 `;
 
 export const Logo = styled(Link)`
   font-family: 'Roboto Slab';
   color: #1A1B22;
+  color: ${(props) => (props.path === '/' && '#FFF')};
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
