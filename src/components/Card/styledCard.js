@@ -1,15 +1,42 @@
 import styled from "styled-components/macro";
-
+import bookmarkImg from '../../images/bookmark.svg';
 
 export const CardWrapper = styled.li`
   width: 400px;
   border-radius: 20px;
   overflow: hidden;
+  position: relative;
 `;
 
 export const Image = styled.img`
   width: 100%;
   height: 272px;
+`;
+
+export const ActionButton = styled.button`
+  width: 40px;
+  height: 40px;
+  background: #FFF;
+  border-radius: 8px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover{
+    cursor: pointer;
+  }
+`;
+
+export const Icon = styled.div`
+  width: 14px;
+  height: 19px;
+  background: center / contain no-repeat url(${bookmarkImg});
+  opacity: ${(props) => (props.iconHover ? 1 : .2 )};
+  transition: opacity .3s ease;
 `;
 
 export const InfoWrapper = styled.div`

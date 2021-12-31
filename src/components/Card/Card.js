@@ -1,11 +1,28 @@
-import React from 'react'
-import { CardWrapper, Date, Image, InfoWrapper, NewsSource, Subtitle, Title } from './styledCard'
+import { React, useState } from 'react'
+import { Icon, ActionButton, CardWrapper, Date, Image, InfoWrapper, NewsSource, Subtitle, Title } from './styledCard'
 import card1 from '../../images/nature.png';
 
 export default function Card() {
+
+  const [iconHover, setIconHover] = useState(false);
+
+  const handleIconEnter = () => {
+    setIconHover(true);
+  }
+
+  const handleIconExit = () => {
+    setIconHover(false);
+  }
+
   return (
     <CardWrapper>
-      <Image src={card1} alt='Nature photo'></Image>
+      <ActionButton 
+      onMouseEnter={handleIconEnter} 
+      onMouseLeave={handleIconExit}
+      >
+        <Icon iconHover={iconHover} />
+      </ActionButton>
+      <Image src={card1} alt='Nature photo' />
       <InfoWrapper>
         <Date>February 19, 2019</Date>
         <Title>Nature makes you feel better</Title>
