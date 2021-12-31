@@ -55,6 +55,10 @@ export const TitlesWrapper = styled.div`
     padding-top: 40px;
     width: 424px;
   }
+
+  @media(max-width: 625px) {
+    width: 288px;
+  }
 `;
 
 export const Title = styled.h2`
