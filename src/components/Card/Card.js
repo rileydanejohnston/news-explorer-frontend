@@ -1,9 +1,11 @@
 import { React, useState } from 'react'
 import { Icon, ActionButton, CardWrapper, Date, Image, InfoWrapper, NewsSource, Subtitle, Title, SelectedIcon, ToolTip, Category } from './styledCard'
 import card1 from '../../images/nature.png';
+import { useLocation } from 'react-router-dom';
 
 export default function Card() {
 
+  const location = useLocation();
   const [iconHover, setIconHover] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [isToolTipOpen, setIsToolTipOpen] = useState(false);
@@ -20,7 +22,9 @@ export default function Card() {
 
   return (
     <CardWrapper>
-      <Category>Yellowstone</Category>
+      {
+        location.pathname === '/saved-news' && <Category>Yellowstone</Category>
+      }
       <ToolTip isOpen={isToolTipOpen}>Sign in to save articles</ToolTip>
       <ActionButton 
         onMouseEnter={handleIconEnter} 
