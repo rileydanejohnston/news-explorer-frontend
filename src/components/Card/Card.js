@@ -3,7 +3,7 @@ import { Icon, ActionButton, CardWrapper, Date, Image, InfoWrapper, NewsSource, 
 import card1 from '../../images/nature.png';
 import { useLocation } from 'react-router-dom';
 
-export default function Card() {
+export default function Card({ loggedIn }) {
 
   const location = useLocation();
   const [iconHover, setIconHover] = useState(false);
@@ -20,6 +20,12 @@ export default function Card() {
     setIsToolTipOpen(false);
   }
 
+  const handleClick = () => {
+    if (loggedIn) {
+      setIsSaved(!isSaved);
+    }
+  }
+
   return (
     <CardWrapper>
       {
@@ -29,7 +35,7 @@ export default function Card() {
       <ActionButton 
         onMouseEnter={handleIconEnter} 
         onMouseLeave={handleIconExit}
-        onClick={() => setIsSaved(!isSaved)} 
+        onClick={handleClick}
       >
         {
   // the home path has ability to like/unlike cards

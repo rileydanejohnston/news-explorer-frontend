@@ -16,7 +16,7 @@ function App() {
       <Switch>
         <ProtectedRoute exact path='/saved-news' loggedIn={true}>
           <Header loggedIn={true}/>
-          <NewsCardList />
+          <NewsCardList loggedIn={true} />
         </ProtectedRoute>
         <Route exact path='/'>
           <Main loggedIn={true} />

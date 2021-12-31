@@ -12,7 +12,7 @@ export default function Main({ loggedIn }) {
         <Header loggedIn={loggedIn} />
         <SearchForm />
       </ImageWrapper>
-      <NewsCardList />
+      <NewsCardList loggedIn={loggedIn} />
       <About />
     </>
   )
