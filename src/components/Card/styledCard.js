@@ -14,6 +14,30 @@ export const Image = styled.img`
   height: 272px;
 `;
 
+export const ToolTip = styled.div`
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: center;
+
+  background: #FFF;
+  border-radius: 10px;
+  width: 182px;
+  height: 40px;
+  padding: 10px 20px;
+  position: absolute;
+  top: 24px;
+  right: 69px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  /* why?? should be border box.. should be centered with text align.. should be centered vertically with padding...*/
+`;
+
 export const ActionButton = styled.button`
   width: 40px;
   height: 40px;

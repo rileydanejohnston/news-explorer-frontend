@@ -1,5 +1,5 @@
 import { React, useState } from 'react'
-import { Icon, ActionButton, CardWrapper, Date, Image, InfoWrapper, NewsSource, Subtitle, Title, SelectedIcon } from './styledCard'
+import { Icon, ActionButton, CardWrapper, Date, Image, InfoWrapper, NewsSource, Subtitle, Title, SelectedIcon, ToolTip } from './styledCard'
 import card1 from '../../images/nature.png';
 
 export default function Card() {
@@ -17,6 +17,7 @@ export default function Card() {
 
   return (
     <CardWrapper>
+      <ToolTip>Sign in to save articles</ToolTip>
       <ActionButton 
         onMouseEnter={handleIconEnter} 
         onMouseLeave={handleIconExit}
