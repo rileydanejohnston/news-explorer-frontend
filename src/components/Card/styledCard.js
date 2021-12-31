@@ -1,6 +1,7 @@
 import styled from "styled-components/macro";
 import bookmarkImg from '../../images/bookmark.svg';
 import selectedBookmark from '../../images/selected-bookmark.svg';
+import deleteIcon from '../../images/delete-icon.svg';
 
 export const CardWrapper = styled.li`
   width: 400px;
@@ -74,9 +75,11 @@ export const ActionButton = styled.button`
 `;
 
 export const Icon = styled.div`
-  width: 14px;
+  width: ${(props) => (props.path === '/' ? '14px' : '18px' )};
   height: 19px;
-  background: center / contain no-repeat url(${bookmarkImg});
+  background: ${(props) => (props.path === '/' ? 
+    `center / contain no-repeat url(${bookmarkImg})` 
+  : `center / contain no-repeat url(${deleteIcon})`)};
   opacity: ${(props) => (props.iconHover ? 1 : .2 )};
   transition: opacity .3s ease;
 `;

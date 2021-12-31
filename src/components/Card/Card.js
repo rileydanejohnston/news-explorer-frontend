@@ -34,7 +34,7 @@ export default function Card() {
         {
           isSaved ? 
           <SelectedIcon /> : 
-          <Icon iconHover={iconHover} />
+          <Icon iconHover={iconHover} path={location.pathname}/>
         }
       </ActionButton>
       <Image src={card1} alt='Nature photo' />
