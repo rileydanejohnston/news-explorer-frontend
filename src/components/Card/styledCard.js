@@ -8,11 +8,27 @@ export const CardWrapper = styled.li`
   border-radius: 20px;
   overflow: hidden;
   position: relative;
+
+  @media( max-width: 1023px ) {
+    width: 224px;
+  }
+
+  @media( max-width: 625px ) {
+    width: 288px;
+  }
 `;
 
 export const Image = styled.img`
   width: 100%;
   height: 272px;
+
+  @media( max-width: 1023px ) {
+    height: 150px;
+  }
+
+  @media( max-width: 625px ) {
+    height: 196px;
+  }
 `;
 
 export const Category = styled.div`
@@ -29,6 +45,17 @@ export const Category = styled.div`
   position: absolute;
   top: 24px;
   left: 24px;
+
+  @media( max-width: 1023px ) {
+    padding: 8px 20px;
+    top: 8px;
+    left: 8px;
+  }
+
+  @media( max-width: 625px ) {
+    top: 16px;
+    left: 16px;
+  }
 `;
 
 export const ToolTip = styled.div`
@@ -53,6 +80,16 @@ export const ToolTip = styled.div`
   justify-content: center;
   box-sizing: border-box;
 
+  @media( max-width: 1023px ) {
+    top: ${(props) => (props.path === '/' ? '8px' : '53px' )};
+    right: ${(props) => (props.path === '/' ? '53px' : '8px' )};
+  }
+
+  @media( max-width: 625px ) {
+    top: ${(props) => (props.path === '/' ? '16px' : '61px' )};
+    right: ${(props) => (props.path === '/' ? '61px' : '16px' )};
+  }
+
   /* why?? should be border box.. should be centered with text align.. should be centered vertically with padding...*/
 `;
 
@@ -68,6 +105,16 @@ export const ActionButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media( max-width: 1023px ) {
+    top: 8px;
+    right: 8px;
+  }
+
+  @media( max-width: 625px ) {
+    top: 16px;
+    right: 16px;
+  }
 
   &:hover{
     cursor: pointer;
@@ -92,6 +139,10 @@ export const SelectedIcon = styled(Icon)`
 export const InfoWrapper = styled.div`
   padding: 20px 24px 24px;
   background: #FFF;
+
+  @media( max-width: 1023px ) {
+    padding: 16px;
+  }
 `;
 
 export const Date = styled.p`
@@ -114,6 +165,15 @@ export const Title = styled.h3`
   letter-spacing: 0px;
 
   margin-top: 12px;
+
+  @media( max-width: 1023px ) {
+    font-size: 22px;
+    line-height: 24px;
+  }
+
+  @media( max-width: 625px ) {
+    margin-top: 10px;
+  }
 `;
 
 export const Subtitle = styled.p`
@@ -124,6 +184,14 @@ export const Subtitle = styled.p`
   letter-spacing: 0px;
 
   margin-top: 46px;
+
+  @media( max-width: 1023px ) {
+    margin-top: 10px;
+  }
+
+  @media( max-width: 625px ) {
+    margin-top: 14px;
+  }
 `;
 
 export const NewsSource = styled.p`
@@ -137,4 +205,12 @@ export const NewsSource = styled.p`
   margin-top: 40px;
   text-transform: uppercase;
   color: #B6BCBF;
+
+  @media( max-width: 1023px ) {
+    margin-top: 12px;
+  }
+
+  @media( max-width: 625px ) {
+    margin-top: 8px;
+  }
 `;

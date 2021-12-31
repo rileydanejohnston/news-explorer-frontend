@@ -7,6 +7,9 @@ export default function NewsCardList({ loggedIn }) {
     <DevelopmentWrapper>
       <CardList>
         <Card loggedIn={loggedIn} />
+        <Card loggedIn={loggedIn} />
+        <Card loggedIn={loggedIn} />
+        <Card loggedIn={loggedIn} />
       </CardList>
     </DevelopmentWrapper>
   )

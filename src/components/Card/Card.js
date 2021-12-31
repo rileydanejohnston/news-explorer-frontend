@@ -39,7 +39,12 @@ export default function Card({ loggedIn }) {
       {
         location.pathname === '/saved-news' && <Category>Yellowstone</Category>
       }
-      <ToolTip isOpen={isToolTipOpen}>Sign in to save articles</ToolTip>
+      <ToolTip 
+        isOpen={isToolTipOpen}
+        path={location.pathname}
+      >
+        Sign in to save articles
+      </ToolTip>
       <ActionButton 
         onMouseEnter={handleIconEnter} 
         onMouseLeave={handleIconExit}
