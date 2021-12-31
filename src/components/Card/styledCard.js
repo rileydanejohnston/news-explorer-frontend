@@ -8,6 +8,9 @@ export const CardWrapper = styled.li`
   border-radius: 20px;
   overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   @media( max-width: 1023px ) {
     width: 224px;

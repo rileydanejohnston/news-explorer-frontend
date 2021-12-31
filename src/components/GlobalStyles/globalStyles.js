@@ -4,11 +4,18 @@ import { normalize } from 'styled-normalize';
 const GlobalStyle = createGlobalStyle`
   ${normalize}
 
+  html {
+    box-sizing: border-box;
+    background-color: #f3f3f3;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
   body {
     margin: 0;
     padding: 0;
     background-color: #FFF;
-    box-sizing: border-box;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     color: #1A1B22;
   }
