@@ -32,9 +32,18 @@ export default function Card() {
         onClick={() => setIsSaved(!isSaved)} 
       >
         {
-          isSaved ? 
-          <SelectedIcon /> : 
-          <Icon iconHover={iconHover} path={location.pathname}/>
+  // the home path has ability to like/unlike cards
+  // saved-news path only had the ability to delete 
+          location.pathname === '/' ?
+          (
+            isSaved ? 
+            <SelectedIcon /> : 
+            <Icon iconHover={iconHover} path={location.pathname}/>
+          )
+        :
+          (
+            <Icon iconHover={iconHover} path={location.pathname}/>
+          )
         }
       </ActionButton>
       <Image src={card1} alt='Nature photo' />
