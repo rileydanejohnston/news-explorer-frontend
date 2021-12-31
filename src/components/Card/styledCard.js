@@ -14,6 +14,22 @@ export const Image = styled.img`
   height: 272px;
 `;
 
+export const Category = styled.div`
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: center;
+
+  padding: 8px 22px;
+  background: #FFF;
+  border-radius: 10px;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+`;
+
 export const ToolTip = styled.div`
   font-size: 12px;
   font-style: normal;
@@ -26,7 +42,6 @@ export const ToolTip = styled.div`
   transition: opacity .3s ease .3s;
   background: #FFF;
   border-radius: 10px;
-  width: 182px;
   height: 40px;
   padding: 10px 20px;
   position: absolute;
