@@ -12,6 +12,14 @@ export default function Card({ loggedIn }) {
 
   const handleIconEnter = () => {
     setIconHover(true);
+
+    // prevent tool tip from opening if logged in on the home page
+    // it should open if:
+    // 1) not logged in at home
+    // 2) on /saved-news route
+    if (loggedIn && location.pathname === '/') {
+      return;
+    }
     setIsToolTipOpen(true);
   }
 
