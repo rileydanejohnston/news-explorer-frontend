@@ -6,18 +6,21 @@ export default function Card() {
 
   const [iconHover, setIconHover] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [isToolTipOpen, setIsToolTipOpen] = useState(false);
 
   const handleIconEnter = () => {
     setIconHover(true);
+    setIsToolTipOpen(true);
   }
 
   const handleIconExit = () => {
     setIconHover(false);
+    setIsToolTipOpen(false);
   }
 
   return (
     <CardWrapper>
-      <ToolTip>Sign in to save articles</ToolTip>
+      <ToolTip isOpen={isToolTipOpen}>Sign in to save articles</ToolTip>
       <ActionButton 
         onMouseEnter={handleIconEnter} 
         onMouseLeave={handleIconExit}

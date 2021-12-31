@@ -22,6 +22,8 @@ export const ToolTip = styled.div`
   letter-spacing: 0em;
   text-align: center;
 
+  opacity: ${(props) => (props.isOpen ? 1 : 0 )};
+  transition: opacity .3s ease .3s;
   background: #FFF;
   border-radius: 10px;
   width: 182px;
