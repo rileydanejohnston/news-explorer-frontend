@@ -56,7 +56,6 @@ export const MenuButton = styled.div`
 `;
 
 export const CloseButton = styled(MenuButton)`
-  background: center / contain no-repeat url(${closeImgBlack});
   background: ${(props) => (props.path === '/' ? 
     `center / contain no-repeat url(${closeWhite})` 
   : `center / contain no-repeat url(${closeImgBlack})`)};
