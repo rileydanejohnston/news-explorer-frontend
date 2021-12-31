@@ -1,10 +1,11 @@
 import { React, useState } from 'react'
-import { Icon, ActionButton, CardWrapper, Date, Image, InfoWrapper, NewsSource, Subtitle, Title } from './styledCard'
+import { Icon, ActionButton, CardWrapper, Date, Image, InfoWrapper, NewsSource, Subtitle, Title, SelectedIcon } from './styledCard'
 import card1 from '../../images/nature.png';
 
 export default function Card() {
 
   const [iconHover, setIconHover] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
   const handleIconEnter = () => {
     setIconHover(true);
@@ -17,10 +18,15 @@ export default function Card() {
   return (
     <CardWrapper>
       <ActionButton 
-      onMouseEnter={handleIconEnter} 
-      onMouseLeave={handleIconExit}
+        onMouseEnter={handleIconEnter} 
+        onMouseLeave={handleIconExit}
+        onClick={() => setIsSaved(!isSaved)} 
       >
-        <Icon iconHover={iconHover} />
+        {
+          isSaved ? 
+          <SelectedIcon /> : 
+          <Icon iconHover={iconHover} />
+        }
       </ActionButton>
       <Image src={card1} alt='Nature photo' />
       <InfoWrapper>

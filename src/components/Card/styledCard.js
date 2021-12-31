@@ -1,5 +1,6 @@
 import styled from "styled-components/macro";
 import bookmarkImg from '../../images/bookmark.svg';
+import selectedBookmark from '../../images/selected-bookmark.svg';
 
 export const CardWrapper = styled.li`
   width: 400px;
@@ -37,6 +38,11 @@ export const Icon = styled.div`
   background: center / contain no-repeat url(${bookmarkImg});
   opacity: ${(props) => (props.iconHover ? 1 : .2 )};
   transition: opacity .3s ease;
+`;
+
+export const SelectedIcon = styled(Icon)`
+  background: center / contain no-repeat url(${selectedBookmark});
+  opacity: 1;
 `;
 
 export const InfoWrapper = styled.div`
