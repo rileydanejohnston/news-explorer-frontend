@@ -5,6 +5,13 @@ export const SearchResultsWrapper = styled.section`
   padding: 80px 104px;
   display: flex;
   flex-direction: column;
+
+  @media( max-width: 1023px) {
+    padding: 40px;
+  }
+  @media( max-width: 625px) {
+    padding: 32px 16px 24px;
+  }
 `;
 
 export const Title = styled.h2`
@@ -16,6 +23,15 @@ export const Title = styled.h2`
   letter-spacing: 0px;
 
   margin-bottom: 64px;
+
+  @media( max-width: 1023px) {
+    margin-bottom: 32px;
+    font-size: 30px;
+    line-height: 34px;
+  }
+  @media( max-width: 625px) {
+    margin-bottom: 58px;
+  }
 `;
 
 export const ShowMoreButton = styled.button`
@@ -32,6 +48,17 @@ export const ShowMoreButton = styled.button`
   line-height: 24px;
   letter-spacing: 0px;
   text-align: center;
+
+  @media( max-width: 1023px) {
+    width: 240px;
+    height: 56px;
+    background: #FFF;
+    margin-top: 32px;
+  }
+  @media( max-width: 625px) {
+    margin-top: 21px;
+    width: 288px;
+  }
 
   &:hover {
     cursor: pointer;
