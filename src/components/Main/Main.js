@@ -6,15 +6,15 @@ import SearchForm from '../SearchForm/SearchForm';
 import SearchResults from '../SearchResults/SearchResults';
 import { ImageWrapper } from './styledMain';
 
-export default function Main({ loggedIn }) {
+export default function Main({ loggedIn, isSearching, isSearchResultsOpen }) {
   return (
     <>
       <ImageWrapper>
         <Header loggedIn={loggedIn} />
         <SearchForm />
       </ImageWrapper>
-      <Preloader />
-      <SearchResults loggedIn={loggedIn} />
+      {isSearching && <Preloader />}
+      {isSearchResultsOpen && <SearchResults loggedIn={loggedIn} />}
       <About />
     </>
   )

@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useState } from "react";
 import GlobalStyle from "../GlobalStyles/globalStyles";
 import { Route, Switch } from 'react-router-dom';
 import {
@@ -11,6 +11,10 @@ import CardList from "../CardList/CardList";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 
 function App() {
+
+  const [isSearching, setIsSearching] = useState(false);
+  const [isSearchResultsOpen, setIsSearchResultsOpen] = useState(true);
+
   return (
     <Wrapper>
       <GlobalStyle />
@@ -21,7 +25,11 @@ function App() {
           <CardList loggedIn={true} />
         </ProtectedRoute>
         <Route exact path='/'>
-          <Main loggedIn={true} />
+          <Main 
+            loggedIn={true}
+            isSearching={isSearching}
+            isSearchResultsOpen={isSearchResultsOpen}
+          />
         </Route>
       </Switch>
     </Wrapper>
