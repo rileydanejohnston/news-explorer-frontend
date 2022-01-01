@@ -1,8 +1,8 @@
 import React from 'react'
 import About from '../About/About';
 import Header from '../Header/Header';
-import NewsCardList from '../NewsCardList/NewsCardList';
 import SearchForm from '../SearchForm/SearchForm';
+import SearchResults from '../SearchResults/SearchResults';
 import { ImageWrapper } from './styledMain';
 
 export default function Main({ loggedIn }) {
@@ -12,7 +12,7 @@ export default function Main({ loggedIn }) {
         <Header loggedIn={loggedIn} />
         <SearchForm />
       </ImageWrapper>
-      <NewsCardList loggedIn={loggedIn} />
+      <SearchResults loggedIn={loggedIn} />
       <About />
     </>
   )
