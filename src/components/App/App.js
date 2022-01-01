@@ -8,6 +8,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import CardList from "../CardList/CardList";
+import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Switch>
         <ProtectedRoute exact path='/saved-news' loggedIn={true}>
           <Header loggedIn={true}/>
+          <SavedNewsHeader/>
           <CardList loggedIn={true} />
         </ProtectedRoute>
         <Route exact path='/'>
