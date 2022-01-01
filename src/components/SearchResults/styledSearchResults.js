@@ -22,15 +22,12 @@ export const Title = styled.h2`
   line-height: 46px;
   letter-spacing: 0px;
 
-  margin-bottom: 64px;
-
   @media( max-width: 1023px) {
-    margin-bottom: 32px;
     font-size: 30px;
     line-height: 34px;
   }
   @media( max-width: 625px) {
-    margin-bottom: 58px;
+    margin-bottom: 34px;
   }
 `;
 
@@ -40,7 +37,7 @@ export const ShowMoreButton = styled.button`
   background: #E8E8E8;
   border-radius: 80px;
   border: none;
-  margin: 64px auto 0 auto;
+  margin: 0 auto;
 
   font-size: 18px;
   font-style: normal;
@@ -53,10 +50,9 @@ export const ShowMoreButton = styled.button`
     width: 240px;
     height: 56px;
     background: #FFF;
-    margin-top: 32px;
   }
   @media( max-width: 625px) {
-    margin-top: 21px;
+    margin-top: 8px;
     width: 288px;
   }
 
