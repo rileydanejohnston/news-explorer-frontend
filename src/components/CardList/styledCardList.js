@@ -1,7 +1,9 @@
 import styled from "styled-components/macro";
 
-export const CardWrapper = styled.ul`
+export const CardsListWrapper = styled.div`
   background: #F5F6F7;
+`;
+export const CardsList = styled.ul`
   width: 1232px;
   margin: 0 auto;
   padding: 64px 0;
