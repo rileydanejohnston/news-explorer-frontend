@@ -12,7 +12,7 @@ import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 
 function App() {
 
-  const [isSearching, setIsSearching] = useState(false);
+  const [isSearching, setIsSearching] = useState(true);
   const [isSearchResultsOpen, setIsSearchResultsOpen] = useState(true);
 
   return (
