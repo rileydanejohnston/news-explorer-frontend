@@ -68,7 +68,7 @@ export default function Card({ loggedIn }) {
       <Image src={card1} alt='Nature photo' />
       <InfoWrapper>
         <Date>February 19, 2019</Date>
-        <Title>Nature makes you better</Title>
+        <Title>Grand Teton Renews Historic Crest Trail</Title>
         <Subtitle>We all know how good nature can make us feel. We have known it for millennia: the sound of the ocean, the scents of a forest, the way dappled sunlight dances through leaves.</Subtitle>
         <NewsSource>National Geographic</NewsSource>
       </InfoWrapper>

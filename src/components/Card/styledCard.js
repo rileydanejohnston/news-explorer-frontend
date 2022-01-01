@@ -142,9 +142,14 @@ export const SelectedIcon = styled(Icon)`
 export const InfoWrapper = styled.div`
   padding: 20px 24px 24px;
   background: #FFF;
+  height: 304px;
 
   @media( max-width: 1023px ) {
     padding: 16px;
+    height: 270px;
+  }
+  @media( max-width: 625px ) {
+    height: 244px;
   }
 `;
 
@@ -168,14 +173,21 @@ export const Title = styled.h3`
   letter-spacing: 0px;
 
   margin-top: 12px;
+  height: 60px;
+  max-width: 352px;
+  overflow: hidden;
 
   @media( max-width: 1023px ) {
     font-size: 22px;
     line-height: 24px;
+    height: 72px;
+    max-width: 192px;
   }
 
   @media( max-width: 625px ) {
     margin-top: 10px;
+    height: 48px;
+    max-width: 256px;
   }
 `;
 
@@ -186,14 +198,20 @@ export const Subtitle = styled.p`
   line-height: 22px;
   letter-spacing: 0px;
 
-  margin-top: 46px;
+  margin-top: 16px;
+  overflow: hidden;
+  height: 88px;
+  max-width: 352px;
 
   @media( max-width: 1023px ) {
     margin-top: 10px;
+    height: 88px;
+    max-width: 192px;
   }
 
   @media( max-width: 625px ) {
     margin-top: 14px;
+    max-width: 256px;
   }
 `;
 
@@ -208,6 +226,10 @@ export const NewsSource = styled.p`
   margin-top: 40px;
   text-transform: uppercase;
   color: #B6BCBF;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 
   @media( max-width: 1023px ) {
     margin-top: 12px;
