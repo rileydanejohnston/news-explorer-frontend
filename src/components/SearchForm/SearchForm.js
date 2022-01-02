@@ -9,7 +9,7 @@ import {
   Submit,
 } from './styledSearchForm'
 
-export default function SearchForm() {
+export default function SearchForm({ handleSearchSubmit }) {
 
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -20,6 +20,12 @@ export default function SearchForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(searchQuery);
+    // validate search request
+    if (!searchQuery) {
+      console.log(`Error, enter a keyword`);
+      return;
+    }
+    handleSearchSubmit(searchQuery);
   }
 
   return (
