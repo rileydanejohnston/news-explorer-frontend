@@ -16,6 +16,39 @@ function App() {
   const [isSearchResultsOpen, setIsSearchResultsOpen] = useState(false);
   const [noSearchResults, setNoSearchResults] = useState(false);
   const [allArticles, setAllArticles] = useState([]);
+  const [displayArticles, setDisplayArticles] = useState([]);
+  const [index, setIndex] = useState(0);
+
+  const handleShowMoreClick = () => {
+    // function exits if all results from request are displayed
+    if (index === allArticles.length - 1) {
+      return;
+    }
+
+    let tempAll = [...allArticles];
+    let tempDisplay = [...displayArticles];
+
+    const limit = index + 3;
+    let i = index;
+
+    // loop for 3 articles AND while within the array size
+    while(i < limit && tempAll[i] !== undefined)
+    {
+      tempDisplay.push(tempAll[i]);
+      ++i;
+    }
+    
+    // adjust index if we went out of bounds
+    if (tempAll[i] === undefined) {
+      --i;
+    }
+
+    // set states
+    setIndex(i);
+    setDisplayArticles(tempDisplay);
+  }
+
+  console.log(displayArticles);
 
   const resetSearchResults = () => {
     // shouldn't need setIsSearching? add just in case
@@ -64,7 +97,6 @@ function App() {
 
         setAllArticles(articleCollection);
 
-        // show results that were found
         setIsSearchResultsOpen(true);
       })
       .catch((err) => {
@@ -88,7 +120,8 @@ function App() {
             isSearchResultsOpen={isSearchResultsOpen}
             noSearchResults={noSearchResults}
             handleSearchSubmit={handleSearchSubmit}
-            allArticles={allArticles}
+            displayArticles={displayArticles}
+            handleShowMoreClick={handleShowMoreClick}
           />
         </Route>
       </Switch>
