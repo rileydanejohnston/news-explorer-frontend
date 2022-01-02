@@ -12,13 +12,16 @@ import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import newsApi from "../../utils/NewsApi";
 
 function App() {
-  const [isSearching, setIsSearching] = useState(true);
-  const [isSearchResultsOpen, setIsSearchResultsOpen] = useState(true);
+  const [isSearching, setIsSearching] = useState(false);
+  const [isSearchResultsOpen, setIsSearchResultsOpen] = useState(false);
 
   const handleSearchSubmit = (keyword) => {
+    setIsSearching(true);
     newsApi.getNews(keyword)
       .then((res) => {
         console.log(res);
+        setIsSearching(false);
+        setIsSearchResultsOpen(true);
       })
       .catch((err) => {
         console.log(err);
