@@ -9,8 +9,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import CardList from "../CardList/CardList";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
-import newsApi from "../../utils/api";
-import { useEffect } from "react/cjs/react.development";
+import newsApi from "../../utils/NewsApi";
 
 function App() {
   const [isSearching, setIsSearching] = useState(true);

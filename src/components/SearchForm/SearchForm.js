@@ -19,12 +19,12 @@ export default function SearchForm({ handleSearchSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(searchQuery);
     // validate search request
     if (!searchQuery) {
       console.log(`Error, enter a keyword`);
       return;
     }
+    
     handleSearchSubmit(searchQuery);
   }
 
