@@ -14,19 +14,37 @@ import newsApi from "../../utils/NewsApi";
 function App() {
   const [isSearching, setIsSearching] = useState(false);
   const [isSearchResultsOpen, setIsSearchResultsOpen] = useState(false);
-  const [noSearchResults, setNoSearchResults] = useState(true);
+  const [noSearchResults, setNoSearchResults] = useState(false);
+
+  const resetSearchResults = () => {
+    // shouldn't need setIsSearching? add just in case
+    setIsSearching(false);
+    setIsSearchResultsOpen(false);
+    setNoSearchResults(false);
+  }
 
   const handleSearchSubmit = (keyword) => {
+    // start with nothing open
+    resetSearchResults();
+    // show preloader
     setIsSearching(true);
+    // search for news
     newsApi.getNews(keyword)
       .then((res) => {
         console.log(res);
+        // turn off preloader
         setIsSearching(false);
+        // show no search results if necessary
+        if (res.totalResults === 0) {
+          setNoSearchResults(true);
+          return;
+        }
+        // show results that were found
         setIsSearchResultsOpen(true);
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }
 
   return (
