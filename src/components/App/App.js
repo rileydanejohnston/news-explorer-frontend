@@ -19,12 +19,20 @@ function App() {
   const [displayArticles, setDisplayArticles] = useState([]);
   const [index, setIndex] = useState(0);
 
+  const checkMoreArticles = () => {
+    if (index === allArticles.length - 1) {
+      return false;
+    }
+    return true;
+  }
+
   const handleShowMoreClick = () => {
     // function exits if all results from request are displayed
-    if (index === allArticles.length - 1) {
+    if (!checkMoreArticles()) {
       return;
     }
 
+    // copy arrays so we can modify them easily
     let tempAll = [...allArticles];
     let tempDisplay = [...displayArticles];
 
@@ -47,8 +55,6 @@ function App() {
     setIndex(i);
     setDisplayArticles(tempDisplay);
   }
-
-  console.log(displayArticles);
 
   const resetSearchResults = () => {
     // shouldn't need setIsSearching? add just in case
@@ -122,6 +128,7 @@ function App() {
             handleSearchSubmit={handleSearchSubmit}
             displayArticles={displayArticles}
             handleShowMoreClick={handleShowMoreClick}
+            checkMoreArticles={checkMoreArticles}
           />
         </Route>
       </Switch>

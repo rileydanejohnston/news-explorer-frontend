@@ -7,7 +7,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import SearchResults from '../SearchResults/SearchResults';
 import { ImageWrapper } from './styledMain';
 
-export default function Main({ loggedIn, isSearching, isSearchResultsOpen, noSearchResults, handleSearchSubmit, displayArticles, handleShowMoreClick }) {
+export default function Main({ loggedIn, isSearching, isSearchResultsOpen, noSearchResults, handleSearchSubmit, displayArticles, handleShowMoreClick, checkMoreArticles }) {
   return (
     <>
       <ImageWrapper>
@@ -15,7 +15,7 @@ export default function Main({ loggedIn, isSearching, isSearchResultsOpen, noSea
         <SearchForm handleSearchSubmit={handleSearchSubmit}/>
       </ImageWrapper>
       { isSearching && <Preloader /> }
-      { isSearchResultsOpen && <SearchResults loggedIn={loggedIn} displayArticles={displayArticles} handleShowMoreClick={handleShowMoreClick}/> }
+      { isSearchResultsOpen && <SearchResults loggedIn={loggedIn} displayArticles={displayArticles} handleShowMoreClick={handleShowMoreClick} checkMoreArticles={checkMoreArticles}/> }
       { noSearchResults && <NotFound /> }
       <About />
     </>
