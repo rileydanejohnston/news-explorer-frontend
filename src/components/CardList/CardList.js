@@ -2,14 +2,18 @@ import React from 'react'
 import { CardsListWrapper, CardsList } from './styledCardList'
 import Card from '../Card/Card';
 
-export default function CardList({ loggedIn }) {
+export default function CardList({ loggedIn, allArticles }) {
+  console.log(allArticles);
   return (
     <CardsListWrapper>
       <CardsList>
-        <Card loggedIn={loggedIn} />
-        <Card loggedIn={loggedIn} />
-        <Card loggedIn={loggedIn} />
-        <Card loggedIn={loggedIn} />
+        {
+          allArticles.map((card, index) => {
+            return (
+              <Card card={card} key={index} loggedIn={loggedIn} />
+            )
+          })
+        }
       </CardsList>
     </CardsListWrapper>
   )

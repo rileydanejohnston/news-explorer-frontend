@@ -88,6 +88,7 @@ function App() {
             isSearchResultsOpen={isSearchResultsOpen}
             noSearchResults={noSearchResults}
             handleSearchSubmit={handleSearchSubmit}
+            allArticles={allArticles}
           />
         </Route>
       </Switch>

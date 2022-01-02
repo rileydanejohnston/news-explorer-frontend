@@ -3,7 +3,7 @@ import { Icon, ActionButton, CardWrapper, Date, Image, InfoWrapper, NewsSource, 
 import card1 from '../../images/nature.png';
 import { useLocation } from 'react-router-dom';
 
-export default function Card({ loggedIn }) {
+export default function Card({ loggedIn, card }) {
 
   const location = useLocation();
   const [iconHover, setIconHover] = useState(false);
@@ -65,12 +65,12 @@ export default function Card({ loggedIn }) {
           )
         }
       </ActionButton>
-      <Image src={card1} alt='Nature photo' />
+      <Image src={card.url} alt='Nature photo' />
       <InfoWrapper>
-        <Date>February 19, 2019</Date>
-        <Title>Grand Teton Renews Historic Crest Trail</Title>
-        <Subtitle>We all know how good nature can make us feel. We have known it for millennia: the sound of the ocean, the scents of a forest, the way dappled sunlight dances through leaves.</Subtitle>
-        <NewsSource>National Geographic</NewsSource>
+        <Date>{card.date}</Date>
+        <Title>{card.title}</Title>
+        <Subtitle>{card.description}</Subtitle>
+        <NewsSource>{card.source}</NewsSource>
       </InfoWrapper>
     </CardWrapper>
   )
