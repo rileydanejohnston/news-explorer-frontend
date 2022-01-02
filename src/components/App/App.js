@@ -14,6 +14,7 @@ import newsApi from "../../utils/NewsApi";
 function App() {
   const [isSearching, setIsSearching] = useState(false);
   const [isSearchResultsOpen, setIsSearchResultsOpen] = useState(false);
+  const [noSearchResults, setNoSearchResults] = useState(true);
 
   const handleSearchSubmit = (keyword) => {
     setIsSearching(true);
@@ -42,6 +43,7 @@ function App() {
             loggedIn={true}
             isSearching={isSearching}
             isSearchResultsOpen={isSearchResultsOpen}
+            noSearchResults={noSearchResults}
             handleSearchSubmit={handleSearchSubmit}
           />
         </Route>
