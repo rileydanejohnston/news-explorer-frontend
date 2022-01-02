@@ -15,12 +15,24 @@ function App() {
   const [isSearching, setIsSearching] = useState(false);
   const [isSearchResultsOpen, setIsSearchResultsOpen] = useState(false);
   const [noSearchResults, setNoSearchResults] = useState(false);
+  const [allArticles, setAllArticles] = useState([]);
 
   const resetSearchResults = () => {
     // shouldn't need setIsSearching? add just in case
     setIsSearching(false);
     setIsSearchResultsOpen(false);
     setNoSearchResults(false);
+  }
+
+  const getDateFormat = (rawDate) => {
+    const allMonths = [null, 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    const newDate = new Date(rawDate);
+    const month = allMonths[newDate.getMonth() + 1];
+    const day = newDate.getDate();
+    const year = newDate.getFullYear();
+
+    return `${month} ${day}, ${year}`;
   }
 
   const handleSearchSubmit = (keyword) => {
@@ -30,15 +42,28 @@ function App() {
     setIsSearching(true);
     // search for news
     newsApi.getNews(keyword)
-      .then((res) => {
-        console.log(res);
+      .then(({ articles }) => {
         // turn off preloader
         setIsSearching(false);
         // show no search results if necessary
-        if (res.totalResults === 0) {
+        if (articles.length === 0) {
           setNoSearchResults(true);
           return;
         }
+
+        // iterate through, create objects of necessary data
+        const articleCollection = articles.map((data) => {
+          return {
+            title: data.title,
+            description: data.description,
+            url: data.urlToImage,
+            source: data.source.name,
+            date: getDateFormat(data.publishedAt)
+          }
+        });
+
+        setAllArticles(articleCollection);
+
         // show results that were found
         setIsSearchResultsOpen(true);
       })
