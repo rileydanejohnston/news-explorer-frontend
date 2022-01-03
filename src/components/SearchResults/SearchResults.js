@@ -3,7 +3,7 @@ import CardList from '../CardList/CardList'
 import { ShowMoreButton } from './styledSearchResults'
 import { SearchResultsWrapper, Title } from './styledSearchResults'
 
-export default function SearchResults({ loggedIn, displayArticles, handleShowMoreClick, checkMoreArticles }) {
+export default function SearchResults({ loggedIn, displayArticles, handleShowMoreClick, moreArticles}) {
 
   // get 3 articles when SearchResults mounts
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function SearchResults({ loggedIn, displayArticles, handleShowMor
     <SearchResultsWrapper>
       <Title>Search results</Title>
       <CardList loggedIn={loggedIn} displayArticles={displayArticles} />
-      { checkMoreArticles() && <ShowMoreButton onClick={handleShowMoreClick}>Show more</ShowMoreButton> }
+      { moreArticles && <ShowMoreButton onClick={handleShowMoreClick}>Show more</ShowMoreButton> }
     </SearchResultsWrapper>
   )
 }

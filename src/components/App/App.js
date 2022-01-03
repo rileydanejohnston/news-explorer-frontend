@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import GlobalStyle from "../GlobalStyles/globalStyles";
 import { Route, Switch } from 'react-router-dom';
 import {
@@ -18,20 +18,21 @@ function App() {
   const [allArticles, setAllArticles] = useState([]);
   const [displayArticles, setDisplayArticles] = useState([]);
   const [index, setIndex] = useState(0);
+  const [moreArticles, setMoreArticles] = useState(true);
+
+  // are more articles available?
+  // determines if 'show more' button is visible
+  useEffect(() => {
+    checkMoreArticles();
+  }, [index])
 
   const checkMoreArticles = () => {
     if (index === allArticles.length - 1) {
-      return false;
+      setMoreArticles(false);
     }
-    return true;
   }
 
   const handleShowMoreClick = () => {
-    // function exits if all results from request are displayed
-    if (!checkMoreArticles()) {
-      return;
-    }
-
     // copy arrays so we can modify them easily
     let tempAll = [...allArticles];
     let tempDisplay = [...displayArticles];
@@ -64,6 +65,7 @@ function App() {
     setAllArticles([]);
     setDisplayArticles([]);
     setIndex(0);
+    setMoreArticles(true);
   }
 
   const getDateFormat = (rawDate) => {
@@ -131,7 +133,7 @@ function App() {
             handleSearchSubmit={handleSearchSubmit}
             displayArticles={displayArticles}
             handleShowMoreClick={handleShowMoreClick}
-            checkMoreArticles={checkMoreArticles}
+            moreArticles={moreArticles}
           />
         </Route>
       </Switch>
