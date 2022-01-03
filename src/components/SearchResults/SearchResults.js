@@ -5,11 +5,6 @@ import { SearchResultsWrapper, Title } from './styledSearchResults'
 
 export default function SearchResults({ loggedIn, displayArticles, handleShowMoreClick, moreArticles}) {
 
-  // get 3 articles when SearchResults mounts
-  useEffect(() => {
-    handleShowMoreClick();
-  }, []);
-
   return (
     <SearchResultsWrapper>
       <Title>Search results</Title>

@@ -20,6 +20,13 @@ function App() {
   const [index, setIndex] = useState(0);
   const [moreArticles, setMoreArticles] = useState(true);
 
+  // handles initial search -> display 3 articles
+  useEffect(() => {
+    if (isSearchResultsOpen && index === 0) {
+      handleShowMoreClick();
+    }
+  }, [isSearchResultsOpen, index])
+
   // are more articles available?
   // determines if 'show more' button is visible
   useEffect(() => {
@@ -107,7 +114,6 @@ function App() {
         });
 
         setAllArticles(articleCollection);
-
         setIsSearchResultsOpen(true);
       })
       .catch((err) => {
