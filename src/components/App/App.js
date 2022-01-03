@@ -20,9 +20,23 @@ function App() {
   const [index, setIndex] = useState(0);
   const [moreArticles, setMoreArticles] = useState(true);
 
+  // check if there's anything in local storage when page opens
+  useEffect(() => {
+    if (localStorage.getItem('display-articles')) {
+      const tempDisplayArticles = JSON.parse(localStorage.getItem('display-articles'));
+      const tempAllArticles = JSON.parse(localStorage.getItem('all-articles'));
+      const tempIndex = localStorage.getItem('index');
+
+      setDisplayArticles(tempDisplayArticles);
+      setAllArticles(tempAllArticles);
+      setIndex(tempIndex);
+      setIsSearchResultsOpen(true);
+    }
+  }, [])
+
   // handles initial search -> display 3 articles
   useEffect(() => {
-    if (isSearchResultsOpen && index === 0) {
+    if (isSearchResultsOpen === true && index === 0) {
       handleShowMoreClick();
     }
   }, [isSearchResultsOpen, index])
@@ -31,61 +45,22 @@ function App() {
   // determines if 'show more' button is visible
   useEffect(() => {
     checkMoreArticles();
-  }, [index])
+  }, [displayArticles])
 
-  const checkMoreArticles = () => {
-    if (index === allArticles.length - 1) {
-      setMoreArticles(false);
+  // saves local storage every time the articles/index changes
+  useEffect(() => {
+    // don't save when search resets to zero
+    if (displayArticles.length !== 0 || index !== 0) {
+      localStorage.setItem('display-articles', JSON.stringify(displayArticles));
+      localStorage.setItem('index', index);
     }
-  }
+  }, [displayArticles, index])
 
-  const handleShowMoreClick = () => {
-    // copy arrays so we can modify them easily
-    let tempAll = [...allArticles];
-    let tempDisplay = [...displayArticles];
 
-    const limit = index + 3;
-    let i = index;
 
-    // loop for 3 articles AND while within the array size
-    while(i < limit && tempAll[i] !== undefined)
-    {
-      tempDisplay.push(tempAll[i]);
-      ++i;
-    }
-    
-    // adjust index if we went out of bounds
-    if (tempAll[i] === undefined) {
-      --i;
-    }
 
-    // set states
-    setIndex(i);
-    setDisplayArticles(tempDisplay);
-  }
 
-  const resetSearchResults = () => {
-    // shouldn't need setIsSearching? add just in case
-    setIsSearching(false);
-    setIsSearchResultsOpen(false);
-    setNoSearchResults(false);
-    setAllArticles([]);
-    setDisplayArticles([]);
-    setIndex(0);
-    setMoreArticles(true);
-  }
-
-  const getDateFormat = (rawDate) => {
-    const allMonths = [null, 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-    const newDate = new Date(rawDate);
-    const month = allMonths[newDate.getMonth() + 1];
-    const day = newDate.getDate();
-    const year = newDate.getFullYear();
-
-    return `${month} ${day}, ${year}`;
-  }
-
+  
   const handleSearchSubmit = (keyword) => {
     // start with nothing open
     resetSearchResults();
@@ -113,12 +88,69 @@ function App() {
           }
         });
 
+        localStorage.setItem('all-articles', JSON.stringify(articleCollection));
         setAllArticles(articleCollection);
         setIsSearchResultsOpen(true);
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  const handleShowMoreClick = () => {
+    // copy arrays so we can modify them easily
+    let tempAll = [...allArticles];
+    let tempDisplay = [...displayArticles];
+
+    const limit = index + 3;
+    let i = index;
+
+    // loop for 3 articles AND while within the array size
+    while(i < limit && tempAll[i] !== undefined)
+    {
+      tempDisplay.push(tempAll[i]);
+      ++i;
+    }
+    
+    // adjust index if we went out of bounds
+    if (tempAll[i] === undefined) {
+      --i;
+    }
+
+    // set states
+    setIndex(i);
+    setDisplayArticles(tempDisplay);
+  }
+
+  const checkMoreArticles = () => {
+    if (allArticles.length === displayArticles.length) {
+      setMoreArticles(false);
+    }
+    else {
+      setMoreArticles(true);
+    }
+  }
+
+  const resetSearchResults = () => {
+    // shouldn't need setIsSearching? add just in case
+    setIsSearching(false);
+    setIsSearchResultsOpen(false);
+    setNoSearchResults(false);
+    setAllArticles([]);
+    setDisplayArticles([]);
+    setIndex(0);
+    setMoreArticles(true);
+  }
+
+  const getDateFormat = (rawDate) => {
+    const allMonths = [null, 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    const newDate = new Date(rawDate);
+    const month = allMonths[newDate.getMonth() + 1];
+    const day = newDate.getDate();
+    const year = newDate.getFullYear();
+
+    return `${month} ${day}, ${year}`;
   }
 
   return (
