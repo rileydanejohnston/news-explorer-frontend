@@ -22,7 +22,7 @@ export default function About() {
         <TitlesWrapper>
           <Title>About the author</Title>
           <ParagraphWrapper>
-            <Paragraph>I’m a full stack web developer who likes to design and build efficient applications. My experience includes creating solo projects as well as working with a team to build an application for a customer. I especially like working with backend technologies like Express and MongoDB, as well as frontend technologies like React, CSS3 and HTML5.</Paragraph>
+            <Paragraph>My name is Riley Johnston. I’m a full stack web developer who likes to design and build efficient applications. My experience includes creating solo projects as well as working with a team to build an application for a customer. I especially like working with backend technologies like Express and MongoDB, as well as frontend technologies like React, CSS3 and HTML5.</Paragraph>
             <Paragraph>When I’m not working on tech stuff or watching Ted Lasso, I like to ride my bike in the country where I can see cows, horses, and occasionally get chased by dogs.</Paragraph>
           </ParagraphWrapper>
         </TitlesWrapper>
