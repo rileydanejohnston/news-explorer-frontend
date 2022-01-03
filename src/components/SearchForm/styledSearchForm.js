@@ -80,7 +80,7 @@ export const Input = styled.input`
   border: 1px solid #D1D2D6;
   border-right: none;
   border-radius: 100px;
-  padding: 21px 24px;
+  padding: 21px 192px 21px 24px;
   position: relative;
 
   font-size: 16px;
@@ -91,7 +91,7 @@ export const Input = styled.input`
   width: 100%;
 
   @media( max-width: 1023px ) {
-    padding: 17px 24px;
+    padding: 17px 184px 17px 24px;
   }
 
   @media( max-width: 625px ) {
