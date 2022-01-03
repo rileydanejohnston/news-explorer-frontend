@@ -61,6 +61,9 @@ function App() {
     setIsSearching(false);
     setIsSearchResultsOpen(false);
     setNoSearchResults(false);
+    setAllArticles([]);
+    setDisplayArticles([]);
+    setIndex(0);
   }
 
   const getDateFormat = (rawDate) => {
