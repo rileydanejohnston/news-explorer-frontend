@@ -11,6 +11,7 @@ import CardList from "../CardList/CardList";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import newsApi from "../../utils/NewsApi";
 import { LoggedInContext } from "../../contexts/loggedInContext";
+import SavedNews from "../SavedNews/SavedNews";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -223,16 +224,13 @@ function App() {
       <Switch>
         <LoggedInContext.Provider value={loggedIn}>
           <ProtectedRoute exact path='/saved-news'>
-            <Header
+            <SavedNews 
               handleLogIn={handleLogIn}
               handleLogOut={handleLogOut}
-            />
-            <SavedNewsHeader articleCount={savedArticles.length} />
-            { savedArticles.length !== 0 && 
-            <CardList
+              articleCount={savedArticles.length}
               displayArticles={savedArticles}
               cardIconClick={updateSaved}
-            /> }
+            />
           </ProtectedRoute>
           <Route exact path='/'>
             <Main 
