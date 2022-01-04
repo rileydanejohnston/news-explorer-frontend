@@ -1,4 +1,4 @@
-import { React, useEffect }from 'react'
+import { React }from 'react'
 import CardList from '../CardList/CardList'
 import { ShowMoreButton } from './styledSearchResults'
 import { SearchResultsWrapper, Title } from './styledSearchResults'

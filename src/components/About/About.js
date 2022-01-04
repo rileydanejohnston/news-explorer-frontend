@@ -4,7 +4,6 @@ import {
   AboutWrapper,
   AuthorImg,
   Title,
-  Subtitle,
   TitlesWrapper,
   Paragraph,
   ParagraphWrapper,
