@@ -209,12 +209,12 @@ function App() {
       <Switch>
         <ProtectedRoute exact path='/saved-news' loggedIn={true}>
           <Header loggedIn={true}/>
-          <SavedNewsHeader/>
-          <CardList 
+          <SavedNewsHeader articleCount={savedArticles.length} />
+          { savedArticles.length !== 0 && <CardList 
             loggedIn={true}
             displayArticles={savedArticles}
             cardIconClick={updateSaved}
-          />
+          /> }
         </ProtectedRoute>
         <Route exact path='/'>
           <Main 
