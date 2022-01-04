@@ -1,6 +1,5 @@
 import React from 'react'
-import Modal from '../Modal/Modal'
-import { Form, FormLink, ErrorMessage, LinkWrapper, Submit, Title } from './styledModalWithForm'
+import { CloseIcon, ModalContent, ModalWrapper, Form, FormLink, ErrorMessage, LinkWrapper, Submit, Title } from './styledModalWithForm'
 
 export default function ModalWithForm({ formTitle, children, buttonText, linkText }) {
 
@@ -9,15 +8,19 @@ export default function ModalWithForm({ formTitle, children, buttonText, linkTex
   }
 
   return (
-    <Modal>
+    <ModalWrapper>
+      <ModalContent>
+        <CloseIcon />
       <Form onSubmit={handleModalSubmit}>
         <Title>Sign up</Title>
+        { children }
         <ErrorMessage>There was an error</ErrorMessage>
         <Submit>Sign up</Submit>
         <LinkWrapper>
           or <FormLink>Sign in</FormLink>
         </LinkWrapper>
       </Form>
-    </Modal>
+      </ModalContent>
+    </ModalWrapper>
   )
 }
