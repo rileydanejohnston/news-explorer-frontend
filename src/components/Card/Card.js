@@ -11,7 +11,9 @@ export default function Card({ card, cardIconClick }) {
   const [isToolTipOpen, setIsToolTipOpen] = useState(false);
 
   const handleIconEnter = () => {
-    setIconHover(true);
+    if (loggedIn) {
+      setIconHover(true);
+    }
 
     // prevent tool tip from opening if logged in on the home page
     // it should open if:
