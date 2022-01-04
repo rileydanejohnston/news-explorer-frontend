@@ -9,7 +9,7 @@ import {
   MenuButton,
 } from './styledHeader'
 
-export default function Header({ loggedIn }) {
+export default function Header({ loggedIn, handleLogIn, handleLogOut }) {
 
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,7 +25,12 @@ export default function Header({ loggedIn }) {
             <MenuButton path={location.pathname} onClick={() => setIsMenuOpen(!isMenuOpen)} />
         }
       </LogoMenuWrapper>
-      <Navigation loggedIn={loggedIn} isMenuOpen={isMenuOpen} />
+      <Navigation
+        loggedIn={loggedIn}
+        isMenuOpen={isMenuOpen}
+        handleLogIn={handleLogIn}
+        handleLogOut={handleLogOut}
+      />
     </Wrapper>
   )
 }

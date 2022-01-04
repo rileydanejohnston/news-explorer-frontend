@@ -12,6 +12,7 @@ import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import newsApi from "../../utils/NewsApi";
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [isSearchResultsOpen, setIsSearchResultsOpen] = useState(false);
   const [noSearchResults, setNoSearchResults] = useState(false);
@@ -58,7 +59,13 @@ function App() {
   }, [displayArticles, index])
 
 
+  const handleLogIn = () => {
+    setLoggedIn(true);
+  }
 
+  const handleLogOut = () => {
+    setLoggedIn(false);
+  }
 
   // update button liked status on frontend
   const updateSaved = (card) => {
@@ -209,18 +216,25 @@ function App() {
     <Wrapper>
       <GlobalStyle />
       <Switch>
-        <ProtectedRoute exact path='/saved-news' loggedIn={true}>
-          <Header loggedIn={true}/>
+        <ProtectedRoute exact path='/saved-news' loggedIn={loggedIn}>
+          <Header
+            loggedIn={loggedIn}
+            handleLogIn={handleLogIn}
+            handleLogOut={handleLogOut}
+          />
           <SavedNewsHeader articleCount={savedArticles.length} />
-          { savedArticles.length !== 0 && <CardList 
-            loggedIn={true}
+          { savedArticles.length !== 0 && 
+          <CardList 
+            loggedIn={loggedIn}
             displayArticles={savedArticles}
             cardIconClick={updateSaved}
           /> }
         </ProtectedRoute>
         <Route exact path='/'>
           <Main 
-            loggedIn={true}
+            loggedIn={loggedIn}
+            handleLogIn={handleLogIn}
+            handleLogOut={handleLogOut}
             isSearching={isSearching}
             isSearchResultsOpen={isSearchResultsOpen}
             noSearchResults={noSearchResults}

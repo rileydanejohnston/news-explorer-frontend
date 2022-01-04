@@ -7,11 +7,15 @@ import SearchForm from '../SearchForm/SearchForm';
 import SearchResults from '../SearchResults/SearchResults';
 import { ImageWrapper } from './styledMain';
 
-export default function Main({ loggedIn, isSearching, isSearchResultsOpen, noSearchResults, handleSearchSubmit, displayArticles, handleShowMoreClick, moreArticles, cardIconClick }) {
+export default function Main({ loggedIn, isSearching, isSearchResultsOpen, noSearchResults, handleSearchSubmit, displayArticles, handleShowMoreClick, moreArticles, cardIconClick, handleLogIn, handleLogOut }) {
   return (
     <>
       <ImageWrapper>
-        <Header loggedIn={loggedIn} />
+        <Header
+          loggedIn={loggedIn}
+          handleLogIn={handleLogIn}
+          handleLogOut={handleLogOut}
+        />
         <SearchForm handleSearchSubmit={handleSearchSubmit}/>
       </ImageWrapper>
       { isSearching && <Preloader /> }
