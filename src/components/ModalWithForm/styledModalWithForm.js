@@ -1,5 +1,4 @@
 import styled from "styled-components/macro";
-
 import closeIcon from '../../images/close-white.svg';
 
 export const ModalWrapper = styled.div`
@@ -9,7 +8,7 @@ export const ModalWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  visibility: hidden;
+  visibility: visible;
   position: fixed;
   top: 0;
   left: 0;
@@ -44,7 +43,7 @@ export const Title = styled.h2`
   margin-bottom: 22px;
 `;
 
-export const ErrorMessage = styled.span`
+export const SubmitError = styled.span`
   font-family: Inter;
   font-size: 12px;
   font-style: normal;
