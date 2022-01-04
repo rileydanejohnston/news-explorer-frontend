@@ -65,10 +65,8 @@ function App() {
   }
 
   const cardBookmarkClick = (card) => {
-    let updatedCard;
     const tempArticles = displayArticles.map((articles) => {
       if (articles.title === card.title) {
-        updatedCard = articles;
         return {
             title: articles.title,
             description: articles.description,
@@ -80,10 +78,18 @@ function App() {
       }
       return articles;
     });
-
-    setSavedArticles([...savedArticles, updatedCard]);
+   
     setDisplayArticles(tempArticles);
   }
+
+  // used to update saved articles - related to ^^^
+  useEffect(() => {
+    const tempArticles = displayArticles.filter((articles) => {
+      return articles.isSaved === true;
+    });
+
+    setSavedArticles(tempArticles);
+  }, [displayArticles]);
   
   const handleSearchSubmit = (keyword) => {
     // start with nothing open

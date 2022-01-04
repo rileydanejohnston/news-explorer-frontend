@@ -1,6 +1,5 @@
 import { React, useState } from 'react'
 import { BookmarkIcon, DeleteIcon, ActionButton, CardWrapper, Date, Image, InfoWrapper, NewsSource, Subtitle, Title, SelectedIcon, ToolTip, Category } from './styledCard'
-import card1 from '../../images/nature.png';
 import { useLocation } from 'react-router-dom';
 
 export default function Card({ loggedIn, card, cardIconClick }) {
