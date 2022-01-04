@@ -47,7 +47,7 @@ export default function Card({ loggedIn, card }) {
         isOpen={isToolTipOpen}
         path={location.pathname}
       >
-        Sign in to save articles
+        {location.pathname === '/' ? 'Sign in to save articles' : 'Remove from saved'}
       </ToolTip>
         {
           location.pathname === '/' ?
