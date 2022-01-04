@@ -7,7 +7,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import SearchResults from '../SearchResults/SearchResults';
 import { ImageWrapper } from './styledMain';
 
-export default function Main({ loggedIn, isSearching, isSearchResultsOpen, noSearchResults, handleSearchSubmit, displayArticles, handleShowMoreClick, moreArticles }) {
+export default function Main({ loggedIn, isSearching, isSearchResultsOpen, noSearchResults, handleSearchSubmit, displayArticles, handleShowMoreClick, moreArticles, cardIconClick }) {
   return (
     <>
       <ImageWrapper>
@@ -21,6 +21,7 @@ export default function Main({ loggedIn, isSearching, isSearchResultsOpen, noSea
           displayArticles={displayArticles} 
           handleShowMoreClick={handleShowMoreClick} 
           moreArticles={moreArticles}
+          cardIconClick={cardIconClick}
         /> 
       }
       { noSearchResults && <NotFound /> }

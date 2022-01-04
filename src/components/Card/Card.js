@@ -3,11 +3,10 @@ import { BookmarkIcon, DeleteIcon, ActionButton, CardWrapper, Date, Image, InfoW
 import card1 from '../../images/nature.png';
 import { useLocation } from 'react-router-dom';
 
-export default function Card({ loggedIn, card }) {
+export default function Card({ loggedIn, card, cardIconClick }) {
 
   const location = useLocation();
   const [iconHover, setIconHover] = useState(false);
-  const [isSaved, setIsSaved] = useState(false);
   const [isToolTipOpen, setIsToolTipOpen] = useState(false);
 
   const handleIconEnter = () => {
@@ -30,11 +29,13 @@ export default function Card({ loggedIn, card }) {
 
   const handleDeleteClick = () => {
     console.log(`testing delete click`);
+    cardIconClick(card);
   }
 
   const handleBookmarkClick = () => {
     if (loggedIn) {
-      setIsSaved(!isSaved);
+      // send card back to app
+      cardIconClick(card);
     }
   }
 
@@ -57,7 +58,7 @@ export default function Card({ loggedIn, card }) {
               onMouseLeave={handleIconExit}
               onClick={handleBookmarkClick}
             >
-              { isSaved ? 
+              { card.isSaved ? 
                 <SelectedIcon /> : 
                 <BookmarkIcon iconHover={iconHover}/>
               }
@@ -74,7 +75,7 @@ export default function Card({ loggedIn, card }) {
             </ActionButton>
           )
         }
-      <Image src={card.url} alt='Nature photo' />
+      <Image src={card.url} alt={card.description} />
       <InfoWrapper>
         <Date>{card.date}</Date>
         <Title>{card.title}</Title>

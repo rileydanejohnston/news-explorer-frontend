@@ -19,6 +19,7 @@ function App() {
   const [displayArticles, setDisplayArticles] = useState([]);
   const [index, setIndex] = useState(0);
   const [moreArticles, setMoreArticles] = useState(true);
+  const [savedArticles, setSavedArticles] = useState([]);
 
   // check if there's anything in local storage when page opens
   useEffect(() => {
@@ -58,8 +59,31 @@ function App() {
 
 
 
+  const cardDeleteClick = (card) => {
+    console.log('testing delete card click');
+    console.log(card);
+  }
 
+  const cardBookmarkClick = (card) => {
+    let updatedCard;
+    const tempArticles = displayArticles.map((articles) => {
+      if (articles.title === card.title) {
+        updatedCard = articles;
+        return {
+            title: articles.title,
+            description: articles.description,
+            url: articles.url,
+            source: articles.source,
+            date: articles.date,
+            isSaved: !articles.isSaved
+        };
+      }
+      return articles;
+    });
 
+    setSavedArticles([...savedArticles, updatedCard]);
+    setDisplayArticles(tempArticles);
+  }
   
   const handleSearchSubmit = (keyword) => {
     // start with nothing open
@@ -84,7 +108,8 @@ function App() {
             description: data.description,
             url: data.urlToImage,
             source: data.source.name,
-            date: getDateFormat(data.publishedAt)
+            date: getDateFormat(data.publishedAt),
+            isSaved: false
           }
         });
 
@@ -160,7 +185,11 @@ function App() {
         <ProtectedRoute exact path='/saved-news' loggedIn={true}>
           <Header loggedIn={true}/>
           <SavedNewsHeader/>
-          <CardList loggedIn={true} displayArticles={displayArticles}/>
+          <CardList 
+            loggedIn={true}
+            displayArticles={savedArticles}
+            cardIconClick={cardDeleteClick}
+          />
         </ProtectedRoute>
         <Route exact path='/'>
           <Main 
@@ -172,6 +201,7 @@ function App() {
             displayArticles={displayArticles}
             handleShowMoreClick={handleShowMoreClick}
             moreArticles={moreArticles}
+            cardIconClick={cardBookmarkClick}
           />
         </Route>
       </Switch>
