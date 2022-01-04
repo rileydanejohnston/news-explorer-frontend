@@ -10,6 +10,7 @@ import newsApi from "../../utils/NewsApi";
 import { LoggedInContext } from "../../contexts/loggedInContext";
 import SavedNews from "../SavedNews/SavedNews";
 import Modal from "../Modal/Modal";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -247,7 +248,7 @@ function App() {
           </Route>
         </LoggedInContext.Provider>
       </Switch>
-      <Modal />
+      <ModalWithForm />
     </Wrapper>
   );
 }
