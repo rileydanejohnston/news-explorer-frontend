@@ -56,7 +56,7 @@ export default function Card({ card, cardIconClick }) {
         {
           location.pathname === '/' ?
           (
-            card.isSaved ? 
+            card.isSaved && loggedIn ? 
             ( <SelectedIcon /> ) : 
             ( <BookmarkIcon iconHover={iconHover}/> )
           ) :
