@@ -9,6 +9,7 @@ import Main from "../Main/Main";
 import newsApi from "../../utils/NewsApi";
 import { LoggedInContext } from "../../contexts/loggedInContext";
 import SavedNews from "../SavedNews/SavedNews";
+import Modal from "../Modal/Modal";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -246,6 +247,7 @@ function App() {
           </Route>
         </LoggedInContext.Provider>
       </Switch>
+      <Modal />
     </Wrapper>
   );
 }
