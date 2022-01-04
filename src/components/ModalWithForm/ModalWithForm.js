@@ -11,15 +11,15 @@ export default function ModalWithForm({ formTitle, children, buttonText, linkTex
     <ModalWrapper>
       <ModalContent>
         <CloseIcon />
-      <Form onSubmit={handleModalSubmit}>
-        <Title>Sign up</Title>
-        { children }
-        <ErrorMessage>There was an error</ErrorMessage>
-        <Submit>Sign up</Submit>
-        <LinkWrapper>
-          or <FormLink>Sign in</FormLink>
-        </LinkWrapper>
-      </Form>
+        <Form onSubmit={handleModalSubmit}>
+          <Title>Sign up</Title>
+          { children }
+          <ErrorMessage>There was an error</ErrorMessage>
+          <Submit>Sign up</Submit>
+          <LinkWrapper>
+            or <FormLink>Sign in</FormLink>
+          </LinkWrapper>
+        </Form>
       </ModalContent>
     </ModalWrapper>
   )

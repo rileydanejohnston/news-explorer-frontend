@@ -10,6 +10,7 @@ import newsApi from "../../utils/NewsApi";
 import { LoggedInContext } from "../../contexts/loggedInContext";
 import SavedNews from "../SavedNews/SavedNews";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import RegisterSuccessModal from "../RegisterSuccessModal/RegisterSuccessModal";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -247,7 +248,8 @@ function App() {
           </Route>
         </LoggedInContext.Provider>
       </Switch>
-      <ModalWithForm />
+      {/*<ModalWithForm />*/}
+      <RegisterSuccessModal />
     </Wrapper>
   );
 }
