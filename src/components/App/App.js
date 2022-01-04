@@ -5,10 +5,7 @@ import {
   Wrapper,
 } from './styledApp';
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import Header from "../Header/Header";
 import Main from "../Main/Main";
-import CardList from "../CardList/CardList";
-import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import newsApi from "../../utils/NewsApi";
 import { LoggedInContext } from "../../contexts/loggedInContext";
 import SavedNews from "../SavedNews/SavedNews";
