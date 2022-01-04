@@ -17,6 +17,7 @@ function App() {
   const [isSearching, setIsSearching] = useState(false);
   const [isSearchResultsOpen, setIsSearchResultsOpen] = useState(false);
   const [noSearchResults, setNoSearchResults] = useState(false);
+  const [isErrorOpen, setIsErrorOpen] = useState(false);
   const [allArticles, setAllArticles] = useState([]);
   const [displayArticles, setDisplayArticles] = useState([]);
   const [index, setIndex] = useState(0);
@@ -127,8 +128,6 @@ function App() {
     // search for news
     newsApi.getNews(keyword)
       .then(({ articles }) => {
-        // turn off preloader
-        setIsSearching(false);
         // show no search results if necessary
         if (articles.length === 0) {
           setNoSearchResults(true);
@@ -153,7 +152,11 @@ function App() {
         setIsSearchResultsOpen(true);
       })
       .catch((err) => {
+        setIsErrorOpen(true);
         console.log(err);
+      })
+      .finally(() => {
+        setIsSearching(false);
       });
   }
 
@@ -200,6 +203,7 @@ function App() {
     setDisplayArticles([]);
     setIndex(0);
     setMoreArticles(true);
+    setIsErrorOpen(false);
   }
 
   const getDateFormat = (rawDate) => {
@@ -237,6 +241,7 @@ function App() {
               isSearching={isSearching}
               isSearchResultsOpen={isSearchResultsOpen}
               noSearchResults={noSearchResults}
+              isErrorOpen={isErrorOpen}
               handleSearchSubmit={handleSearchSubmit}
               displayArticles={displayArticles}
               handleShowMoreClick={handleShowMoreClick}
