@@ -41,6 +41,7 @@ export const Category = styled.div`
   line-height: 24px;
   letter-spacing: 0px;
   text-align: center;
+  text-transform: capitalize;
 
   padding: 8px 22px;
   background: #FFF;

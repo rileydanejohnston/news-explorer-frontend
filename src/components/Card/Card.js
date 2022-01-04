@@ -36,7 +36,7 @@ export default function Card({ loggedIn, card, cardIconClick }) {
   return (
     <CardWrapper>
       {
-        location.pathname === '/saved-news' && <Category>Yellowstone</Category>
+        location.pathname === '/saved-news' && <Category>{card.keyword}</Category>
       }
       <ToolTip 
         isOpen={isToolTipOpen}

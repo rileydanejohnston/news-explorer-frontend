@@ -70,7 +70,8 @@ function App() {
             url: articles.url,
             source: articles.source,
             date: articles.date,
-            isSaved: !articles.isSaved
+            isSaved: !articles.isSaved,
+            keyword: articles.keyword
         };
       }
       return articles;
@@ -134,7 +135,8 @@ function App() {
             url: data.urlToImage,
             source: data.source.name,
             date: getDateFormat(data.publishedAt),
-            isSaved: false
+            isSaved: false,
+            keyword: keyword
           }
         });
 
