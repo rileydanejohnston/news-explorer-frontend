@@ -59,12 +59,9 @@ function App() {
 
 
 
-  const cardDeleteClick = (card) => {
-    console.log('testing delete card click');
-    console.log(card);
-  }
 
-  const cardBookmarkClick = (card) => {
+  // update button liked status on frontend
+  const updateSaved = (card) => {
     const tempArticles = displayArticles.map((articles) => {
       if (articles.title === card.title) {
         return {
@@ -78,8 +75,30 @@ function App() {
       }
       return articles;
     });
-   
+
     setDisplayArticles(tempArticles);
+
+    // call backend function
+    if (card.isSaved) {
+      card.isSaved = false;
+      deleteCard(card);
+    }
+    else if (!card.isSaved) {
+      card.isSaved = true;
+      saveCard(card);
+    }
+  }
+
+  const saveCard = (card) => {
+    // FUTURE WORK -> make post request to save card
+    console.log(`this card will be saved`);
+    console.log(card);
+  }
+
+  const deleteCard = (card) => {
+    // FUTURE WORK -> make delete request to delete card
+    console.log(`this card will be deleted`);
+    console.log(card);
   }
 
   // used to update saved articles - related to ^^^
@@ -194,7 +213,7 @@ function App() {
           <CardList 
             loggedIn={true}
             displayArticles={savedArticles}
-            cardIconClick={cardDeleteClick}
+            cardIconClick={updateSaved}
           />
         </ProtectedRoute>
         <Route exact path='/'>
@@ -207,7 +226,7 @@ function App() {
             displayArticles={displayArticles}
             handleShowMoreClick={handleShowMoreClick}
             moreArticles={moreArticles}
-            cardIconClick={cardBookmarkClick}
+            cardIconClick={updateSaved}
           />
         </Route>
       </Switch>

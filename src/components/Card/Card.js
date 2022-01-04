@@ -26,12 +26,7 @@ export default function Card({ loggedIn, card, cardIconClick }) {
     setIsToolTipOpen(false);
   }
 
-  const handleDeleteClick = () => {
-    console.log(`testing delete click`);
-    cardIconClick(card);
-  }
-
-  const handleBookmarkClick = () => {
+  const handleIconClick = () => {
     if (loggedIn) {
       // send card back to app
       cardIconClick(card);
@@ -49,31 +44,21 @@ export default function Card({ loggedIn, card, cardIconClick }) {
       >
         {location.pathname === '/' ? 'Sign in to save articles' : 'Remove from saved'}
       </ToolTip>
+        <ActionButton 
+          onMouseEnter={handleIconEnter} 
+          onMouseLeave={handleIconExit}
+          onClick={handleIconClick}
+        >
         {
           location.pathname === '/' ?
           (
-            <ActionButton 
-              onMouseEnter={handleIconEnter} 
-              onMouseLeave={handleIconExit}
-              onClick={handleBookmarkClick}
-            >
-              { card.isSaved ? 
-                <SelectedIcon /> : 
-                <BookmarkIcon iconHover={iconHover}/>
-              }
-            </ActionButton>
-          )
-        :
-          (
-            <ActionButton 
-              onMouseEnter={handleIconEnter} 
-              onMouseLeave={handleIconExit}
-              onClick={handleDeleteClick}
-            >
-              <DeleteIcon iconHover={iconHover}/>
-            </ActionButton>
-          )
+            card.isSaved ? 
+            ( <SelectedIcon /> ) : 
+            ( <BookmarkIcon iconHover={iconHover}/> )
+          ) :
+          ( <DeleteIcon iconHover={iconHover}/> )
         }
+        </ActionButton>
       <Image src={card.url} alt={card.description} />
       <InfoWrapper>
         <Date>{card.date}</Date>
