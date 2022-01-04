@@ -160,7 +160,7 @@ function App() {
         <ProtectedRoute exact path='/saved-news' loggedIn={true}>
           <Header loggedIn={true}/>
           <SavedNewsHeader/>
-          <CardList loggedIn={true} />
+          <CardList loggedIn={true} displayArticles={displayArticles}/>
         </ProtectedRoute>
         <Route exact path='/'>
           <Main 

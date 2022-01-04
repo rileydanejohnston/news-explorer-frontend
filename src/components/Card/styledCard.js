@@ -124,17 +124,20 @@ export const ActionButton = styled.button`
   }
 `;
 
-export const Icon = styled.div`
-  width: ${(props) => (props.path === '/' ? '14px' : '18px' )};
+export const BookmarkIcon = styled.div`
+  width: 14px;
   height: 19px;
-  background: ${(props) => (props.path === '/' ? 
-    `center / contain no-repeat url(${bookmarkImg})` 
-  : `center / contain no-repeat url(${deleteIcon})`)};
+  background: center / contain no-repeat url(${bookmarkImg});
   opacity: ${(props) => (props.iconHover ? 1 : .2 )};
   transition: opacity .3s ease;
 `;
 
-export const SelectedIcon = styled(Icon)`
+export const DeleteIcon = styled(BookmarkIcon)`
+  width: 18px;
+  background: center / contain no-repeat url(${deleteIcon})
+`;
+
+export const SelectedIcon = styled(BookmarkIcon)`
   background: center / contain no-repeat url(${selectedBookmark});
   opacity: 1;
 `;

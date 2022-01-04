@@ -1,5 +1,5 @@
 import { React, useState } from 'react'
-import { Icon, ActionButton, CardWrapper, Date, Image, InfoWrapper, NewsSource, Subtitle, Title, SelectedIcon, ToolTip, Category } from './styledCard'
+import { BookmarkIcon, DeleteIcon, ActionButton, CardWrapper, Date, Image, InfoWrapper, NewsSource, Subtitle, Title, SelectedIcon, ToolTip, Category } from './styledCard'
 import card1 from '../../images/nature.png';
 import { useLocation } from 'react-router-dom';
 
@@ -28,7 +28,11 @@ export default function Card({ loggedIn, card }) {
     setIsToolTipOpen(false);
   }
 
-  const handleClick = () => {
+  const handleDeleteClick = () => {
+    console.log(`testing delete click`);
+  }
+
+  const handleBookmarkClick = () => {
     if (loggedIn) {
       setIsSaved(!isSaved);
     }
@@ -45,26 +49,31 @@ export default function Card({ loggedIn, card }) {
       >
         Sign in to save articles
       </ToolTip>
-      <ActionButton 
-        onMouseEnter={handleIconEnter} 
-        onMouseLeave={handleIconExit}
-        onClick={handleClick}
-      >
         {
-  // the home path has ability to like/unlike cards
-  // saved-news path only had the ability to delete 
           location.pathname === '/' ?
           (
-            isSaved ? 
-            <SelectedIcon /> : 
-            <Icon iconHover={iconHover} path={location.pathname}/>
+            <ActionButton 
+              onMouseEnter={handleIconEnter} 
+              onMouseLeave={handleIconExit}
+              onClick={handleBookmarkClick}
+            >
+              { isSaved ? 
+                <SelectedIcon /> : 
+                <BookmarkIcon iconHover={iconHover}/>
+              }
+            </ActionButton>
           )
         :
           (
-            <Icon iconHover={iconHover} path={location.pathname}/>
+            <ActionButton 
+              onMouseEnter={handleIconEnter} 
+              onMouseLeave={handleIconExit}
+              onClick={handleDeleteClick}
+            >
+              <DeleteIcon iconHover={iconHover}/>
+            </ActionButton>
           )
         }
-      </ActionButton>
       <Image src={card.url} alt='Nature photo' />
       <InfoWrapper>
         <Date>{card.date}</Date>
