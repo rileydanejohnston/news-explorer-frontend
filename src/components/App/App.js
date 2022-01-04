@@ -12,6 +12,7 @@ import SavedNews from "../SavedNews/SavedNews";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import RegisterSuccessModal from "../RegisterSuccessModal/RegisterSuccessModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import LoginModal from "../LoginModal/LoginModal";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -251,7 +252,8 @@ function App() {
       </Switch>
       {/*<ModalWithForm />*/}
       {/*<RegisterSuccessModal />*/}
-      <RegisterModal />
+      {/*<RegisterModal />*/}
+      <LoginModal />
     </Wrapper>
   );
 }

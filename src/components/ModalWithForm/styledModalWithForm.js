@@ -8,7 +8,7 @@ export const ModalWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  visibility: visible;
+  visibility: hidden;
   position: fixed;
   top: 0;
   left: 0;
@@ -54,6 +54,7 @@ export const SubmitError = styled.span`
   color: #FF0000;
   display: inline-block;
   width: 100%;
+  margin-top: 18px;
 `;
 
 export const Submit = styled.button`
