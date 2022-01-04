@@ -1,9 +1,11 @@
-import { React, useState } from 'react'
+import { React, useContext, useState } from 'react'
 import { BookmarkIcon, DeleteIcon, ActionButton, CardWrapper, Date, Image, InfoWrapper, NewsSource, Subtitle, Title, SelectedIcon, ToolTip, Category } from './styledCard'
 import { useLocation } from 'react-router-dom';
+import { LoggedInContext } from '../../contexts/loggedInContext';
 
-export default function Card({ loggedIn, card, cardIconClick }) {
+export default function Card({ card, cardIconClick }) {
 
+  const loggedIn = useContext(LoggedInContext);
   const location = useLocation();
   const [iconHover, setIconHover] = useState(false);
   const [isToolTipOpen, setIsToolTipOpen] = useState(false);

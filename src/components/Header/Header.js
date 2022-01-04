@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useContext, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation'
 import { 
@@ -9,8 +9,7 @@ import {
   MenuButton,
 } from './styledHeader'
 
-export default function Header({ loggedIn, handleLogIn, handleLogOut }) {
-
+export default function Header({ handleLogIn, handleLogOut }) {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -26,7 +25,6 @@ export default function Header({ loggedIn, handleLogIn, handleLogOut }) {
         }
       </LogoMenuWrapper>
       <Navigation
-        loggedIn={loggedIn}
         isMenuOpen={isMenuOpen}
         handleLogIn={handleLogIn}
         handleLogOut={handleLogOut}

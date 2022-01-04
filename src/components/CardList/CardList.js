@@ -2,7 +2,7 @@ import React from 'react'
 import { CardsListWrapper, CardsList } from './styledCardList'
 import Card from '../Card/Card';
 
-export default function CardList({ loggedIn, displayArticles, cardIconClick }) {
+export default function CardList({ displayArticles, cardIconClick }) {
   return (
     <CardsListWrapper>
       <CardsList>
@@ -12,7 +12,6 @@ export default function CardList({ loggedIn, displayArticles, cardIconClick }) {
               <Card
                 card={card}
                 key={index}
-                loggedIn={loggedIn}
                 cardIconClick={cardIconClick}
               />
             )

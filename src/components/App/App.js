@@ -10,6 +10,7 @@ import Main from "../Main/Main";
 import CardList from "../CardList/CardList";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import newsApi from "../../utils/NewsApi";
+import { LoggedInContext } from "../../contexts/loggedInContext";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -216,35 +217,34 @@ function App() {
     <Wrapper>
       <GlobalStyle />
       <Switch>
-        <ProtectedRoute exact path='/saved-news' loggedIn={loggedIn}>
-          <Header
-            loggedIn={loggedIn}
-            handleLogIn={handleLogIn}
-            handleLogOut={handleLogOut}
-          />
-          <SavedNewsHeader articleCount={savedArticles.length} />
-          { savedArticles.length !== 0 && 
-          <CardList 
-            loggedIn={loggedIn}
-            displayArticles={savedArticles}
-            cardIconClick={updateSaved}
-          /> }
-        </ProtectedRoute>
-        <Route exact path='/'>
-          <Main 
-            loggedIn={loggedIn}
-            handleLogIn={handleLogIn}
-            handleLogOut={handleLogOut}
-            isSearching={isSearching}
-            isSearchResultsOpen={isSearchResultsOpen}
-            noSearchResults={noSearchResults}
-            handleSearchSubmit={handleSearchSubmit}
-            displayArticles={displayArticles}
-            handleShowMoreClick={handleShowMoreClick}
-            moreArticles={moreArticles}
-            cardIconClick={updateSaved}
-          />
-        </Route>
+        <LoggedInContext.Provider value={loggedIn}>
+          <ProtectedRoute exact path='/saved-news'>
+            <Header
+              handleLogIn={handleLogIn}
+              handleLogOut={handleLogOut}
+            />
+            <SavedNewsHeader articleCount={savedArticles.length} />
+            { savedArticles.length !== 0 && 
+            <CardList
+              displayArticles={savedArticles}
+              cardIconClick={updateSaved}
+            /> }
+          </ProtectedRoute>
+          <Route exact path='/'>
+            <Main 
+              handleLogIn={handleLogIn}
+              handleLogOut={handleLogOut}
+              isSearching={isSearching}
+              isSearchResultsOpen={isSearchResultsOpen}
+              noSearchResults={noSearchResults}
+              handleSearchSubmit={handleSearchSubmit}
+              displayArticles={displayArticles}
+              handleShowMoreClick={handleShowMoreClick}
+              moreArticles={moreArticles}
+              cardIconClick={updateSaved}
+            />
+          </Route>
+        </LoggedInContext.Provider>
       </Switch>
     </Wrapper>
   );
