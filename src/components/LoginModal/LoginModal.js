@@ -2,9 +2,12 @@ import React from 'react'
 import ModalWithForm from '../ModalWithForm/ModalWithForm'
 import { InputError, Label, Input, InputGroup, InputsWrapper } from '../RegisterModal/styledRegisterModal'
 
-export default function LoginModal() {
+export default function LoginModal({ isLoginModalOpen, closeAllModals }) {
   return (
-    <ModalWithForm>
+    <ModalWithForm 
+      isModalOpen={isLoginModalOpen}
+      closeAllModals={closeAllModals}
+    >
       <InputsWrapper>
         <InputGroup>
           <Label for='email'>Email</Label>

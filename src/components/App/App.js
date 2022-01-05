@@ -25,6 +25,7 @@ function App() {
   const [index, setIndex] = useState(0);
   const [moreArticles, setMoreArticles] = useState(true);
   const [savedArticles, setSavedArticles] = useState([]);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   // check if there's anything in local storage when page opens
   useEffect(() => {
@@ -64,11 +65,16 @@ function App() {
 
 
   const handleLogIn = () => {
+    setIsLoginModalOpen(true);
     setLoggedIn(true);
   }
 
   const handleLogOut = () => {
     setLoggedIn(false);
+  }
+
+  const closeAllModals = () => {
+    setIsLoginModalOpen(false);
   }
 
   // update button liked status on frontend
@@ -253,7 +259,10 @@ function App() {
       {/*<ModalWithForm />*/}
       {/*<RegisterSuccessModal />*/}
       {/*<RegisterModal />*/}
-      <LoginModal />
+      <LoginModal 
+        isLoginModalOpen={isLoginModalOpen}
+        closeAllModals={closeAllModals}
+      />
     </Wrapper>
   );
 }

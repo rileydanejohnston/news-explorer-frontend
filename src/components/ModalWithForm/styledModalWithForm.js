@@ -8,7 +8,9 @@ export const ModalWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  visibility: hidden;
+  visibility: ${props => props.isModalOpen ? 'visible' : 'hidden'};
+  opacity: ${props => props.isModalOpen ? 1 : 0};
+  transition: opacity .5s, visibility .5s;
   position: fixed;
   top: 0;
   left: 0;
@@ -30,6 +32,10 @@ export const CloseIcon = styled.div`
   position: absolute;
   top: -46px;
   right: -46px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const Form = styled.form``;
