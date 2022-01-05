@@ -12,7 +12,7 @@ import {
   LogoutSymbol,
 } from './styledNavigation'
 
-export default function Navigation({ isMenuOpen, handleLogIn, handleLogOut }) {
+export default function Navigation({ isMenuOpen, openLoginWindow, handleLogOut }) {
 
   const location = useLocation();
   const loggedIn = useContext(LoggedInContext);
@@ -22,7 +22,7 @@ export default function Navigation({ isMenuOpen, handleLogIn, handleLogOut }) {
       handleLogOut();
       return;
     }
-    handleLogIn();
+    openLoginWindow();
   }
 
   return (

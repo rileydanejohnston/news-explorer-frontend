@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react'
 import ModalWithForm from '../ModalWithForm/ModalWithForm'
 import { InputError, Label, Input, InputGroup, InputGroupUsername, InputsWrapper } from './styledLoginRegisterModal'
 
-export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegisterModalOpen, closeAllModals, formLinkClick }) {
+export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegisterModalOpen, closeAllModals, formLinkClick, handleLogin }) {
 
   const formText = {
     titleAndSubmit: isRegisterModalOpen ? 'Sign up' : 'Sign in',
@@ -25,12 +25,17 @@ export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegiste
     setUsername(e.target.value);
   }
 
+  const handleLoginSubmit = () => {
+    handleLogin(email, password);
+  }
+
   return (
     <ModalWithForm 
       isModalOpen={isLoginRegisterModalOpen}
       closeAllModals={closeAllModals}
       formLinkClick={formLinkClick}
       formText={formText}
+      handleFormSubmit={handleLoginSubmit}
     >
       <InputsWrapper>
         <InputGroup>

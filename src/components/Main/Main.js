@@ -8,12 +8,12 @@ import SearchForm from '../SearchForm/SearchForm';
 import SearchResults from '../SearchResults/SearchResults';
 import { ImageWrapper } from './styledMain';
 
-export default function Main({ isSearching, isSearchResultsOpen, noSearchResults, handleSearchSubmit, isErrorOpen, displayArticles, handleShowMoreClick, moreArticles, cardIconClick, handleLogIn, handleLogOut }) {
+export default function Main({ isSearching, isSearchResultsOpen, noSearchResults, handleSearchSubmit, isErrorOpen, displayArticles, handleShowMoreClick, moreArticles, cardIconClick, openLoginWindow, handleLogOut }) {
   return (
     <>
       <ImageWrapper>
         <Header
-          handleLogIn={handleLogIn}
+          openLoginWindow={openLoginWindow}
           handleLogOut={handleLogOut}
         />
         <SearchForm handleSearchSubmit={handleSearchSubmit}/>

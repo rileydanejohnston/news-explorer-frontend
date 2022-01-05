@@ -9,7 +9,7 @@ import {
   MenuButton,
 } from './styledHeader'
 
-export default function Header({ handleLogIn, handleLogOut }) {
+export default function Header({ openLoginWindow, handleLogOut }) {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -26,7 +26,7 @@ export default function Header({ handleLogIn, handleLogOut }) {
       </LogoMenuWrapper>
       <Navigation
         isMenuOpen={isMenuOpen}
-        handleLogIn={handleLogIn}
+        openLoginWindow={openLoginWindow}
         handleLogOut={handleLogOut}
       />
     </Wrapper>

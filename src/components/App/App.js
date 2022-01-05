@@ -64,9 +64,25 @@ function App() {
   }, [displayArticles, index])
 
 
-  const handleLogIn = () => {
+  const openLoginWindow = () => {
     setIsLoginRegisterModalOpen(true);
+  }
+
+  const handleLogin = (email, password) => {
+    // make api request when backend is ready
+    /* 
+    authApi.login(email, password)
+      .then((res) => {
+        setCurrentUser
+        setLoggedIn(true)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    */
+    console.log(`email: ${email}, password: ${password}`);
     setLoggedIn(true);
+    closeAllModals();
   }
 
   const handleLogOut = () => {
@@ -236,7 +252,7 @@ function App() {
         <LoggedInContext.Provider value={loggedIn}>
           <ProtectedRoute exact path='/saved-news'>
             <SavedNews 
-              handleLogIn={handleLogIn}
+              openLoginWindow={openLoginWindow}
               handleLogOut={handleLogOut}
               articleCount={savedArticles.length}
               displayArticles={savedArticles}
@@ -245,7 +261,7 @@ function App() {
           </ProtectedRoute>
           <Route exact path='/'>
             <Main 
-              handleLogIn={handleLogIn}
+              openLoginWindow={openLoginWindow}
               handleLogOut={handleLogOut}
               isSearching={isSearching}
               isSearchResultsOpen={isSearchResultsOpen}
@@ -269,6 +285,7 @@ function App() {
         closeAllModals={closeAllModals}
         formLinkClick={formLinkClick}
         isRegisterModalOpen={isRegisterModalOpen}
+        handleLogin={handleLogin}
       />
     </Wrapper>
   );

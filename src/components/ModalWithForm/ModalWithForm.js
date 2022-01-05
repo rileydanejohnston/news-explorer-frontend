@@ -1,7 +1,7 @@
 import { React, useEffect } from 'react'
 import { CloseIcon, ModalContent, ModalWrapper, Form, FormLink, SubmitError, LinkWrapper, Submit, Title } from './styledModalWithForm'
 
-export default function ModalWithForm({ children, formText,isModalOpen, closeAllModals, formLinkClick }) {
+export default function ModalWithForm({ children, formText,isModalOpen, closeAllModals, formLinkClick, handleFormSubmit }) {
 
   // close via escape
   useEffect(() => {
@@ -27,6 +27,7 @@ export default function ModalWithForm({ children, formText,isModalOpen, closeAll
 
   const handleModalSubmit = (e) => {
     e.preventDefault();
+    handleFormSubmit();
   }
 
   return (
