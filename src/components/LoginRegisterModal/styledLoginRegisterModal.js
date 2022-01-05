@@ -15,6 +15,13 @@ export const InputGroup = styled.fieldset`
   padding: 0;
 `;
 
+export const InputGroupUsername = styled(InputGroup)`
+  visibility: ${props => props.isRegisterModalOpen ? 'visible' : 'hidden'};
+  opacity: ${props => props.isRegisterModalOpen ? 1 : 0};
+  max-height: ${props => props.isRegisterModalOpen ? '64px' : '0'};
+  transition: opacity .5s, visibility .5s, max-height .5s;
+`;
+
 export const Label = styled.label`
   font-family: Inter;
   font-size: 12px;

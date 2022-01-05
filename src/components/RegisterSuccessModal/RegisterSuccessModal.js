@@ -4,9 +4,12 @@ import { RegisterModalContent, SignInLink } from './styledRegisterSuccessModal'
 
 // recycled ModalWrapper and Title from ModalWithForm
 
-export default function RegisterSuccessModal() {
+export default function RegisterSuccessModal({ isSuccessRegisterModalOpen, closeAllModals }) {
   return (
-    <ModalWrapper>
+    <ModalWrapper
+      isModalOpen={isSuccessRegisterModalOpen}
+      closeAllModals={closeAllModals}
+    >
       <RegisterModalContent>
         <CloseIcon />
         <Title>Registration successfully completed!</Title>

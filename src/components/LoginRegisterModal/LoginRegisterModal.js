@@ -1,10 +1,14 @@
 import React from 'react'
 import ModalWithForm from '../ModalWithForm/ModalWithForm'
-import { InputError, Label, Input, InputGroup, InputsWrapper } from './styledRegisterModal'
+import { InputError, Label, Input, InputGroup, InputGroupUsername, InputsWrapper } from './styledLoginRegisterModal'
 
-export default function RegisterModal() {
+export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegisterModalOpen, closeAllModals, formLinkClick }) {
   return (
-    <ModalWithForm>
+    <ModalWithForm 
+      isModalOpen={isLoginRegisterModalOpen}
+      closeAllModals={closeAllModals}
+      formLinkClick={formLinkClick}
+    >
       <InputsWrapper>
         <InputGroup>
           <Label for='email'>Email</Label>
@@ -26,7 +30,7 @@ export default function RegisterModal() {
           />
           <InputError></InputError>
         </InputGroup>
-        <InputGroup>
+        <InputGroupUsername isRegisterModalOpen={isRegisterModalOpen}>
           <Label for='username'>Username</Label>
           <Input 
             placeholder='Enter username'
@@ -35,7 +39,7 @@ export default function RegisterModal() {
             name='username'
           />
           <InputError></InputError>
-        </InputGroup>
+        </InputGroupUsername>
       </InputsWrapper>
     </ModalWithForm>
   )

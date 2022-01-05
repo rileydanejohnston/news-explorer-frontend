@@ -9,10 +9,8 @@ import Main from "../Main/Main";
 import newsApi from "../../utils/NewsApi";
 import { LoggedInContext } from "../../contexts/loggedInContext";
 import SavedNews from "../SavedNews/SavedNews";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import RegisterSuccessModal from "../RegisterSuccessModal/RegisterSuccessModal";
-import RegisterModal from "../RegisterModal/RegisterModal";
-import LoginModal from "../LoginModal/LoginModal";
+import LoginRegisterModal from "../LoginRegisterModal/LoginRegisterModal";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -25,7 +23,9 @@ function App() {
   const [index, setIndex] = useState(0);
   const [moreArticles, setMoreArticles] = useState(true);
   const [savedArticles, setSavedArticles] = useState([]);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isLoginRegisterModalOpen, setIsLoginRegisterModalOpen] = useState(false);
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+  const [isSuccessRegisterModalOpen, setIsSuccessRegisterModalOpen] = useState(false);
 
   // check if there's anything in local storage when page opens
   useEffect(() => {
@@ -65,7 +65,7 @@ function App() {
 
 
   const handleLogIn = () => {
-    setIsLoginModalOpen(true);
+    setIsLoginRegisterModalOpen(true);
     setLoggedIn(true);
   }
 
@@ -74,7 +74,7 @@ function App() {
   }
 
   const closeAllModals = () => {
-    setIsLoginModalOpen(false);
+    setIsLoginRegisterModalOpen(false);
   }
 
   // update button liked status on frontend
@@ -225,6 +225,10 @@ function App() {
     return `${month} ${day}, ${year}`;
   }
 
+  const formLinkClick = () => {
+    setIsRegisterModalOpen(!isRegisterModalOpen);
+  }
+
   return (
     <Wrapper>
       <GlobalStyle />
@@ -256,12 +260,15 @@ function App() {
           </Route>
         </LoggedInContext.Provider>
       </Switch>
-      {/*<ModalWithForm />*/}
-      {/*<RegisterSuccessModal />*/}
-      {/*<RegisterModal />*/}
-      <LoginModal 
-        isLoginModalOpen={isLoginModalOpen}
+      <RegisterSuccessModal 
+        isSuccessRegisterModalOpen={isSuccessRegisterModalOpen}
         closeAllModals={closeAllModals}
+      />
+      <LoginRegisterModal 
+        isLoginRegisterModalOpen={isLoginRegisterModalOpen}
+        closeAllModals={closeAllModals}
+        formLinkClick={formLinkClick}
+        isRegisterModalOpen={isRegisterModalOpen}
       />
     </Wrapper>
   );
