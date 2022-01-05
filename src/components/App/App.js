@@ -85,6 +85,22 @@ function App() {
     closeAllModals();
   }
 
+  const handleRegister = (email, password, username) => {
+    // make api request when backend is ready
+    /* 
+    authApi.register(email, password, username)
+      .then((res) => {
+        setIsSuccessRegisterModalOpen(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    */
+    console.log(`email: ${email}, password: ${password}, username: ${username}`);
+    setIsLoginRegisterModalOpen(false);
+    setIsSuccessRegisterModalOpen(true);
+  }
+
   const handleLogOut = () => {
     setLoggedIn(false);
   }
@@ -286,6 +302,7 @@ function App() {
         formLinkClick={formLinkClick}
         isRegisterModalOpen={isRegisterModalOpen}
         handleLogin={handleLogin}
+        handleRegister={handleRegister}
       />
     </Wrapper>
   );
