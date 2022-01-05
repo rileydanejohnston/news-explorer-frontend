@@ -1,4 +1,4 @@
-import React from 'react'
+import { React, useState, useEffect } from 'react'
 import ModalWithForm from '../ModalWithForm/ModalWithForm'
 import { InputError, Label, Input, InputGroup, InputGroupUsername, InputsWrapper } from './styledLoginRegisterModal'
 
@@ -8,6 +8,22 @@ export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegiste
     titleAndSubmit: isRegisterModalOpen ? 'Sign up' : 'Sign in',
     linkText: isRegisterModalOpen ? 'Sign in' : 'Sign up'
   };
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  }
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  }
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  }
 
   return (
     <ModalWithForm 
@@ -24,6 +40,8 @@ export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegiste
             type='email'
             id='email'
             name='email'
+            value={email}
+            onChange={handleEmailChange}
           />
           <InputError></InputError>
         </InputGroup>
@@ -34,6 +52,8 @@ export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegiste
             type='password'
             id='password'
             name='password'
+            value={password}
+            onChange={handlePasswordChange}
           />
           <InputError></InputError>
         </InputGroup>
@@ -44,6 +64,8 @@ export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegiste
             type='text'
             id='username'
             name='username'
+            value={username}
+            onChange={handleUsernameChange}
           />
           <InputError></InputError>
         </InputGroupUsername>
