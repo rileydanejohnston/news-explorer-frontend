@@ -11,7 +11,7 @@ export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegiste
     >
       <InputsWrapper>
         <InputGroup>
-          <Label for='email'>Email</Label>
+          <Label htmlFor='email'>Email</Label>
           <Input 
             placeholder='Enter email'
             type='email'
@@ -21,7 +21,7 @@ export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegiste
           <InputError></InputError>
         </InputGroup>
         <InputGroup>
-          <Label for='password'>Password</Label>
+          <Label htmlFor='password'>Password</Label>
           <Input 
             placeholder='Enter password'
             type='password'
@@ -31,7 +31,7 @@ export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegiste
           <InputError></InputError>
         </InputGroup>
         <InputGroupUsername isRegisterModalOpen={isRegisterModalOpen}>
-          <Label for='username'>Username</Label>
+          <Label htmlFor='username'>Username</Label>
           <Input 
             placeholder='Enter username'
             type='text'
