@@ -11,6 +11,7 @@ import { LoggedInContext } from "../../contexts/loggedInContext";
 import SavedNews from "../SavedNews/SavedNews";
 import RegisterSuccessModal from "../RegisterSuccessModal/RegisterSuccessModal";
 import LoginRegisterModal from "../LoginRegisterModal/LoginRegisterModal";
+import Footer from "../Footer/Footer";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -302,6 +303,7 @@ function App() {
           </Route>
         </LoggedInContext.Provider>
       </Switch>
+      <Footer />
       <RegisterSuccessModal 
         isSuccessRegisterModalOpen={isSuccessRegisterModalOpen}
         closeAllModals={closeAllModals}
