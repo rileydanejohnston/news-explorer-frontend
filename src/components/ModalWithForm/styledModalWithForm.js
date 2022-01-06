@@ -9,6 +9,10 @@ export const Title = styled.h2`
   line-height: 28px;
   letter-spacing: 0em;
   margin-bottom: 22px;
+
+  @media( max-width: 625px ) {
+    margin-bottom: 18px;
+  }
 `;
 
 export const SubmitError = styled.span`
@@ -23,6 +27,10 @@ export const SubmitError = styled.span`
   display: inline-block;
   width: 100%;
   margin-top: 18px;
+
+  @media( max-width: 625px ) {
+    margin-top: 14px;
+  }
 `;
 
 export const Submit = styled.button`
@@ -61,7 +69,6 @@ export const LinkWrapper = styled.p`
   line-height: 17px;
   letter-spacing: 0em;
   text-align: center;
-
 `;
 
 export const FormLink = styled.span`
