@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from "styled-components/macro";
 import backgroundImg from '../../images/bg-app-img.png';
 
 export const ImageWrapper = styled.div`
