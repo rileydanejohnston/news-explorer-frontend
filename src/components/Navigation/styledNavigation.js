@@ -34,7 +34,7 @@ export const NavList = styled.ul`
     max-height: ${(props) => (props.isMenuOpen ? '252px' : '0')};
     visibility: ${(props) => (props.isMenuOpen ? 'visibile' : 'hidden')};
     opacity: ${(props) => (props.isMenuOpen ? 1 : 0)};
-    transition: opacity .5s ease, max-height .5s ease;
+    transition: opacity .5s ease, max-height .5s ease, background .5s ease;
   }
 `;
 

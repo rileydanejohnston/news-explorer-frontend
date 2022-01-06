@@ -27,6 +27,7 @@ export const Wrapper = styled.header`
     padding: 0 16px 0 20px;
     flex-direction: column;
     justify-content: center;
+    background: ${(props) => ((props.isMenuOpen && props.path === '/') && '#1A1B22')};
   }
 `;
 
