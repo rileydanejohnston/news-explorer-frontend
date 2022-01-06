@@ -30,37 +30,19 @@ export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegiste
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     setEmailValid(e.target.validity.valid);
-
-    if (!e.target.validity.valid) {
-      setEmailError(e.target.validationMessage);
-    }
-    else {
-      setEmailError('');
-    }
+    setEmailError( !e.target.validity.valid ? e.target.validationMessage : '' );
   }
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
     setPasswordValid(e.target.validity.valid);
-
-    if (!e.target.validity.valid) {
-      setPasswordError(e.target.validationMessage);
-    }
-    else {
-      setPasswordError('');
-    }
+    setPasswordError( !e.target.validity.valid ? e.target.validationMessage : '' );
   }
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
     setUsernameValid(e.target.validity.valid);
-
-    if (!e.target.validity.valid) {
-      setUsernameError(e.target.validationMessage);
-    }
-    else {
-      setUsernameError('');
-    }
+    setUsernameError( !e.target.validity.valid ? e.target.validationMessage : '' );
   }
 
   const handleLoginSubmit = () => {
