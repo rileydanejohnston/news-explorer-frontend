@@ -97,8 +97,7 @@ function App() {
       })
     */
     console.log(`email: ${email}, password: ${password}, username: ${username}`);
-    setIsLoginRegisterModalOpen(false);
-    setIsRegisterModalOpen(false);
+    closeAllModals();
     setIsSuccessRegisterModalOpen(true);
   }
 
@@ -113,8 +112,7 @@ function App() {
   }
 
   const registerSuccessToLogin = () => {
-    setIsSuccessRegisterModalOpen(false);
-    setIsRegisterModalOpen(false);
+    closeAllModals();
     setIsLoginRegisterModalOpen(true);
   }
 
