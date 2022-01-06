@@ -1,7 +1,6 @@
 import styled from "styled-components/macro";
 
 export const AboutWrapper = styled.section`
-  background: #FFF;
   padding: 80px 216px 80px 104px;
 
   @media(max-width: 1439px) {

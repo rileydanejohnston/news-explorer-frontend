@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     box-sizing: border-box;
-    background-color: #f3f3f3;
+    background-color: #FFF;
   }
   *, *:before, *:after {
     box-sizing: inherit;
