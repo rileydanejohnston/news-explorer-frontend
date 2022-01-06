@@ -1,5 +1,6 @@
 import { React, useContext } from 'react'
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
+import { IsMenuOpenContext } from '../../contexts/isMenuOpenContext';
 import { LoggedInContext } from '../../contexts/loggedInContext';
 import { 
   Nav,
@@ -12,10 +13,11 @@ import {
   LogoutSymbol,
 } from './styledNavigation'
 
-export default function Navigation({ isMenuOpen, openLoginWindow, handleLogOut }) {
+export default function Navigation({ openLoginWindow, handleLogOut }) {
 
   const location = useLocation();
   const loggedIn = useContext(LoggedInContext);
+  const isMenuOpen = useContext(IsMenuOpenContext);
 
   const handleLogInStatus = () => {
     if (loggedIn) {

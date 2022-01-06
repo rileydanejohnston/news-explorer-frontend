@@ -1,5 +1,6 @@
-import { React, useState } from 'react'
+import { React, useContext } from 'react'
 import { useLocation } from 'react-router-dom';
+import { IsMenuOpenContext } from '../../contexts/isMenuOpenContext';
 import Navigation from '../Navigation/Navigation'
 import { 
   Logo,
@@ -9,9 +10,9 @@ import {
   MenuButton,
 } from './styledHeader'
 
-export default function Header({ openLoginWindow, handleLogOut }) {
+export default function Header({ openLoginWindow, handleLogOut, setIsMenuOpen }) {
   const location = useLocation();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isMenuOpen = useContext(IsMenuOpenContext);
 
   return (
     <Wrapper path={location.pathname} isMenuOpen={isMenuOpen}>
@@ -25,7 +26,6 @@ export default function Header({ openLoginWindow, handleLogOut }) {
         }
       </LogoMenuWrapper>
       <Navigation
-        isMenuOpen={isMenuOpen}
         openLoginWindow={openLoginWindow}
         handleLogOut={handleLogOut}
       />

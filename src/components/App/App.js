@@ -8,6 +8,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Main from "../Main/Main";
 import newsApi from "../../utils/NewsApi";
 import { LoggedInContext } from "../../contexts/loggedInContext";
+import { IsMenuOpenContext } from "../../contexts/isMenuOpenContext";
 import SavedNews from "../SavedNews/SavedNews";
 import RegisterSuccessModal from "../RegisterSuccessModal/RegisterSuccessModal";
 import LoginRegisterModal from "../LoginRegisterModal/LoginRegisterModal";
@@ -28,6 +29,7 @@ function App() {
   const [isLoginRegisterModalOpen, setIsLoginRegisterModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [isSuccessRegisterModalOpen, setIsSuccessRegisterModalOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // check if there's anything in local storage when page opens
   useEffect(() => {
@@ -277,12 +279,14 @@ function App() {
     <Wrapper>
       <GlobalStyle />
       <LoggedInContext.Provider value={loggedIn}>
-        <HeaderGroup 
-          openLoginWindow={openLoginWindow}
-          handleLogOut={handleLogOut}
-          handleSearchSubmit={handleSearchSubmit}
-        />
-        <Switch>
+        <IsMenuOpenContext.Provider value={isMenuOpen} >
+          <HeaderGroup 
+            openLoginWindow={openLoginWindow}
+            handleLogOut={handleLogOut}
+            handleSearchSubmit={handleSearchSubmit}
+            setIsMenuOpen={setIsMenuOpen}
+          />
+          <Switch>
             <ProtectedRoute exact path='/saved-news'>
               <SavedNews 
                 openLoginWindow={openLoginWindow}
@@ -307,7 +311,8 @@ function App() {
                 cardIconClick={updateSaved}
               />
             </Route>
-        </Switch>
+          </Switch>
+        </IsMenuOpenContext.Provider>
       </LoggedInContext.Provider>
       <Footer />
       <RegisterSuccessModal 

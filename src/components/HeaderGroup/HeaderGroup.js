@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 import SearchForm from '../SearchForm/SearchForm';
 
 
-export default function HeaderGroup({ openLoginWindow, handleLogOut, handleSearchSubmit }) {
+export default function HeaderGroup({ openLoginWindow, handleLogOut, handleSearchSubmit, setIsMenuOpen }) {
   const location = useLocation();
   return (
     <>
@@ -15,6 +15,7 @@ export default function HeaderGroup({ openLoginWindow, handleLogOut, handleSearc
             <Header
               openLoginWindow={openLoginWindow}
               handleLogOut={handleLogOut}
+              setIsMenuOpen={setIsMenuOpen}
             />
             <SearchForm handleSearchSubmit={handleSearchSubmit}/>
           </ImageWrapper>
@@ -24,6 +25,7 @@ export default function HeaderGroup({ openLoginWindow, handleLogOut, handleSearc
           <Header
             openLoginWindow={openLoginWindow}
             handleLogOut={handleLogOut}
+            setIsMenuOpen={setIsMenuOpen}
           />
         )
       }
