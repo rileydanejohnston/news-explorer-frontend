@@ -10,19 +10,49 @@ export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegiste
   };
 
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [emailValid, setEmailValid] = useState(false);
   const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [passwordValid, setPasswordValid] = useState(false);
   const [username, setUsername] = useState('');
+  const [usernameError, setUsernameError] = useState('');
+  const [usernameValid, setUsernameValid] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+    setEmailValid(e.target.validity.valid);
+
+    if (!e.target.validity.valid) {
+      setEmailError(e.target.validationMessage);
+    }
+    else {
+      setEmailError('');
+    }
   }
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    setPasswordValid(e.target.validity.valid);
+
+    if (!e.target.validity.valid) {
+      setPasswordError(e.target.validationMessage);
+    }
+    else {
+      setPasswordError('');
+    }
   }
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
+    setUsernameValid(e.target.validity.valid);
+
+    if (!e.target.validity.valid) {
+      setUsernameError(e.target.validationMessage);
+    }
+    else {
+      setUsernameError('');
+    }
   }
 
   const handleLoginSubmit = () => {
@@ -53,8 +83,11 @@ export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegiste
             name='email'
             value={email}
             onChange={handleEmailChange}
+            required
+            minLength={2}
+            maxLength={30}
           />
-          <InputError></InputError>
+          <InputError>{emailError}</InputError>
         </InputGroup>
         <InputGroup>
           <Label htmlFor='password'>Password</Label>
@@ -65,8 +98,11 @@ export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegiste
             name='password'
             value={password}
             onChange={handlePasswordChange}
+            required={true}
+            minLength={8}
+            maxLength={30}
           />
-          <InputError></InputError>
+          <InputError>{passwordError}</InputError>
         </InputGroup>
         <InputGroupUsername isRegisterModalOpen={isRegisterModalOpen}>
           <Label htmlFor='username'>Username</Label>
@@ -77,8 +113,11 @@ export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegiste
             name='username'
             value={username}
             onChange={handleUsernameChange}
+            required={isRegisterModalOpen ? true : false}
+            minLength={2}
+            maxLength={30}
           />
-          <InputError></InputError>
+          <InputError>{usernameError}</InputError>
         </InputGroupUsername>
       </InputsWrapper>
     </ModalWithForm>

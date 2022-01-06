@@ -14,7 +14,7 @@ export default function ModalWithForm({ children, formText,isModalOpen, closeAll
       isModalOpen={isModalOpen}
       closeAllModals={closeAllModals}
     >
-        <Form onSubmit={handleModalSubmit}>
+        <Form onSubmit={handleModalSubmit} noValidate>
           <Title>{formText.titleAndSubmit}</Title>
           { children }
           <SubmitError></SubmitError>
