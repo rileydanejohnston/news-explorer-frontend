@@ -98,6 +98,7 @@ function App() {
     */
     console.log(`email: ${email}, password: ${password}, username: ${username}`);
     setIsLoginRegisterModalOpen(false);
+    setIsRegisterModalOpen(false);
     setIsSuccessRegisterModalOpen(true);
   }
 
@@ -108,6 +109,13 @@ function App() {
   const closeAllModals = () => {
     setIsLoginRegisterModalOpen(false);
     setIsSuccessRegisterModalOpen(false);
+    setIsRegisterModalOpen(false);
+  }
+
+  const registerSuccessToLogin = () => {
+    setIsSuccessRegisterModalOpen(false);
+    setIsRegisterModalOpen(false);
+    setIsLoginRegisterModalOpen(true);
   }
 
   // update button liked status on frontend
@@ -296,6 +304,7 @@ function App() {
       <RegisterSuccessModal 
         isSuccessRegisterModalOpen={isSuccessRegisterModalOpen}
         closeAllModals={closeAllModals}
+        handleLinkClick={registerSuccessToLogin}
       />
       <LoginRegisterModal 
         isLoginRegisterModalOpen={isLoginRegisterModalOpen}

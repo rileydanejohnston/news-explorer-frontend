@@ -8,7 +8,7 @@ export const RegisterSuccessTitle = styled(Title)`
   color: #000;
 `;
 
-export const SignInLink = styled.span`
+export const SignInLink = styled.p`
   font-family: Inter;
   font-size: 18px;
   font-style: normal;
@@ -17,7 +17,6 @@ export const SignInLink = styled.span`
   letter-spacing: 0em;
   color: #2F71E5;
   margin-bottom: 23px;
-  display: inline-block;
 
   &:hover {
     cursor: pointer;

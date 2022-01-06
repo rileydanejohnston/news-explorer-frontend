@@ -4,14 +4,14 @@ import { RegisterSuccessTitle, SignInLink } from './styledRegisterSuccessModal'
 
 // recycled ModalWrapper and Title from Modal
 
-export default function RegisterSuccessModal({ isSuccessRegisterModalOpen, closeAllModals }) {
+export default function RegisterSuccessModal({ isSuccessRegisterModalOpen, closeAllModals, handleLinkClick }) {
   return (
     <Modal
       isModalOpen={isSuccessRegisterModalOpen}
       closeAllModals={closeAllModals}
     >
       <RegisterSuccessTitle>Registration successfully completed!</RegisterSuccessTitle>
-      <SignInLink>Sign in</SignInLink>
+      <SignInLink onClick={handleLinkClick}>Sign in</SignInLink>
     </Modal>
   )
 }
