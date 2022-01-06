@@ -12,8 +12,13 @@ import SavedNews from "../SavedNews/SavedNews";
 import RegisterSuccessModal from "../RegisterSuccessModal/RegisterSuccessModal";
 import LoginRegisterModal from "../LoginRegisterModal/LoginRegisterModal";
 import Footer from "../Footer/Footer";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import HomeImageBackground from "../HomeImageBackground/HomeImageBackground";
+import Header from "../Header/Header";
+import SearchForm from '../SearchForm/SearchForm';
 
 function App() {
+  const location = useLocation();
   const [loggedIn, setLoggedIn] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [isSearchResultsOpen, setIsSearchResultsOpen] = useState(false);
@@ -275,8 +280,26 @@ function App() {
   return (
     <Wrapper>
       <GlobalStyle />
+      <LoggedInContext.Provider value={loggedIn}>
+      {location.pathname === '/' ?
+        (
+          <HomeImageBackground>
+            <Header
+              openLoginWindow={openLoginWindow}
+              handleLogOut={handleLogOut}
+            />
+            <SearchForm handleSearchSubmit={handleSearchSubmit}/>
+          </HomeImageBackground>
+        )
+      : 
+        (
+          <Header
+            openLoginWindow={openLoginWindow}
+            handleLogOut={handleLogOut}
+          />
+        )
+      }
       <Switch>
-        <LoggedInContext.Provider value={loggedIn}>
           <ProtectedRoute exact path='/saved-news'>
             <SavedNews 
               openLoginWindow={openLoginWindow}
@@ -301,8 +324,8 @@ function App() {
               cardIconClick={updateSaved}
             />
           </Route>
-        </LoggedInContext.Provider>
       </Switch>
+      </LoggedInContext.Provider>
       <Footer />
       <RegisterSuccessModal 
         isSuccessRegisterModalOpen={isSuccessRegisterModalOpen}
