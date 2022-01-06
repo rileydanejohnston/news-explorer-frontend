@@ -107,6 +107,7 @@ function App() {
 
   const closeAllModals = () => {
     setIsLoginRegisterModalOpen(false);
+    setIsSuccessRegisterModalOpen(false);
   }
 
   // update button liked status on frontend

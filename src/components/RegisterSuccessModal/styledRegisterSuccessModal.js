@@ -1,10 +1,11 @@
 import styled from "styled-components/macro";
-import { ModalContent } from "../ModalWithForm/styledModalWithForm";
+import { Title } from '../ModalWithForm/styledModalWithForm'
 
 // tweak MOdalContent
 
-export const RegisterModalContent = styled(ModalContent)`
-  padding: 43px 36px 51px;
+export const RegisterSuccessTitle = styled(Title)`
+  margin: 9px 0 14px;
+  color: #000;
 `;
 
 export const SignInLink = styled.span`
@@ -15,7 +16,8 @@ export const SignInLink = styled.span`
   line-height: 22px;
   letter-spacing: 0em;
   color: #2F71E5;
-  margin-top: 14px;
+  margin-bottom: 23px;
+  display: inline-block;
 
   &:hover {
     cursor: pointer;

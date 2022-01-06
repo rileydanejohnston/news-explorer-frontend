@@ -1,20 +1,17 @@
 import React from 'react'
-import { CloseIcon, ModalWrapper, Title } from '../ModalWithForm/styledModalWithForm'
-import { RegisterModalContent, SignInLink } from './styledRegisterSuccessModal'
+import Modal from '../Modal/Modal';
+import { RegisterSuccessTitle, SignInLink } from './styledRegisterSuccessModal'
 
-// recycled ModalWrapper and Title from ModalWithForm
+// recycled ModalWrapper and Title from Modal
 
 export default function RegisterSuccessModal({ isSuccessRegisterModalOpen, closeAllModals }) {
   return (
-    <ModalWrapper
+    <Modal
       isModalOpen={isSuccessRegisterModalOpen}
       closeAllModals={closeAllModals}
     >
-      <RegisterModalContent>
-        <CloseIcon />
-        <Title>Registration successfully completed!</Title>
-        <SignInLink>Sign in</SignInLink>
-      </RegisterModalContent>
-    </ModalWrapper>
+      <RegisterSuccessTitle>Registration successfully completed!</RegisterSuccessTitle>
+      <SignInLink>Sign in</SignInLink>
+    </Modal>
   )
 }
