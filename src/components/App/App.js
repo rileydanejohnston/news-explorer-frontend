@@ -103,6 +103,9 @@ function App() {
 
   const handleLogOut = () => {
     setLoggedIn(false);
+    localStorage.removeItem('all-articles');
+    localStorage.removeItem('display-articles');
+    localStorage.removeItem('index');
   }
 
   const closeAllModals = () => {
