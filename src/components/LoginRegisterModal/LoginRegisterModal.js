@@ -18,6 +18,14 @@ export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegiste
   const [username, setUsername] = useState('');
   const [usernameError, setUsernameError] = useState('');
   const [usernameValid, setUsernameValid] = useState(false);
+  const [isLoginSubmitActive, setIsLoginSubmitActive] = useState(false);
+  const [isRegisterSubmitActive, setIsRegisterSubmitActive] = useState(false);
+
+  // test validity state every change to determine if submit is active
+  useEffect(() => {
+    setIsLoginSubmitActive( (emailValid && passwordValid) ? true : false );
+    setIsRegisterSubmitActive( (emailValid && passwordValid && usernameValid) ? true : false );
+  }, [emailValid, passwordValid, usernameValid]);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -72,6 +80,7 @@ export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegiste
       formLinkClick={formLinkClick}
       formText={formText}
       handleFormSubmit={correctSubmitFunction}
+      isSubmitActive={isRegisterModalOpen ? isRegisterSubmitActive : isLoginSubmitActive}
     >
       <InputsWrapper>
         <InputGroup>

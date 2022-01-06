@@ -47,6 +47,12 @@ export const Submit = styled.button`
   }
 `;
 
+export const DisabledSubmit = styled(Submit)`
+  background: #E6E8EB;
+  color: #B6BCBF;
+  box-shadow: none;
+`;
+
 export const LinkWrapper = styled.p`
   font-family: Inter;
   font-size: 14px;
