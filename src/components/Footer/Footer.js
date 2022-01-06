@@ -1,13 +1,13 @@
 import React from 'react'
-import { FooterWrapper, FooterItem, ApiSource, FooterNav, HomeLink, PracticumLink, IconsWrapper, LinkedinIcon, GithubIcon } from './styledFooter'
+import { FooterWrapper, ApiSource, FooterNav, HomeLink, PracticumLink, IconsWrapper, LinkedinIcon, GithubIcon, SourceItem, LinksItem } from './styledFooter'
 
 export default function Footer() {
   return (
     <FooterWrapper>
-      <FooterItem>
-        <ApiSource>&copy; 2021 Supersite, Powered by News API</ApiSource>
-      </FooterItem>
-      <FooterItem>
+      <SourceItem>
+        <ApiSource>&copy; 2022 Supersite, Powered by News API</ApiSource>
+      </SourceItem>
+      <LinksItem>
         <FooterNav>
           <HomeLink to='/'>Home</HomeLink>
           <PracticumLink href='https://practicum.yandex.com/web/' target='_blank'>Practicum by Yandex</PracticumLink>
@@ -16,7 +16,7 @@ export default function Footer() {
           <GithubIcon href='https://www.linkedin.com/in/rileyjohnston/' target='_blank'/>
           <LinkedinIcon href='https://github.com/rileydanejohnston' target='_blank'/>
         </IconsWrapper>
-      </FooterItem>
+      </LinksItem>
     </FooterWrapper>
   )
 }
