@@ -275,8 +275,10 @@ function App() {
     setIsRegisterModalOpen(!isRegisterModalOpen);
   }
 
+  let location = window.location.pathname;
+
   return (
-    <Wrapper>
+    <Wrapper path={location}>
       <GlobalStyle />
       <LoggedInContext.Provider value={loggedIn}>
         <IsMenuOpenContext.Provider value={isMenuOpen} >

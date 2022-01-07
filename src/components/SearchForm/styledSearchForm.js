@@ -9,6 +9,7 @@ export const SearchWrapper = styled.section`
 
   @media( max-width: 625px ) {
     padding: 30px 0 32px 0;
+    background: ${(props => props.isMenuOpen && 'rgba(0, 0, 0, 0.5)')};
   }
 `;
 
@@ -82,6 +83,7 @@ export const Input = styled.input`
   border-radius: 100px;
   padding: 21px 192px 21px 24px;
   position: relative;
+  
 
   font-size: 16px;
   font-style: normal;

@@ -1,4 +1,5 @@
-import { React, useState } from 'react'
+import { React, useState, useContext } from 'react'
+import { IsMenuOpenContext } from '../../contexts/isMenuOpenContext';
 import {
   SearchContent,
   SearchWrapper,
@@ -12,6 +13,7 @@ import {
 export default function SearchForm({ handleSearchSubmit }) {
 
   const [searchQuery, setSearchQuery] = useState('');
+  const isMenuOpen = useContext(IsMenuOpenContext);
 
   const handleInput = (e) => {
     setSearchQuery(e.target.value);
@@ -29,7 +31,7 @@ export default function SearchForm({ handleSearchSubmit }) {
   }
 
   return (
-    <SearchWrapper>
+    <SearchWrapper isMenuOpen={isMenuOpen}>
       <SearchContent>
         <Title>What's going on in the world?</Title>
         <Subtitle>Find the latest news on any topic and save them in your personal account.</Subtitle>
