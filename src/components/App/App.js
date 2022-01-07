@@ -17,6 +17,7 @@ import Footer from "../Footer/Footer";
 import HeaderGroup from "../HeaderGroup/HeaderGroup";
 
 function App() {
+  let location = window.location.pathname;
   const [loggedIn, setLoggedIn] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [isSearchResultsOpen, setIsSearchResultsOpen] = useState(false);
@@ -278,8 +279,6 @@ function App() {
   const formLinkClick = () => {
     setIsRegisterModalOpen(!isRegisterModalOpen);
   }
-
-  let location = window.location.pathname;
 
   return (
     <Wrapper path={location}>
