@@ -100,6 +100,10 @@ export const Input = styled.input`
     padding: 16px;
     width: auto;
   }
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const Submit = styled.button`
