@@ -34,10 +34,11 @@ export const Title = styled.h2`
 export const ShowMoreButton = styled.button`
   width: 288px;
   height: 64px;
-  background: #E8E8E8;
+  background: #FFF;
   border-radius: 80px;
   border: none;
   margin: 0 auto;
+  transition: background .3s ease;
 
   font-size: 18px;
   font-style: normal;
@@ -49,7 +50,6 @@ export const ShowMoreButton = styled.button`
   @media( max-width: 1023px) {
     width: 240px;
     height: 56px;
-    background: #FFF;
   }
   @media( max-width: 625px) {
     margin-top: 8px;
@@ -58,5 +58,6 @@ export const ShowMoreButton = styled.button`
 
   &:hover {
     cursor: pointer;
+    background: #E8E8E8;
   }
 `;
