@@ -124,6 +124,7 @@ export const Submit = styled.button`
   line-height: 24px;
   letter-spacing: 0px;
   text-align: center;
+  transition: background .3s ease;
 
   @media( max-width: 1023px ) {
     width: 160px;
@@ -134,5 +135,15 @@ export const Submit = styled.button`
     padding: 16px 116px;
     position: static;
     width: 100%;
+  }
+
+  &:hover {
+    background: #347EFF;
+    cursor: pointer;
+  }
+
+  &:active {
+    background: #2A65CC;
+    box-shadow: 0px 5px 15px 0px #0E1A3933;
   }
 `;
