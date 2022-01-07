@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
-import { ImageWrapper } from './styledHeaderGroup';
+import { HeaderGroupWrapper, ImageWrapper } from './styledHeaderGroup';
 import Header from "../Header/Header";
 import SearchForm from '../SearchForm/SearchForm';
 
@@ -8,7 +8,7 @@ import SearchForm from '../SearchForm/SearchForm';
 export default function HeaderGroup({ openLoginWindow, handleLogOut, handleSearchSubmit, setIsMenuOpen }) {
   const location = useLocation();
   return (
-    <>
+    <HeaderGroupWrapper>
       {location.pathname === '/' ?
         (
           <ImageWrapper>
@@ -29,6 +29,6 @@ export default function HeaderGroup({ openLoginWindow, handleLogOut, handleSearc
           />
         )
       }
-    </>
+    </HeaderGroupWrapper>
   )
 }

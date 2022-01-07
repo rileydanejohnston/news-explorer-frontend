@@ -4,10 +4,11 @@ import NotFound from '../NotFound/NotFound';
 import Preloader from '../Preloader/Preloader';
 import SearchError from '../SearchError/SearchError';
 import SearchResults from '../SearchResults/SearchResults';
+import { MainWrapper } from './styledMain';
 
 export default function Main({ isSearching, isSearchResultsOpen, noSearchResults, isErrorOpen, displayArticles, handleShowMoreClick, moreArticles, cardIconClick }) {
   return (
-    <>
+    <MainWrapper>
       { isSearching && <Preloader /> }
       { isSearchResultsOpen && 
         <SearchResults
@@ -20,6 +21,6 @@ export default function Main({ isSearching, isSearchResultsOpen, noSearchResults
       { noSearchResults && <NotFound /> }
       { isErrorOpen && <SearchError /> }
       <About />
-    </>
+    </MainWrapper>
   )
 }
