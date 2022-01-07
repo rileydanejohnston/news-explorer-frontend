@@ -36,6 +36,10 @@ export const LogoMenuWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+
+  @media( max-width: 625px ) {
+    opacity: ${(props => props.isLoginOpen ? 0 : 1 )}
+  }
 `;
 
 export const MenuButton = styled.div`

@@ -9,6 +9,7 @@ import Main from "../Main/Main";
 import newsApi from "../../utils/NewsApi";
 import { LoggedInContext } from "../../contexts/loggedInContext";
 import { IsMenuOpenContext } from "../../contexts/isMenuOpenContext";
+import { IsLoginOpenContext } from "../../contexts/isLoginModalOpen";
 import SavedNews from "../SavedNews/SavedNews";
 import RegisterSuccessModal from "../RegisterSuccessModal/RegisterSuccessModal";
 import LoginRegisterModal from "../LoginRegisterModal/LoginRegisterModal";
@@ -69,6 +70,9 @@ function App() {
 
 
   const openLoginWindow = () => {
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+    }
     setIsLoginRegisterModalOpen(true);
   }
 
@@ -282,12 +286,14 @@ function App() {
       <GlobalStyle />
       <LoggedInContext.Provider value={loggedIn}>
         <IsMenuOpenContext.Provider value={isMenuOpen} >
-          <HeaderGroup 
-            openLoginWindow={openLoginWindow}
-            handleLogOut={handleLogOut}
-            handleSearchSubmit={handleSearchSubmit}
-            setIsMenuOpen={setIsMenuOpen}
-          />
+          <IsLoginOpenContext.Provider value={isLoginRegisterModalOpen}>
+            <HeaderGroup 
+              openLoginWindow={openLoginWindow}
+              handleLogOut={handleLogOut}
+              handleSearchSubmit={handleSearchSubmit}
+              setIsMenuOpen={setIsMenuOpen}
+            />
+          </IsLoginOpenContext.Provider>
           <Switch>
             <ProtectedRoute exact path='/saved-news'>
               <SavedNews 
@@ -322,14 +328,15 @@ function App() {
         closeAllModals={closeAllModals}
         handleLinkClick={registerSuccessToLogin}
       />
-      <LoginRegisterModal 
-        isLoginRegisterModalOpen={isLoginRegisterModalOpen}
-        closeAllModals={closeAllModals}
-        formLinkClick={formLinkClick}
-        isRegisterModalOpen={isRegisterModalOpen}
-        handleLogin={handleLogin}
-        handleRegister={handleRegister}
-      />
+      <IsLoginOpenContext.Provider value={isLoginRegisterModalOpen}>
+        <LoginRegisterModal 
+          closeAllModals={closeAllModals}
+          formLinkClick={formLinkClick}
+          isRegisterModalOpen={isRegisterModalOpen}
+          handleLogin={handleLogin}
+          handleRegister={handleRegister}
+        />
+      </IsLoginOpenContext.Provider>
     </Wrapper>
   );
 }

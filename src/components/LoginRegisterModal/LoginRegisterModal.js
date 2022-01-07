@@ -1,14 +1,15 @@
-import { React, useState, useEffect } from 'react'
+import { React, useState, useEffect, useContext } from 'react'
+import { IsLoginOpenContext } from '../../contexts/isLoginModalOpen';
 import ModalWithForm from '../ModalWithForm/ModalWithForm'
 import { InputError, Label, Input, InputGroup, InputGroupUsername, InputsWrapper } from './styledLoginRegisterModal'
 
-export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegisterModalOpen, closeAllModals, formLinkClick, handleLogin, handleRegister }) {
+export default function LoginRegisterModal({ isRegisterModalOpen, closeAllModals, formLinkClick, handleLogin, handleRegister }) {
 
   const formText = {
     titleAndSubmit: isRegisterModalOpen ? 'Sign up' : 'Sign in',
     linkText: isRegisterModalOpen ? 'Sign in' : 'Sign up'
   };
-
+  const isLoginOpen = useContext(IsLoginOpenContext);
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [emailValid, setEmailValid] = useState(false);
@@ -57,7 +58,7 @@ export default function LoginRegisterModal({ isLoginRegisterModalOpen, isRegiste
 
   return (
     <ModalWithForm 
-      isModalOpen={isLoginRegisterModalOpen}
+      isModalOpen={isLoginOpen}
       closeAllModals={closeAllModals}
       formLinkClick={formLinkClick}
       formText={formText}

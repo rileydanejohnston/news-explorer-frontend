@@ -1,5 +1,6 @@
 import { React, useContext } from 'react'
 import { useLocation } from 'react-router-dom';
+import { IsLoginOpenContext } from '../../contexts/isLoginModalOpen';
 import { IsMenuOpenContext } from '../../contexts/isMenuOpenContext';
 import Navigation from '../Navigation/Navigation'
 import { 
@@ -13,10 +14,14 @@ import {
 export default function Header({ openLoginWindow, handleLogOut, setIsMenuOpen }) {
   const location = useLocation();
   const isMenuOpen = useContext(IsMenuOpenContext);
+  const isLoginOpen = useContext(IsLoginOpenContext);
 
   return (
-    <Wrapper path={location.pathname} isMenuOpen={isMenuOpen}>
-      <LogoMenuWrapper>
+    <Wrapper
+      path={location.pathname}
+      isMenuOpen={isMenuOpen}
+    >
+      <LogoMenuWrapper isLoginOpen={isLoginOpen}>
         <Logo to='/' path={location.pathname} >NewsExplorer</Logo>
         {
           isMenuOpen ? 
