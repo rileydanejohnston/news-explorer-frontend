@@ -35,12 +35,11 @@ class NewsApi {
 }
 
 const baseUrl = 'https://newsapi.org/v2/everything';
-const { REACT_APP_KEY } = process.env;
 
 const newsApi = new NewsApi({
   baseUrl: baseUrl,
   headers: {
-      Authorization: REACT_APP_KEY
+      Authorization: 'b8073dea22c9459e912450c29081a0ec'
     }
 });
 
