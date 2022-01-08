@@ -70,16 +70,16 @@ function App() {
   }, [displayArticles, index])
 
 
-  const openLoginWindow = () => {
+  function openLoginWindow() {
     if (isMenuOpen) {
       setIsMenuOpen(false);
     }
     setIsLoginRegisterModalOpen(true);
   }
 
-  const handleLogin = (email, password) => {
+  function handleLogin(email, password) {
     // make api request when backend is ready
-    /* 
+    /*
     authApi.login(email, password)
       .then((res) => {
         setCurrentUser
@@ -94,9 +94,9 @@ function App() {
     closeAllModals();
   }
 
-  const handleRegister = (email, password, username) => {
+  function handleRegister(email, password, username) {
     // make api request when backend is ready
-    /* 
+    /*
     authApi.register(email, password, username)
       .then((res) => {
         setIsSuccessRegisterModalOpen(true);
@@ -110,36 +110,36 @@ function App() {
     setIsSuccessRegisterModalOpen(true);
   }
 
-  const handleLogOut = () => {
+  function handleLogOut() {
     setLoggedIn(false);
     localStorage.removeItem('all-articles');
     localStorage.removeItem('display-articles');
     localStorage.removeItem('index');
   }
 
-  const closeAllModals = () => {
+  function closeAllModals() {
     setIsLoginRegisterModalOpen(false);
     setIsSuccessRegisterModalOpen(false);
     setIsRegisterModalOpen(false);
   }
 
-  const registerSuccessToLogin = () => {
+  function registerSuccessToLogin() {
     closeAllModals();
     setIsLoginRegisterModalOpen(true);
   }
 
   // update button liked status on frontend
-  const updateSaved = (card) => {
+  function updateSaved(card) {
     const tempArticles = displayArticles.map((articles) => {
       if (articles.title === card.title) {
         return {
-            title: articles.title,
-            description: articles.description,
-            url: articles.url,
-            source: articles.source,
-            date: articles.date,
-            isSaved: !articles.isSaved,
-            keyword: articles.keyword
+          title: articles.title,
+          description: articles.description,
+          url: articles.url,
+          source: articles.source,
+          date: articles.date,
+          isSaved: !articles.isSaved,
+          keyword: articles.keyword
         };
       }
       return articles;
@@ -158,13 +158,13 @@ function App() {
     }
   }
 
-  const saveCard = (card) => {
+  function saveCard(card) {
     // FUTURE WORK -> make post request to save card
     console.log(`this card will be saved`);
     console.log(card);
   }
 
-  const deleteCard = (card) => {
+  function deleteCard(card) {
     // FUTURE WORK -> make delete request to delete card
     console.log(`this card will be deleted`);
     console.log(card);
@@ -179,7 +179,7 @@ function App() {
     setSavedArticles(tempArticles);
   }, [displayArticles]);
   
-  const handleSearchSubmit = (keyword) => {
+  function handleSearchSubmit(keyword) {
     // start with nothing open
     resetSearchResults();
     // show preloader
@@ -203,7 +203,7 @@ function App() {
             date: getDateFormat(data.publishedAt),
             isSaved: false,
             keyword: keyword
-          }
+          };
         });
 
         localStorage.setItem('all-articles', JSON.stringify(articleCollection));
@@ -219,7 +219,7 @@ function App() {
       });
   }
 
-  const handleShowMoreClick = () => {
+  function handleShowMoreClick() {
     // copy arrays so we can modify them easily
     let tempAll = [...allArticles];
     let tempDisplay = [...displayArticles];
@@ -228,12 +228,11 @@ function App() {
     let i = index;
 
     // loop for 3 articles AND while within the array size
-    while(i < limit && tempAll[i] !== undefined)
-    {
+    while (i < limit && tempAll[i] !== undefined) {
       tempDisplay.push(tempAll[i]);
       ++i;
     }
-    
+
     // adjust index if we went out of bounds
     if (tempAll[i] === undefined) {
       --i;
@@ -244,7 +243,7 @@ function App() {
     setDisplayArticles(tempDisplay);
   }
 
-  const checkMoreArticles = () => {
+  function checkMoreArticles() {
     if (allArticles.length === displayArticles.length) {
       setMoreArticles(false);
     }
@@ -253,7 +252,7 @@ function App() {
     }
   }
 
-  const resetSearchResults = () => {
+  function resetSearchResults() {
     // shouldn't need setIsSearching? add just in case
     setIsSearching(false);
     setIsSearchResultsOpen(false);
@@ -265,7 +264,7 @@ function App() {
     setIsErrorOpen(false);
   }
 
-  const getDateFormat = (rawDate) => {
+  function getDateFormat(rawDate) {
     const allMonths = [null, 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     const newDate = new Date(rawDate);
@@ -276,7 +275,7 @@ function App() {
     return `${month} ${day}, ${year}`;
   }
 
-  const formLinkClick = () => {
+  function formLinkClick() {
     setIsRegisterModalOpen(!isRegisterModalOpen);
   }
 
