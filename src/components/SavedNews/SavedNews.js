@@ -6,7 +6,7 @@ import { SavedNewsWrapper } from './styledSavedNews'
 export default function SavedNews({ articleCount, displayArticles, cardIconClick }) {
   return (
     <SavedNewsWrapper>
-      <SavedNewsHeader articleCount={articleCount} />
+      <SavedNewsHeader articleCount={articleCount} displayArticles={displayArticles} />
       { articleCount !== 0 && 
       <CardList
         displayArticles={displayArticles}
