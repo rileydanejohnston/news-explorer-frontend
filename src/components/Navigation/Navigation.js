@@ -1,5 +1,6 @@
 import { React, useContext } from 'react'
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
+import { CurrentUserContext } from '../../contexts/currentUserContext';
 import { IsMenuOpenContext } from '../../contexts/isMenuOpenContext';
 import { LoggedInContext } from '../../contexts/loggedInContext';
 import { 
@@ -16,6 +17,7 @@ import {
 export default function Navigation({ openLoginWindow, handleLogOut }) {
 
   const location = useLocation();
+  const currentUser = useContext(CurrentUserContext);
   const loggedIn = useContext(LoggedInContext);
   const isMenuOpen = useContext(IsMenuOpenContext);
 
@@ -45,7 +47,7 @@ export default function Navigation({ openLoginWindow, handleLogOut }) {
                 path={location.pathname}
                 loggedIn={loggedIn}
               >
-                Elise
+                {currentUser.username}
                 <LogoutSymbol path={location.pathname}/>
               </NavButton> ) 
           : 

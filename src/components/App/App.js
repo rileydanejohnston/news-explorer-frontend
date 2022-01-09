@@ -10,6 +10,7 @@ import newsApi from "../../utils/NewsApi";
 import { LoggedInContext } from "../../contexts/loggedInContext";
 import { IsMenuOpenContext } from "../../contexts/isMenuOpenContext";
 import { IsLoginOpenContext } from "../../contexts/isLoginModalOpen";
+import { CurrentUserContext } from "../../contexts/currentUserContext";
 import SavedNews from "../SavedNews/SavedNews";
 import RegisterSuccessModal from "../RegisterSuccessModal/RegisterSuccessModal";
 import LoginRegisterModal from "../LoginRegisterModal/LoginRegisterModal";
@@ -32,6 +33,7 @@ function App() {
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [isSuccessRegisterModalOpen, setIsSuccessRegisterModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
 
   // check if there's anything in local storage when page opens
   useEffect(() => {
@@ -89,6 +91,10 @@ function App() {
         console.log(err);
       })
     */
+    const tempEmail = {
+      email
+    }
+    setCurrentUser({ ...currentUser, ...tempEmail });
     console.log(`email: ${email}, password: ${password}`);
     setLoggedIn(true);
     closeAllModals();
@@ -105,6 +111,7 @@ function App() {
         console.log(err);
       })
     */
+    setCurrentUser({ username });
     console.log(`email: ${email}, password: ${password}, username: ${username}`);
     closeAllModals();
     setIsSuccessRegisterModalOpen(true);
@@ -285,22 +292,26 @@ function App() {
       <LoggedInContext.Provider value={loggedIn}>
         <IsMenuOpenContext.Provider value={isMenuOpen} >
           <IsLoginOpenContext.Provider value={isLoginRegisterModalOpen}>
-            <HeaderGroup 
-              openLoginWindow={openLoginWindow}
-              handleLogOut={handleLogOut}
-              handleSearchSubmit={handleSearchSubmit}
-              setIsMenuOpen={setIsMenuOpen}
-            />
+            <CurrentUserContext.Provider value={currentUser}>
+              <HeaderGroup 
+                openLoginWindow={openLoginWindow}
+                handleLogOut={handleLogOut}
+                handleSearchSubmit={handleSearchSubmit}
+                setIsMenuOpen={setIsMenuOpen}
+              />
+            </CurrentUserContext.Provider>
           </IsLoginOpenContext.Provider>
           <Switch>
             <ProtectedRoute exact path='/saved-news'>
-              <SavedNews 
-                openLoginWindow={openLoginWindow}
-                handleLogOut={handleLogOut}
-                articleCount={savedArticles.length}
-                displayArticles={savedArticles}
-                cardIconClick={updateSaved}
-              />
+              <CurrentUserContext.Provider value={currentUser}>
+                <SavedNews 
+                  openLoginWindow={openLoginWindow}
+                  handleLogOut={handleLogOut}
+                  articleCount={savedArticles.length}
+                  displayArticles={savedArticles}
+                  cardIconClick={updateSaved}
+                />
+              </CurrentUserContext.Provider>
             </ProtectedRoute>
             <Route exact path='/'>
               <Main 
