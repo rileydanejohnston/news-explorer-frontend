@@ -39,6 +39,7 @@ function App() {
   useEffect(() => {
     const boolDisplay = JSON.parse(localStorage.getItem('display-articles'));
     const boolAll = JSON.parse(localStorage.getItem('all-articles'));
+    const boolUser = JSON.parse(localStorage.getItem('current-user'));
 
     // only do something with local storage if all exist
     // otherwise, start fresh. K.I.S.S.
@@ -51,9 +52,16 @@ function App() {
         setIsSearchResultsOpen(true);
       }
     }
+
+    // keep user and search separate
+    // user can make searches while not logged in
+    if (boolUser) {
+      setCurrentUser(boolUser);
+      setLoggedIn(true);
+    }
   }, [])
 
-  // update local storage when items are not their default states
+  // update local storage for search results
   useEffect(() => {
     localStorage.setItem('all-articles', JSON.stringify(allArticles));
     localStorage.setItem('display-articles', JSON.stringify(displayArticles));
@@ -92,12 +100,15 @@ function App() {
         console.log(err);
       })
     */
-    const tempEmail = {
-      email
+
+    // just for markup purposes
+    const tempUser = {
+      email,
+      username: currentUser.hasOwnProperty('username') ? currentUser.username : 'User1'
     }
-    setCurrentUser({ ...currentUser, ...tempEmail });
-    console.log(`email: ${email}, password: ${password}`);
+    setCurrentUser(tempUser);
     setLoggedIn(true);
+    localStorage.setItem('current-user', JSON.stringify(tempUser));
     closeAllModals();
   }
 
@@ -122,7 +133,7 @@ function App() {
     setLoggedIn(false);
     localStorage.removeItem('all-articles');
     localStorage.removeItem('display-articles');
-    localStorage.removeItem('index');
+    localStorage.removeItem('current-user');
   }
 
   function closeAllModals() {
