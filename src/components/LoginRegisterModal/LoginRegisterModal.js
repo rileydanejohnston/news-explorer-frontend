@@ -28,6 +28,13 @@ export default function LoginRegisterModal({ isRegisterModalOpen, closeAllModals
     setIsRegisterSubmitActive( (emailValid && passwordValid && usernameValid) ? true : false );
   }, [emailValid, passwordValid, usernameValid]);
 
+  // reset text if modals open, close or change
+  useEffect(() => {
+    setEmail('');
+    setPassword('');
+    setUsername('');
+  }, [isRegisterModalOpen, isLoginOpen]);
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     setEmailValid(e.target.validity.valid);
