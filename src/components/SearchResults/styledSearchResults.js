@@ -2,15 +2,15 @@ import styled from "styled-components/macro";
 
 export const SearchResultsWrapper = styled.section`
   background: #F5F6F7;
-  padding: 80px 104px;
+  padding: 80px 0;
   display: flex;
   flex-direction: column;
 
   @media( max-width: 1023px) {
-    padding: 40px;
+    padding: 40 0px;
   }
   @media( max-width: 625px) {
-    padding: 32px 16px 24px;
+    padding: 32px 0 24px;
   }
 `;
 
@@ -21,13 +21,16 @@ export const Title = styled.h2`
   font-weight: 400;
   line-height: 46px;
   letter-spacing: 0px;
+  margin-left: 104px;
 
   @media( max-width: 1023px) {
     font-size: 30px;
     line-height: 34px;
+    margin-left: 40px;
   }
   @media( max-width: 625px) {
     margin-bottom: 34px;
+    margin-left: 16px;
   }
 `;
 
