@@ -110,19 +110,19 @@ export const NavButton = styled.button`
   align-items: center;
   justify-content: ${(props) => (props.loggedIn ? 'space-between' : 'center' )};
   padding: ${(props) => (props.loggedIn ? '0 18px' : '0' )};
-  width: ${(props) => (props.loggedIn ? '112px' : '176px' )};
+  width: ${(props) => (props.loggedIn ? 'auto' : '176px' )};
   height: 48px;
 
   @media( max-width: 1023px) {
     height: 40px;
     font-size: 16px;
     padding: ${(props) => (props.loggedIn ? '0 15px' : '0' )};
-    width: ${(props) => (props.loggedIn ? '100px' : '152px' )};
+    width: ${(props) => (props.loggedIn ? 'auto' : '152px' )};
   }
 
   @media( max-width: 625px) {
     height: 56px;
-    width: ${(props) => (props.loggedIn ? '183px' : '288px' )};
+    width: ${(props) => (props.loggedIn ? 'auto' : '288px' )};
     padding: ${(props) => (props.loggedIn ? '0 56px' : '0' )};
   }
 
