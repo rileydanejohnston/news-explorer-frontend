@@ -166,37 +166,17 @@ function App() {
 
     setDisplayArticles(tempArticles);
 
-    // call backend function
+    card.isSaved = !card.isSaved;
     if (card.isSaved) {
-      card.isSaved = false;
-      deleteCard(card);
+      setSavedArticles([...savedArticles, card]);
     }
     else if (!card.isSaved) {
-      card.isSaved = true;
-      saveCard(card);
+      const tempSaved = savedArticles.filter((arts) => {
+        return card.title !== arts.title;
+      })
+      setSavedArticles(tempSaved);
     }
   }
-
-  function saveCard(card) {
-    // FUTURE WORK -> make post request to save card
-    console.log(`this card will be saved`);
-    console.log(card);
-  }
-
-  function deleteCard(card) {
-    // FUTURE WORK -> make delete request to delete card
-    console.log(`this card will be deleted`);
-    console.log(card);
-  }
-
-  // used to update saved articles - related to ^^^
-  useEffect(() => {
-    const tempArticles = displayArticles.filter((articles) => {
-      return articles.isSaved === true;
-    });
-
-    setSavedArticles(tempArticles);
-  }, [displayArticles]);
   
   function handleSearchSubmit(keyword) {
     // start with nothing open
