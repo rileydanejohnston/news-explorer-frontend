@@ -147,8 +147,8 @@ function App() {
     setIsLoginRegisterModalOpen(true);
   }
 
-  // update button liked status on frontend
   function updateSaved(card) {
+    // update frontend - which bookmark icon shows
     const tempArticles = displayArticles.map((articles) => {
       if (articles.title === card.title) {
         return {
@@ -166,16 +166,27 @@ function App() {
 
     setDisplayArticles(tempArticles);
 
+    // update card on the backend - post or delete request
     card.isSaved = !card.isSaved;
     if (card.isSaved) {
-      setSavedArticles([...savedArticles, card]);
+      saveArticle(card);
     }
     else if (!card.isSaved) {
-      const tempSaved = savedArticles.filter((arts) => {
-        return card.title !== arts.title;
-      })
-      setSavedArticles(tempSaved);
-    }
+      deleteArticle(card);
+  }
+
+  // request to backend to save article
+  function saveArticle(card) {
+    setSavedArticles([...savedArticles, card]);
+  }
+
+  // request to backend to delete article from saved
+  function deleteArticle(card) {
+    const tempSaved = savedArticles.filter((arts) => {
+      return card.title !== arts.title;
+    })
+    setSavedArticles(tempSaved);
+  }
   }
   
   function handleSearchSubmit(keyword) {
