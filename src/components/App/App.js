@@ -35,19 +35,29 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
-  // check if there's anything in local storage when page opens
+  // check local storage when App mounts
   useEffect(() => {
-    if (localStorage.getItem('display-articles')) {
-      const tempDisplayArticles = JSON.parse(localStorage.getItem('display-articles'));
-      const tempAllArticles = JSON.parse(localStorage.getItem('all-articles'));
-      const tempIndex = localStorage.getItem('index');
+    const boolDisplay = JSON.parse(localStorage.getItem('display-articles'));
+    const boolAll = JSON.parse(localStorage.getItem('all-articles'));
 
-      setDisplayArticles(tempDisplayArticles);
-      setAllArticles(tempAllArticles);
-      setIndex(tempIndex);
-      setIsSearchResultsOpen(true);
+    // only do something with local storage if all exist
+    // otherwise, start fresh. K.I.S.S.
+    if (boolDisplay && boolAll) {
+      setDisplayArticles(boolDisplay);
+      setAllArticles(boolAll);
+      setIndex(boolDisplay.length);
+
+      if (boolDisplay.length !== 0) {
+        setIsSearchResultsOpen(true);
+      }
     }
   }, [])
+
+  // update local storage when items are not their default states
+  useEffect(() => {
+    localStorage.setItem('all-articles', JSON.stringify(allArticles));
+    localStorage.setItem('display-articles', JSON.stringify(displayArticles));
+  }, [allArticles, displayArticles])
 
   // handles initial search -> display 3 articles
   useEffect(() => {
@@ -61,15 +71,6 @@ function App() {
   useEffect(() => {
     checkMoreArticles();
   }, [displayArticles])
-
-  // saves local storage every time the articles/index changes
-  useEffect(() => {
-    // don't save when search resets to zero
-    if (displayArticles.length !== 0 || index !== 0) {
-      localStorage.setItem('display-articles', JSON.stringify(displayArticles));
-      localStorage.setItem('index', index);
-    }
-  }, [displayArticles, index])
 
 
   function openLoginWindow() {
@@ -213,7 +214,6 @@ function App() {
           };
         });
 
-        localStorage.setItem('all-articles', JSON.stringify(articleCollection));
         setAllArticles(articleCollection);
         setIsSearchResultsOpen(true);
       })
@@ -242,7 +242,7 @@ function App() {
 
     // adjust index if we went out of bounds
     if (tempAll[i] === undefined) {
-      --i;
+      i = allArticles.length;
     }
 
     // set states
@@ -251,7 +251,7 @@ function App() {
   }
 
   function checkMoreArticles() {
-    if (allArticles.length === displayArticles.length) {
+    if (allArticles.length === displayArticles.length || allArticles.length === 0) {
       setMoreArticles(false);
     }
     else {
