@@ -24,7 +24,7 @@ class NewsApi {
   }
 
   getNews(keyword) {
-    return fetch(`${this._baseUrl}?q=${keyword}&from=${this._getDate()}&pageSize=7`, {
+    return fetch(`${this._baseUrl}?q=${keyword}&from=${this._getDate()}&pageSize=100`, {
       method: 'GET',
       headers: this._headers
     })
