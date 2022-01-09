@@ -40,12 +40,14 @@ function App() {
     const boolDisplay = JSON.parse(localStorage.getItem('display-articles'));
     const boolAll = JSON.parse(localStorage.getItem('all-articles'));
     const boolUser = JSON.parse(localStorage.getItem('current-user'));
+    const boolSaved = JSON.parse(localStorage.getItem('saved-articles'));
 
     // only do something with local storage if all exist
     // otherwise, start fresh. K.I.S.S.
-    if (boolDisplay && boolAll) {
+    if (boolDisplay && boolAll && boolSaved) {
       setDisplayArticles(boolDisplay);
       setAllArticles(boolAll);
+      setSavedArticles(boolSaved);
       setIndex(boolDisplay.length);
 
       if (boolDisplay.length !== 0) {
@@ -65,7 +67,8 @@ function App() {
   useEffect(() => {
     localStorage.setItem('all-articles', JSON.stringify(allArticles));
     localStorage.setItem('display-articles', JSON.stringify(displayArticles));
-  }, [allArticles, displayArticles])
+    localStorage.setItem('saved-articles', JSON.stringify(savedArticles));
+  }, [allArticles, displayArticles, savedArticles])
 
   // handles initial search -> display 3 articles
   useEffect(() => {
@@ -134,6 +137,7 @@ function App() {
     localStorage.removeItem('all-articles');
     localStorage.removeItem('display-articles');
     localStorage.removeItem('current-user');
+    localStorage.removeItem('saved-articles');
   }
 
   function closeAllModals() {
