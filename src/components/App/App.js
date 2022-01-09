@@ -320,14 +320,11 @@ function App() {
               </CurrentUserContext.Provider>
             </ProtectedRoute>
             <Route exact path='/'>
-              <Main 
-                openLoginWindow={openLoginWindow}
-                handleLogOut={handleLogOut}
+              <Main
                 isSearching={isSearching}
                 isSearchResultsOpen={isSearchResultsOpen}
                 noSearchResults={noSearchResults}
                 isErrorOpen={isErrorOpen}
-                handleSearchSubmit={handleSearchSubmit}
                 displayArticles={displayArticles}
                 handleShowMoreClick={handleShowMoreClick}
                 moreArticles={moreArticles}
