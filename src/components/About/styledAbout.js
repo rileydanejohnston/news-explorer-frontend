@@ -74,7 +74,7 @@ export const Title = styled.h2`
   }
 `;
 
-export const ParagraphWrapper = styled.ul`
+export const ParagraphWrapper = styled.div`
   display: flex;
   flex-direction: column;
   grid-gap: 16px;
@@ -85,7 +85,7 @@ export const ParagraphWrapper = styled.ul`
   }
 `;
 
-export const Paragraph = styled.li`
+export const Paragraph = styled.p`
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
