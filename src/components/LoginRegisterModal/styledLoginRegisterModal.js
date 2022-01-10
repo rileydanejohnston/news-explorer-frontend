@@ -44,10 +44,6 @@ export const Input = styled.input`
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding: 10px 0;
   height: 34px;
-
-  &:focus {
-    outline: none;
-  }
 `;
 
 export const InputError = styled(SubmitError)`
