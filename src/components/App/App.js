@@ -16,6 +16,7 @@ import RegisterSuccessModal from "../RegisterSuccessModal/RegisterSuccessModal";
 import LoginRegisterModal from "../LoginRegisterModal/LoginRegisterModal";
 import Footer from "../Footer/Footer";
 import HeaderGroup from "../HeaderGroup/HeaderGroup";
+import * as auth from '../../utils/authRequests';
 
 function App() {
   let location = window.location.pathname;
@@ -117,19 +118,15 @@ function App() {
 
   function handleRegister(email, password, username) {
     // make api request when backend is ready
-    /*
-    authApi.register(email, password, username)
+    
+    auth.register(email, password, username)
       .then((res) => {
+        setIsLoginRegisterModalOpen(false);
         setIsSuccessRegisterModalOpen(true);
       })
       .catch((err) => {
         console.log(err);
-      })
-    */
-    setCurrentUser({ username });
-    console.log(`email: ${email}, password: ${password}, username: ${username}`);
-    closeAllModals();
-    setIsSuccessRegisterModalOpen(true);
+      });
   }
 
   function handleLogOut() {
