@@ -158,6 +158,7 @@ function App() {
         return {
           title: articles.title,
           description: articles.description,
+          urlToImage: articles.urlToImage,
           url: articles.url,
           source: articles.source,
           date: articles.date,
@@ -201,6 +202,8 @@ function App() {
     // search for news
     newsApi.getNews(keyword)
       .then(({ articles }) => {
+
+        console.log(articles);
         // show no search results if necessary
         if (articles.length === 0) {
           setNoSearchResults(true);
@@ -212,7 +215,8 @@ function App() {
           return {
             title: data.title,
             description: data.description,
-            url: data.urlToImage,
+            urlToImage: data.urlToImage,
+            url: data.url,
             source: data.source.name,
             date: getDateFormat(data.publishedAt),
             isSaved: false,

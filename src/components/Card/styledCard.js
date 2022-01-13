@@ -32,6 +32,10 @@ export const Image = styled.img`
   @media( max-width: 625px ) {
     height: 196px;
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const Category = styled.div`
