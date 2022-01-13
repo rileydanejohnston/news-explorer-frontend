@@ -27,3 +27,18 @@ export const register = (email, password, name) => {
 }
 
 // signin
+export const login = (email, password) => {
+  return fetch(`${baseUrl}/signin`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email,
+      password
+    })
+  })
+  .then((res) => {
+    return handleResponse(res);
+  });
+}

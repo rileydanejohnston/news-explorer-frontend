@@ -35,6 +35,7 @@ function App() {
   const [isSuccessRegisterModalOpen, setIsSuccessRegisterModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [token, setToken] = useState('');
 
   // check local storage when App mounts
   useEffect(() => {
@@ -93,27 +94,16 @@ function App() {
   }
 
   function handleLogin(email, password) {
-    // make api request when backend is ready
-    /*
-    authApi.login(email, password)
+    auth.login(email, password)
       .then((res) => {
-        setCurrentUser
-        setLoggedIn(true)
+        setLoggedIn(true);
+        setToken(res.token);
+        localStorage.setItem('jwt', res.token);
+        closeAllModals();
       })
       .catch((err) => {
         console.log(err);
-      })
-    */
-
-    // just for markup purposes
-    const tempUser = {
-      email,
-      username: currentUser.hasOwnProperty('username') ? currentUser.username : 'User1'
-    }
-    setCurrentUser(tempUser);
-    setLoggedIn(true);
-    localStorage.setItem('current-user', JSON.stringify(tempUser));
-    closeAllModals();
+      });
   }
 
   function handleRegister(email, password, username) {
