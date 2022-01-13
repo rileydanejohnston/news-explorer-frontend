@@ -87,7 +87,6 @@ export const ToolTip = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
 
   @media( max-width: 1023px ) {
     top: ${(props) => (props.path === '/' ? '8px' : '53px' )};
@@ -98,8 +97,6 @@ export const ToolTip = styled.div`
     top: ${(props) => (props.path === '/' ? '16px' : '61px' )};
     right: ${(props) => (props.path === '/' ? '61px' : '16px' )};
   }
-
-  /* why?? should be border box.. should be centered with text align.. should be centered vertically with padding...*/
 `;
 
 export const ActionButton = styled.button`
