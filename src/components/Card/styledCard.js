@@ -75,6 +75,7 @@ export const ToolTip = styled.div`
   text-align: center;
 
   opacity: ${(props) => (props.isOpen ? 1 : 0 )};
+  z-index: ${(props) => (props.isOpen ? 1 : -1 )};
   transition: opacity .3s ease .3s;
   background: #FFF;
   border-radius: 10px;
