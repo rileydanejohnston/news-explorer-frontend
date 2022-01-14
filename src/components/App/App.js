@@ -157,7 +157,7 @@ function App() {
     setIsLoginRegisterModalOpen(true);
   }
 
-  function updateSaved(card) {
+  function updateCardsFrontend(card) {
     // update frontend - which bookmark icon shows
     const tempArticles = displayArticles.map((articles) => {
       if (articles.title === card.title) {
@@ -169,21 +169,14 @@ function App() {
           source: articles.source,
           date: articles.date,
           isSaved: !articles.isSaved,
-          keyword: articles.keyword
+          keyword: articles.keyword,
+          _id: card._id
         };
       }
       return articles;
     });
 
     setDisplayArticles(tempArticles);
-
-    // update card on the backend - post or delete request
-    card.isSaved = !card.isSaved;
-    if (card.isSaved) {
-      saveArticle(card);
-    }
-    else if (!card.isSaved) {
-      deleteArticle(card);
   }
 
   // request to backend to save article
@@ -199,8 +192,9 @@ function App() {
       // add properties specific to savedArticles
       const cardToSave = { keyword, title, date, source, owner, _id, urlToImage: image, description: text, url: link, isSaved: true
       };
-    
+
       setSavedArticles([...savedArticles, cardToSave]);
+      updateCardsFrontend(cardToSave);
     })
     .catch((err) => {
       console.log(err);
@@ -213,11 +207,21 @@ function App() {
     .then(({ _id }) => {
       const tempSaved = savedArticles.filter((arts) => {
         return _id !== arts._id;
-      })
+      });
+
       setSavedArticles(tempSaved);
+      updateCardsFrontend(article);
     })
     .catch((err) => console.log(err));
   }
+
+  function handleIconClick(article) {
+    if (article.isSaved) {
+      deleteArticle(article);
+    }
+    else {
+      saveArticle(article);
+    }
   }
   
   function handleSearchSubmit(keyword) {
@@ -346,7 +350,7 @@ function App() {
                   handleLogOut={handleLogOut}
                   articleCount={savedArticles.length}
                   displayArticles={savedArticles}
-                  cardIconClick={updateSaved}
+                  cardIconClick={handleIconClick}
                 />
               </CurrentUserContext.Provider>
             </ProtectedRoute>
@@ -359,7 +363,7 @@ function App() {
                 displayArticles={displayArticles}
                 handleShowMoreClick={handleShowMoreClick}
                 moreArticles={moreArticles}
-                cardIconClick={updateSaved}
+                cardIconClick={handleIconClick}
               />
             </Route>
           </Switch>
