@@ -130,7 +130,7 @@ function App() {
     
     auth.register(email, password, username)
       .then((res) => {
-        setIsLoginRegisterModalOpen(false);
+        closeAllModals();
         setIsSuccessRegisterModalOpen(true);
       })
       .catch((err) => {

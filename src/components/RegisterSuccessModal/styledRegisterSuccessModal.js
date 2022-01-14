@@ -17,6 +17,7 @@ export const SignInLink = styled.p`
   letter-spacing: 0em;
   color: #2F71E5;
   margin-bottom: 23px;
+  max-width: 58px;
 
   &:hover {
     cursor: pointer;
