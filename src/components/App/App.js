@@ -187,8 +187,24 @@ function App() {
   }
 
   // request to backend to save article
-  function saveArticle(card) {
-    setSavedArticles([...savedArticles, card]);
+  function saveArticle({ keyword, title, description, date, source, url, urlToImage }) {
+    // remove isSaved property, deal with urlToImg/image
+    const tempCard = { keyword, title, description, date, source, url, urlToImg: urlToImage
+    };
+
+    api.saveArticle(tempCard)
+    .then(({ keyword, title, text, date, source, link,
+      image, owner, _id }) => {
+
+      // add properties specific to savedArticles
+      const cardToSave = { keyword, title, date, source, owner, _id, urlToImage: image, description: text, url: link, isSaved: true
+      };
+    
+      setSavedArticles([...savedArticles, cardToSave]);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   // request to backend to delete article from saved

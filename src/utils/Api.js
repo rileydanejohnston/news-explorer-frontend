@@ -20,6 +20,17 @@ class Api {
       return this._handleResponse(res);
     })
   }
+
+  saveArticle(article) {
+    return fetch(`${this._baseUrl}/articles/`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({ article })
+    })
+    .then((res) => {
+      return this._handleResponse(res);
+    })
+  }
 };
 
 export default Api;
