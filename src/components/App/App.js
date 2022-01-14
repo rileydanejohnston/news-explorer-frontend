@@ -11,6 +11,7 @@ import { LoggedInContext } from "../../contexts/loggedInContext";
 import { IsMenuOpenContext } from "../../contexts/isMenuOpenContext";
 import { IsLoginOpenContext } from "../../contexts/isLoginModalOpen";
 import { CurrentUserContext } from "../../contexts/currentUserContext";
+import { SuccessRegisterContext } from "../../contexts/successRegisterContext";
 import SavedNews from "../SavedNews/SavedNews";
 import RegisterSuccessModal from "../RegisterSuccessModal/RegisterSuccessModal";
 import LoginRegisterModal from "../LoginRegisterModal/LoginRegisterModal";
@@ -290,12 +291,14 @@ function App() {
         <IsMenuOpenContext.Provider value={isMenuOpen} >
           <IsLoginOpenContext.Provider value={isLoginRegisterModalOpen}>
             <CurrentUserContext.Provider value={currentUser}>
-              <HeaderGroup 
-                openLoginWindow={openLoginWindow}
-                handleLogOut={handleLogOut}
-                handleSearchSubmit={handleSearchSubmit}
-                setIsMenuOpen={setIsMenuOpen}
-              />
+              <SuccessRegisterContext.Provider value={isSuccessRegisterModalOpen}>
+                <HeaderGroup 
+                  openLoginWindow={openLoginWindow}
+                  handleLogOut={handleLogOut}
+                  handleSearchSubmit={handleSearchSubmit}
+                  setIsMenuOpen={setIsMenuOpen}
+                />
+              </SuccessRegisterContext.Provider>
             </CurrentUserContext.Provider>
           </IsLoginOpenContext.Provider>
           <Switch>
