@@ -31,6 +31,16 @@ class Api {
       return this._handleResponse(res);
     })
   }
+
+  deleteArticle(_id) {
+    return fetch(`${this._baseUrl}/articles/${_id}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+    .then((res) => {
+      return this._handleResponse(res);
+    })
+  }
 };
 
 export default Api;

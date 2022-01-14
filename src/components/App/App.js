@@ -208,11 +208,15 @@ function App() {
   }
 
   // request to backend to delete article from saved
-  function deleteArticle(card) {
-    const tempSaved = savedArticles.filter((arts) => {
-      return card.title !== arts.title;
+  function deleteArticle(article) {
+    api.deleteArticle(article._id)
+    .then(({ _id }) => {
+      const tempSaved = savedArticles.filter((arts) => {
+        return _id !== arts._id;
+      })
+      setSavedArticles(tempSaved);
     })
-    setSavedArticles(tempSaved);
+    .catch((err) => console.log(err));
   }
   }
   
@@ -225,7 +229,6 @@ function App() {
     newsApi.getNews(keyword)
       .then(({ articles }) => {
 
-        console.log(articles);
         // show no search results if necessary
         if (articles.length === 0) {
           setNoSearchResults(true);
