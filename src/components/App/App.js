@@ -18,6 +18,7 @@ import LoginRegisterModal from "../LoginRegisterModal/LoginRegisterModal";
 import Footer from "../Footer/Footer";
 import HeaderGroup from "../HeaderGroup/HeaderGroup";
 import * as auth from '../../utils/authRequests';
+import Api from "../../utils/Api";
 
 function App() {
   let location = window.location.pathname;
@@ -37,6 +38,23 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [token, setToken] = useState('');
+  const { NODE_ENV } = process.env;
+  const baseUrl = NODE_ENV === 'production' ? 'UNDER CONSTRUCTION' : 'http://localhost:3000';
+
+  const api = new Api(baseUrl, {
+    'Content-Type': 'application/json',
+    authorization: `Bearer ${token}`
+  });
+
+  useEffect(() => {
+    if (token) {
+      api.getCurrentUser()
+      .then(({ email, name}) => {
+        setCurrentUser({ email, username: name });
+      })
+      .catch(err => console.log(err));
+    }
+  }, [token])
 
   // check local storage when App mounts
   useEffect(() => {
