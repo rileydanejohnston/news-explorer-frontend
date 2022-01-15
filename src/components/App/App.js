@@ -53,8 +53,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (loggedIn) {
-      api.getArticles()
+    api.getArticles()
       .then((articles) => {
         const tempSaved = articles.map((art) => {
           return {
@@ -73,8 +72,7 @@ function App() {
         setSavedArticles(tempSaved);
       })
       .catch((err) => console.log(err));
-    }
-  }, [currentUser])
+  }, [token])
   // fire upon loggedIn? token?
 
   useEffect(() => {
