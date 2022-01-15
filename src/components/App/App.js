@@ -67,7 +67,6 @@ function App() {
   useEffect(() => {
     const boolDisplay = JSON.parse(localStorage.getItem('display-articles'));
     const boolAll = JSON.parse(localStorage.getItem('all-articles'));
-    const boolUser = JSON.parse(localStorage.getItem('current-user'));
     const boolSaved = JSON.parse(localStorage.getItem('saved-articles'));
 
     // only do something with local storage if all exist
@@ -81,13 +80,6 @@ function App() {
       if (boolDisplay.length !== 0) {
         setIsSearchResultsOpen(true);
       }
-    }
-
-    // keep user and search separate
-    // user can make searches while not logged in
-    if (boolUser) {
-      setCurrentUser(boolUser);
-      setLoggedIn(true);
     }
   }, [])
 
@@ -149,7 +141,7 @@ function App() {
     setLoggedIn(false);
     localStorage.removeItem('all-articles');
     localStorage.removeItem('display-articles');
-    localStorage.removeItem('current-user');
+    localStorage.removeItem('jwt');
     localStorage.removeItem('saved-articles');
   }
 
