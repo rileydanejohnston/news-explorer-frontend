@@ -47,10 +47,17 @@ function App() {
   });
 
   useEffect(() => {
+    if (localStorage.getItem('jwt')) {
+      setToken(localStorage.getItem('jwt'));
+    }
+  }, [])
+
+  useEffect(() => {
     if (token) {
       api.getCurrentUser()
       .then(({ email, name}) => {
         setCurrentUser({ email, username: name });
+        setLoggedIn(true);
       })
       .catch(err => console.log(err));
     }
