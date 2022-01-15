@@ -46,6 +46,10 @@ export const Category = styled.div`
   letter-spacing: 0px;
   text-align: center;
   text-transform: capitalize;
+  max-width: 145px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 
   padding: 8px 22px;
   background: #FFF;
