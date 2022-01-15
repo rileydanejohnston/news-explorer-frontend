@@ -41,6 +41,16 @@ class Api {
       return this._handleResponse(res);
     })
   }
+
+  getArticles() {
+    return fetch(`${this._baseUrl}/articles/`, {
+      method: 'GET',
+      headers: this._headers
+    })
+    .then((res) => {
+      return this._handleResponse(res);
+    })
+  }
 };
 
 export default Api;

@@ -53,10 +53,35 @@ function App() {
   }, [])
 
   useEffect(() => {
+    if (loggedIn) {
+      api.getArticles()
+      .then((articles) => {
+        const tempSaved = articles.map((art) => {
+          return {
+            keyword: art.keyword,
+            title: art.title,
+            date: art.date,
+            source: art.source,
+            owner: art.owner,
+            _id: art._id,
+            urlToImage: art.image,
+            description: art.text,
+            url: art.link,
+            isSaved: true
+          };
+        })
+        setSavedArticles(tempSaved);
+      })
+      .catch((err) => console.log(err));
+    }
+  }, [currentUser])
+  // fire upon loggedIn? token?
+
+  useEffect(() => {
     if (token) {
       api.getCurrentUser()
-      .then(({ email, name}) => {
-        setCurrentUser({ email, username: name });
+      .then(({ email, name, _id }) => {
+        setCurrentUser({ email, username: name, _id });
         setLoggedIn(true);
       })
       .catch(err => console.log(err));
@@ -67,28 +92,25 @@ function App() {
   useEffect(() => {
     const boolDisplay = JSON.parse(localStorage.getItem('display-articles'));
     const boolAll = JSON.parse(localStorage.getItem('all-articles'));
-    const boolSaved = JSON.parse(localStorage.getItem('saved-articles'));
 
     // only do something with local storage if all exist
     // otherwise, start fresh. K.I.S.S.
-    if (boolDisplay && boolAll && boolSaved) {
+    if (boolDisplay && boolAll) {
       setDisplayArticles(boolDisplay);
       setAllArticles(boolAll);
-      setSavedArticles(boolSaved);
       setIndex(boolDisplay.length);
 
       if (boolDisplay.length !== 0) {
         setIsSearchResultsOpen(true);
       }
     }
-  }, [])
+  }, [currentUser])
 
   // update local storage for search results
   useEffect(() => {
     localStorage.setItem('all-articles', JSON.stringify(allArticles));
     localStorage.setItem('display-articles', JSON.stringify(displayArticles));
-    localStorage.setItem('saved-articles', JSON.stringify(savedArticles));
-  }, [allArticles, displayArticles, savedArticles])
+  }, [allArticles, displayArticles])
 
   // handles initial search -> display 3 articles
   useEffect(() => {
@@ -139,10 +161,15 @@ function App() {
 
   function handleLogOut() {
     setLoggedIn(false);
+    setCurrentUser({});
+    setToken('');
+    setDisplayArticles([]);
+    setAllArticles([]);
+    setIndex(0);
+    setIsSearchResultsOpen(false);
     localStorage.removeItem('all-articles');
     localStorage.removeItem('display-articles');
     localStorage.removeItem('jwt');
-    localStorage.removeItem('saved-articles');
   }
 
   function closeAllModals() {
