@@ -78,8 +78,8 @@ function App() {
   useEffect(() => {
     if (token) {
       api.getCurrentUser()
-      .then(({ email, name, _id }) => {
-        setCurrentUser({ email, username: name, _id });
+      .then(({ email, name }) => {
+        setCurrentUser({ email, username: name });
         setLoggedIn(true);
       })
       .catch(err => console.log(err));
