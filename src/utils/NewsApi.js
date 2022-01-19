@@ -1,7 +1,6 @@
 class NewsApi {
-  constructor(settings){
-    this._baseUrl = settings.baseUrl;
-    this._headers = settings.headers;
+  constructor(baseUrl){
+    this._baseUrl = baseUrl;
   }
 
   _handleResponse(res) {
@@ -24,9 +23,8 @@ class NewsApi {
   }
 
   getNews(keyword) {
-    return fetch(`${this._baseUrl}?q=${keyword}&from=${this._getDate()}&pageSize=100`, {
-      method: 'GET',
-      headers: this._headers
+    return fetch(`${this._baseUrl}?q=${keyword}&from=${this._getDate()}&pageSize=100&apiKey=b8073dea22c9459e912450c29081a0ec`, {
+      method: 'GET'
     })
       .then((res) => {
         return this._handleResponse(res);
@@ -34,13 +32,9 @@ class NewsApi {
   }
 }
 
-const baseUrl = 'https://newsapi.org/v2/everything';
+const { NODE_ENV } = process.env;
+const baseUrl = NODE_ENV === 'production' ? 'https://nomoreparties.co/news/v2/everything' : 'https://newsapi.org/v2/everything';
 
-const newsApi = new NewsApi({
-  baseUrl: baseUrl,
-  headers: {
-      Authorization: 'b8073dea22c9459e912450c29081a0ec'
-    }
-});
+const newsApi = new NewsApi(baseUrl);
 
 export default newsApi;
