@@ -247,6 +247,11 @@ function App() {
       saveArticle(article);
     }
   }
+
+  function handleLoggedOutIconClick() {
+    setIsRegisterModalOpen(true);
+    setIsLoginRegisterModalOpen(true);
+  }
   
   function handleSearchSubmit(keyword) {
     // start with nothing open
@@ -388,6 +393,7 @@ function App() {
                 handleShowMoreClick={handleShowMoreClick}
                 moreArticles={moreArticles}
                 cardIconClick={handleIconClick}
+                loggedOutIconClick={handleLoggedOutIconClick}
               />
             </Route>
           </Switch>

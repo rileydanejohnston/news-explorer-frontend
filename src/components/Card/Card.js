@@ -3,7 +3,7 @@ import { BookmarkIcon, DeleteIcon, ActionButton, CardWrapper, Date, Image, InfoW
 import { useLocation } from 'react-router-dom';
 import { LoggedInContext } from '../../contexts/loggedInContext';
 
-export default function Card({ card, cardIconClick }) {
+export default function Card({ card, cardIconClick, loggedOutIconClick }) {
 
   const loggedIn = useContext(LoggedInContext);
   const location = useLocation();
@@ -34,6 +34,9 @@ export default function Card({ card, cardIconClick }) {
     if (loggedIn) {
       // send card back to app
       cardIconClick(card);
+    }
+    else {
+      loggedOutIconClick();
     }
   }
 

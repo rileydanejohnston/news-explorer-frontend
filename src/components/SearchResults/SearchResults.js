@@ -3,7 +3,7 @@ import CardList from '../CardList/CardList'
 import { ShowMoreButton } from './styledSearchResults'
 import { SearchResultsWrapper, Title } from './styledSearchResults'
 
-export default function SearchResults({ displayArticles, handleShowMoreClick, moreArticles, cardIconClick }) {
+export default function SearchResults({ displayArticles, handleShowMoreClick, moreArticles, cardIconClick, loggedOutIconClick }) {
 
   return (
     <SearchResultsWrapper>
@@ -11,6 +11,7 @@ export default function SearchResults({ displayArticles, handleShowMoreClick, mo
       <CardList
         displayArticles={displayArticles}
         cardIconClick={cardIconClick}
+        loggedOutIconClick={loggedOutIconClick}
       />
       { moreArticles && <ShowMoreButton onClick={handleShowMoreClick}>Show more</ShowMoreButton> }
     </SearchResultsWrapper>
