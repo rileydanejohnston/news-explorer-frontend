@@ -39,7 +39,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [token, setToken] = useState('');
   const { NODE_ENV } = process.env;
-  const baseUrl = NODE_ENV === 'production' ? 'UNDER CONSTRUCTION' : 'http://localhost:3000';
+  const baseUrl = NODE_ENV === 'production' ? 'https://api.my-news-explorer.students.nomoreparties.sbs' : 'http://localhost:3000';
 
   const api = new Api(baseUrl, {
     'Content-Type': 'application/json',
