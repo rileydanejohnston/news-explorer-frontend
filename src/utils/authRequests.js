@@ -5,10 +5,8 @@ let tempOk;
 
 // extract status from response for errors
 const extractData = (res) => {
-  if (!res.ok)  {
-    const { ok } = res;
-    tempOk = ok;
-  }
+  const { ok } = res;
+  tempOk = ok;
 
   return res.json();
 }
