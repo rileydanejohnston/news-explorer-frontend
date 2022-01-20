@@ -38,6 +38,7 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [token, setToken] = useState('');
+  const [authError, setAuthError] = useState('');
   const { NODE_ENV } = process.env;
   const baseUrl = NODE_ENV === 'production' ? 'https://api.my-news-explorer.students.nomoreparties.sbs' : 'http://localhost:3000';
 
@@ -141,6 +142,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+        setAuthError(err.message);
       });
   }
 
@@ -149,11 +151,15 @@ function App() {
     
     auth.register(email, password, username)
       .then((res) => {
+        // console.log('handleRegister');
+        // console.log(res);
         closeAllModals();
         setIsSuccessRegisterModalOpen(true);
       })
       .catch((err) => {
+        // console.log('catchError');
         console.log(err);
+        setAuthError(err.message);
       });
   }
 
@@ -412,6 +418,8 @@ function App() {
           isRegisterModalOpen={isRegisterModalOpen}
           handleLogin={handleLogin}
           handleRegister={handleRegister}
+          authError={authError}
+          setAuthError={setAuthError}
         />
       </IsLoginOpenContext.Provider>
     </Wrapper>

@@ -1,11 +1,25 @@
 const { NODE_ENV } = process.env;
 const baseUrl = NODE_ENV === 'production' ? 'https://api.my-news-explorer.students.nomoreparties.sbs' : 'http://localhost:3000';
 
-const handleResponse = (res) => {
-  if (res.ok) {
-    return res.json();
+let tempOk;
+
+// extract status from response for errors
+const extractData = (res) => {
+  if (!res.ok)  {
+    const { ok } = res;
+    tempOk = ok;
   }
-  return Promise.reject();
+
+  return res.json();
+}
+
+// return data or promise reject/error
+// res from extractData won't have the error message so we get it from handleResponse
+const handleResponse = (data) => {
+  if (tempOk) {
+    return data;
+  }
+  return Promise.reject(new Error(data.message));
 }
 
 // register
@@ -22,7 +36,10 @@ export const register = (email, password, name) => {
     })
   })
   .then((res) => {
-    return handleResponse(res);
+    return extractData(res);
+  })
+  .then((data) => {
+    return handleResponse(data);
   });
 }
 
@@ -39,6 +56,9 @@ export const login = (email, password) => {
     })
   })
   .then((res) => {
-    return handleResponse(res);
+    return extractData(res);
+  })
+  .then((data) => {
+    return handleResponse(data);
   });
 }

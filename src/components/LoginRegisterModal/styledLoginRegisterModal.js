@@ -49,5 +49,4 @@ export const Input = styled.input`
 export const InputError = styled(SubmitError)`
   text-align: left;
   margin-top: 3px;
-  height: 14px;
 `;

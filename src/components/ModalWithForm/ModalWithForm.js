@@ -2,7 +2,7 @@ import { React } from 'react'
 import Modal from '../Modal/Modal';
 import { Form, FormLink, SubmitError, LinkWrapper, Submit, Title, DisabledSubmit } from './styledModalWithForm'
 
-export default function ModalWithForm({ children, formText,isModalOpen, closeAllModals, formLinkClick, handleFormSubmit, isSubmitActive }) {
+export default function ModalWithForm({ children, formText,isModalOpen, closeAllModals, formLinkClick, handleFormSubmit, isSubmitActive, authError }) {
 
   const handleModalSubmit = (e) => {
     e.preventDefault();
@@ -17,7 +17,7 @@ export default function ModalWithForm({ children, formText,isModalOpen, closeAll
         <Form onSubmit={handleModalSubmit} noValidate>
           <Title>{formText.titleAndSubmit}</Title>
           { children }
-          <SubmitError></SubmitError>
+          <SubmitError>{authError}</SubmitError>
           {
             isSubmitActive ?
             <Submit>{formText.titleAndSubmit}</Submit> :

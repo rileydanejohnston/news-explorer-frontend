@@ -3,7 +3,7 @@ import { IsLoginOpenContext } from '../../contexts/isLoginModalOpen';
 import ModalWithForm from '../ModalWithForm/ModalWithForm'
 import { InputError, Label, Input, InputGroup, InputGroupUsername, InputsWrapper } from './styledLoginRegisterModal'
 
-export default function LoginRegisterModal({ isRegisterModalOpen, closeAllModals, formLinkClick, handleLogin, handleRegister }) {
+export default function LoginRegisterModal({ isRegisterModalOpen, closeAllModals, formLinkClick, handleLogin, handleRegister, authError, setAuthError }) {
 
   const formText = {
     titleAndSubmit: isRegisterModalOpen ? 'Sign up' : 'Sign in',
@@ -36,18 +36,21 @@ export default function LoginRegisterModal({ isRegisterModalOpen, closeAllModals
   }, [isRegisterModalOpen, isLoginOpen]);
 
   const handleEmailChange = (e) => {
+    setAuthError('');
     setEmail(e.target.value);
     setEmailValid(e.target.validity.valid);
     setEmailError( !e.target.validity.valid ? e.target.validationMessage : '' );
   }
 
   const handlePasswordChange = (e) => {
+    setAuthError('');
     setPassword(e.target.value);
     setPasswordValid(e.target.validity.valid);
     setPasswordError( !e.target.validity.valid ? e.target.validationMessage : '' );
   }
 
   const handleUsernameChange = (e) => {
+    setAuthError('');
     setUsername(e.target.value);
     setUsernameValid(e.target.validity.valid);
     setUsernameError( !e.target.validity.valid ? e.target.validationMessage : '' );
@@ -71,6 +74,7 @@ export default function LoginRegisterModal({ isRegisterModalOpen, closeAllModals
       formText={formText}
       handleFormSubmit={correctSubmitFunction}
       isSubmitActive={isRegisterModalOpen ? isRegisterSubmitActive : isLoginSubmitActive}
+      authError={authError}
     >
       <InputsWrapper>
         <InputGroup>
