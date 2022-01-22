@@ -38,7 +38,7 @@ export const LogoMenuWrapper = styled.div`
   width: 100%;
 
   @media( max-width: 625px ) {
-    opacity: ${(props => props.isLoginOpen ? 0 : 1 )}
+    opacity: ${(props => (props.isLoginOpen || props.isSuccessOpen) ? 0 : 1 )}
   }
 `;
 

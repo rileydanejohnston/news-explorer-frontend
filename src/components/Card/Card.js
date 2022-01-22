@@ -3,7 +3,7 @@ import { BookmarkIcon, DeleteIcon, ActionButton, CardWrapper, Date, Image, InfoW
 import { useLocation } from 'react-router-dom';
 import { LoggedInContext } from '../../contexts/loggedInContext';
 
-export default function Card({ card, cardIconClick }) {
+export default function Card({ card, cardIconClick, loggedOutIconClick }) {
 
   const loggedIn = useContext(LoggedInContext);
   const location = useLocation();
@@ -35,6 +35,9 @@ export default function Card({ card, cardIconClick }) {
       // send card back to app
       cardIconClick(card);
     }
+    else {
+      loggedOutIconClick();
+    }
   }
 
   return (
@@ -63,7 +66,7 @@ export default function Card({ card, cardIconClick }) {
           ( <DeleteIcon iconHover={iconHover}/> )
         }
         </ActionButton>
-      <Image src={card.url} alt={card.description} />
+      <Image src={card.urlToImage} alt={card.description} onClick={() => {window.open(card.url, '_blank')}}/>
       <InfoWrapper>
         <Date>{card.date}</Date>
         <Title>{card.title}</Title>

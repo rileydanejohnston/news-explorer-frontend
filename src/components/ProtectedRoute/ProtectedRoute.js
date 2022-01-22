@@ -8,7 +8,7 @@ export default function ProtectedRoute({ children, ...props }) {
   
   return (
     <Route {...props}>
-    { loggedIn ? children : <Redirect to='/' /> }
+    { (localStorage.getItem('jwt') || loggedIn) ? children : <Redirect to='/' /> }
     </Route>
   );
 }

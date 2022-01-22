@@ -11,11 +11,14 @@ import { LoggedInContext } from "../../contexts/loggedInContext";
 import { IsMenuOpenContext } from "../../contexts/isMenuOpenContext";
 import { IsLoginOpenContext } from "../../contexts/isLoginModalOpen";
 import { CurrentUserContext } from "../../contexts/currentUserContext";
+import { SuccessRegisterContext } from "../../contexts/successRegisterContext";
 import SavedNews from "../SavedNews/SavedNews";
 import RegisterSuccessModal from "../RegisterSuccessModal/RegisterSuccessModal";
 import LoginRegisterModal from "../LoginRegisterModal/LoginRegisterModal";
 import Footer from "../Footer/Footer";
 import HeaderGroup from "../HeaderGroup/HeaderGroup";
+import * as auth from '../../utils/authRequests';
+import Api from "../../utils/Api";
 
 function App() {
   let location = window.location.pathname;
@@ -34,41 +37,79 @@ function App() {
   const [isSuccessRegisterModalOpen, setIsSuccessRegisterModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [token, setToken] = useState('');
+  const [authError, setAuthError] = useState('');
+  const { NODE_ENV } = process.env;
+  const baseUrl = NODE_ENV === 'production' ? 'https://api.my-news-explorer.students.nomoreparties.sbs' : 'http://localhost:3000';
+
+  const api = new Api(baseUrl, {
+    'Content-Type': 'application/json',
+    authorization: `Bearer ${token}`
+  });
+
+  useEffect(() => {
+    if (localStorage.getItem('jwt')) {
+      setToken(localStorage.getItem('jwt'));
+    }
+  }, [])
+
+  useEffect(() => {
+    api.getArticles()
+      .then((articles) => {
+        const tempSaved = articles.map((art) => {
+          return {
+            keyword: art.keyword,
+            title: art.title,
+            date: art.date,
+            source: art.source,
+            owner: art.owner,
+            _id: art._id,
+            urlToImage: art.image,
+            description: art.text,
+            url: art.link,
+            isSaved: true
+          };
+        })
+        setSavedArticles(tempSaved);
+      })
+      .catch((err) => console.log(err));
+  }, [token])
+  // fire upon loggedIn? token?
+
+  useEffect(() => {
+    if (token) {
+      api.getCurrentUser()
+      .then(({ email, name }) => {
+        setCurrentUser({ email, username: name });
+        setLoggedIn(true);
+      })
+      .catch(err => console.log(err));
+    }
+  }, [token])
 
   // check local storage when App mounts
   useEffect(() => {
     const boolDisplay = JSON.parse(localStorage.getItem('display-articles'));
     const boolAll = JSON.parse(localStorage.getItem('all-articles'));
-    const boolUser = JSON.parse(localStorage.getItem('current-user'));
-    const boolSaved = JSON.parse(localStorage.getItem('saved-articles'));
 
     // only do something with local storage if all exist
     // otherwise, start fresh. K.I.S.S.
-    if (boolDisplay && boolAll && boolSaved) {
+    if (boolDisplay && boolAll) {
       setDisplayArticles(boolDisplay);
       setAllArticles(boolAll);
-      setSavedArticles(boolSaved);
       setIndex(boolDisplay.length);
 
       if (boolDisplay.length !== 0) {
         setIsSearchResultsOpen(true);
       }
     }
-
-    // keep user and search separate
-    // user can make searches while not logged in
-    if (boolUser) {
-      setCurrentUser(boolUser);
-      setLoggedIn(true);
-    }
-  }, [])
+  }, [currentUser])
 
   // update local storage for search results
   useEffect(() => {
     localStorage.setItem('all-articles', JSON.stringify(allArticles));
     localStorage.setItem('display-articles', JSON.stringify(displayArticles));
-    localStorage.setItem('saved-articles', JSON.stringify(savedArticles));
-  }, [allArticles, displayArticles, savedArticles])
+  }, [allArticles, displayArticles])
 
   // handles initial search -> display 3 articles
   useEffect(() => {
@@ -92,52 +133,47 @@ function App() {
   }
 
   function handleLogin(email, password) {
-    // make api request when backend is ready
-    /*
-    authApi.login(email, password)
+    auth.login(email, password)
       .then((res) => {
-        setCurrentUser
-        setLoggedIn(true)
+        setLoggedIn(true);
+        setToken(res.token);
+        localStorage.setItem('jwt', res.token);
+        closeAllModals();
       })
       .catch((err) => {
         console.log(err);
-      })
-    */
-
-    // just for markup purposes
-    const tempUser = {
-      email,
-      username: currentUser.hasOwnProperty('username') ? currentUser.username : 'User1'
-    }
-    setCurrentUser(tempUser);
-    setLoggedIn(true);
-    localStorage.setItem('current-user', JSON.stringify(tempUser));
-    closeAllModals();
+        setAuthError(err.message);
+      });
   }
 
   function handleRegister(email, password, username) {
     // make api request when backend is ready
-    /*
-    authApi.register(email, password, username)
+    
+    auth.register(email, password, username)
       .then((res) => {
+        // console.log('handleRegister');
+        // console.log(res);
+        closeAllModals();
         setIsSuccessRegisterModalOpen(true);
       })
       .catch((err) => {
+        // console.log('catchError');
         console.log(err);
-      })
-    */
-    setCurrentUser({ username });
-    console.log(`email: ${email}, password: ${password}, username: ${username}`);
-    closeAllModals();
-    setIsSuccessRegisterModalOpen(true);
+        setAuthError(err.message);
+      });
   }
 
   function handleLogOut() {
     setLoggedIn(false);
+    setCurrentUser({});
+    setToken('');
+    setDisplayArticles([]);
+    setAllArticles([]);
+    setIndex(0);
+    setIsSearchResultsOpen(false);
     localStorage.removeItem('all-articles');
     localStorage.removeItem('display-articles');
-    localStorage.removeItem('current-user');
-    localStorage.removeItem('saved-articles');
+    localStorage.removeItem('jwt');
   }
 
   function closeAllModals() {
@@ -151,46 +187,76 @@ function App() {
     setIsLoginRegisterModalOpen(true);
   }
 
-  function updateSaved(card) {
+  function updateCardsFrontend(card) {
     // update frontend - which bookmark icon shows
     const tempArticles = displayArticles.map((articles) => {
       if (articles.title === card.title) {
         return {
           title: articles.title,
           description: articles.description,
+          urlToImage: articles.urlToImage,
           url: articles.url,
           source: articles.source,
           date: articles.date,
           isSaved: !articles.isSaved,
-          keyword: articles.keyword
+          keyword: articles.keyword,
+          _id: card._id
         };
       }
       return articles;
     });
 
     setDisplayArticles(tempArticles);
-
-    // update card on the backend - post or delete request
-    card.isSaved = !card.isSaved;
-    if (card.isSaved) {
-      saveArticle(card);
-    }
-    else if (!card.isSaved) {
-      deleteArticle(card);
   }
 
   // request to backend to save article
-  function saveArticle(card) {
-    setSavedArticles([...savedArticles, card]);
+  function saveArticle({ keyword, title, description, date, source, url, urlToImage }) {
+    // remove isSaved property, deal with urlToImg/image
+    const tempCard = { keyword, title, description, date, source, url, urlToImg: urlToImage
+    };
+
+    api.saveArticle(tempCard)
+    .then(({ keyword, title, text, date, source, link,
+      image, owner, _id }) => {
+
+      // add properties specific to savedArticles
+      const cardToSave = { keyword, title, date, source, owner, _id, urlToImage: image, description: text, url: link, isSaved: true
+      };
+
+      setSavedArticles([...savedArticles, cardToSave]);
+      updateCardsFrontend(cardToSave);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   // request to backend to delete article from saved
-  function deleteArticle(card) {
-    const tempSaved = savedArticles.filter((arts) => {
-      return card.title !== arts.title;
+  function deleteArticle(article) {
+    api.deleteArticle(article._id)
+    .then(({ _id }) => {
+      const tempSaved = savedArticles.filter((arts) => {
+        return _id !== arts._id;
+      });
+
+      setSavedArticles(tempSaved);
+      updateCardsFrontend(article);
     })
-    setSavedArticles(tempSaved);
+    .catch((err) => console.log(err));
   }
+
+  function handleIconClick(article) {
+    if (article.isSaved) {
+      deleteArticle(article);
+    }
+    else {
+      saveArticle(article);
+    }
+  }
+
+  function handleLoggedOutIconClick() {
+    setIsRegisterModalOpen(true);
+    setIsLoginRegisterModalOpen(true);
   }
   
   function handleSearchSubmit(keyword) {
@@ -201,6 +267,7 @@ function App() {
     // search for news
     newsApi.getNews(keyword)
       .then(({ articles }) => {
+
         // show no search results if necessary
         if (articles.length === 0) {
           setNoSearchResults(true);
@@ -212,7 +279,8 @@ function App() {
           return {
             title: data.title,
             description: data.description,
-            url: data.urlToImage,
+            urlToImage: data.urlToImage,
+            url: data.url,
             source: data.source.name,
             date: getDateFormat(data.publishedAt),
             isSaved: false,
@@ -299,12 +367,14 @@ function App() {
         <IsMenuOpenContext.Provider value={isMenuOpen} >
           <IsLoginOpenContext.Provider value={isLoginRegisterModalOpen}>
             <CurrentUserContext.Provider value={currentUser}>
-              <HeaderGroup 
-                openLoginWindow={openLoginWindow}
-                handleLogOut={handleLogOut}
-                handleSearchSubmit={handleSearchSubmit}
-                setIsMenuOpen={setIsMenuOpen}
-              />
+              <SuccessRegisterContext.Provider value={isSuccessRegisterModalOpen}>
+                <HeaderGroup 
+                  openLoginWindow={openLoginWindow}
+                  handleLogOut={handleLogOut}
+                  handleSearchSubmit={handleSearchSubmit}
+                  setIsMenuOpen={setIsMenuOpen}
+                />
+              </SuccessRegisterContext.Provider>
             </CurrentUserContext.Provider>
           </IsLoginOpenContext.Provider>
           <Switch>
@@ -315,7 +385,7 @@ function App() {
                   handleLogOut={handleLogOut}
                   articleCount={savedArticles.length}
                   displayArticles={savedArticles}
-                  cardIconClick={updateSaved}
+                  cardIconClick={handleIconClick}
                 />
               </CurrentUserContext.Provider>
             </ProtectedRoute>
@@ -328,7 +398,8 @@ function App() {
                 displayArticles={displayArticles}
                 handleShowMoreClick={handleShowMoreClick}
                 moreArticles={moreArticles}
-                cardIconClick={updateSaved}
+                cardIconClick={handleIconClick}
+                loggedOutIconClick={handleLoggedOutIconClick}
               />
             </Route>
           </Switch>
@@ -347,6 +418,8 @@ function App() {
           isRegisterModalOpen={isRegisterModalOpen}
           handleLogin={handleLogin}
           handleRegister={handleRegister}
+          authError={authError}
+          setAuthError={setAuthError}
         />
       </IsLoginOpenContext.Provider>
     </Wrapper>

@@ -6,7 +6,7 @@ import SearchError from '../SearchError/SearchError';
 import SearchResults from '../SearchResults/SearchResults';
 import { MainWrapper } from './styledMain';
 
-export default function Main({ isSearching, isSearchResultsOpen, noSearchResults, isErrorOpen, displayArticles, handleShowMoreClick, moreArticles, cardIconClick }) {
+export default function Main({ isSearching, isSearchResultsOpen, noSearchResults, isErrorOpen, displayArticles, handleShowMoreClick, moreArticles, cardIconClick, loggedOutIconClick }) {
   return (
     <MainWrapper>
       { isSearching && <Preloader /> }
@@ -16,6 +16,7 @@ export default function Main({ isSearching, isSearchResultsOpen, noSearchResults
           handleShowMoreClick={handleShowMoreClick} 
           moreArticles={moreArticles}
           cardIconClick={cardIconClick}
+          loggedOutIconClick={loggedOutIconClick}
         /> 
       }
       { noSearchResults && <NotFound /> }

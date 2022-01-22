@@ -32,6 +32,10 @@ export const Image = styled.img`
   @media( max-width: 625px ) {
     height: 196px;
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const Category = styled.div`
@@ -42,6 +46,10 @@ export const Category = styled.div`
   letter-spacing: 0px;
   text-align: center;
   text-transform: capitalize;
+  max-width: 145px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 
   padding: 8px 22px;
   background: #FFF;
@@ -71,6 +79,7 @@ export const ToolTip = styled.div`
   text-align: center;
 
   opacity: ${(props) => (props.isOpen ? 1 : 0 )};
+  z-index: ${(props) => (props.isOpen ? 1 : -1 )};
   transition: opacity .3s ease .3s;
   background: #FFF;
   border-radius: 10px;
@@ -82,7 +91,6 @@ export const ToolTip = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
 
   @media( max-width: 1023px ) {
     top: ${(props) => (props.path === '/' ? '8px' : '53px' )};
@@ -93,8 +101,6 @@ export const ToolTip = styled.div`
     top: ${(props) => (props.path === '/' ? '16px' : '61px' )};
     right: ${(props) => (props.path === '/' ? '61px' : '16px' )};
   }
-
-  /* why?? should be border box.. should be centered with text align.. should be centered vertically with padding...*/
 `;
 
 export const ActionButton = styled.button`

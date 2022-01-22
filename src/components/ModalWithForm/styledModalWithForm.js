@@ -26,10 +26,9 @@ export const SubmitError = styled.span`
   color: #FF0000;
   display: inline-block;
   width: 100%;
-  margin-top: 18px;
+  height: 14px;
 
   @media( max-width: 625px ) {
-    margin-top: 14px;
   }
 `;
 

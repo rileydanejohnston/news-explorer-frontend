@@ -1,8 +1,12 @@
 import React from 'react'
 import { CardsListWrapper, CardsList } from './styledCardList'
 import Card from '../Card/Card';
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
-export default function CardList({ displayArticles, cardIconClick }) {
+export default function CardList({ displayArticles, cardIconClick, loggedOutIconClick }) {
+
+  const location = useLocation();
+
   return (
     <CardsListWrapper>
       <CardsList>
@@ -11,8 +15,9 @@ export default function CardList({ displayArticles, cardIconClick }) {
             return (
               <Card
                 card={card}
-                key={index}
+                key={location.pathname === '/saved-news' ? card._id : index}
                 cardIconClick={cardIconClick}
+                loggedOutIconClick={loggedOutIconClick}
               />
             )
           })
