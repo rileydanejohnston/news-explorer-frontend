@@ -3,8 +3,7 @@
 <br><br>
 [my-news-explorer.students.nomoreparties.sbs](https://my-news-explorer.students.nomoreparties.sbs)<br />
 [www.my-news-explorer.students.nomoreparties.sbs](https://www.my-news-explorer.students.nomoreparties.sbs)
-
----
+<br><br>
 
 ## Application Features
 * responsive design
@@ -39,7 +38,7 @@
 
 ![Saved articles route functionality graphic](./src/images/news-saved-articles-functionality.jpg)
 
----
+<br><br>
 ## Technologies and Libraries
 MongoDB - Express.js - React - Node.js
 
@@ -56,14 +55,13 @@ Backend
 * bcryptjs: protects passwords with hashes and a 10 character salt
 * middlewares: express request limiter, request and error logging with winston/express-winston, enabling CORS, authorization, HTTP headers with helmet
 
----
-
+<br><br>
 ## Deployment
 *News Explorer* is deployed with Google Cloud. It features HTTPS protocol via SSL certificates and redirects requests using NGINX. The app can be viewed at:<br><br>
 [my-news-explorer.students.nomoreparties.sbs](https://my-news-explorer.students.nomoreparties.sbs)<br />
 [www.my-news-explorer.students.nomoreparties.sbs](https://www.my-news-explorer.students.nomoreparties.sbs)
 
----
+<br><br>
 
 ## Getting started - development
 1. copy the repositories to your machine (links to repository below)
